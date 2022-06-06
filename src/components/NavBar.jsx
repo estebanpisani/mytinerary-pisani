@@ -74,7 +74,7 @@ const NavBar = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Typography className="font-normal" textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -95,6 +95,7 @@ const NavBar = () => {
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
+                        className='font-normal'
                     >
                         MyTinerary
                     </Typography>
@@ -104,6 +105,7 @@ const NavBar = () => {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
+                                className="font-normal"
                             >
                                 {page}
                             </Button>
@@ -123,6 +125,7 @@ const NavBar = () => {
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
+                        className='font-slogan'
                     >
                         MyTinerary
                     </Typography>

@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Comfortaa:wght@400;700&family=Cookie&family=Lobster+Two&display=swap');
+
+
+/*
+font-family: 'Cookie', cursive;
+font-family: 'Charm', cursive;
+font-family: 'Comfortaa', cursive;
+font-family: 'Lobster Two', cursive;
+*/
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 
