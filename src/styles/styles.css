@@ -23,22 +23,22 @@
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    background-color: rgb(28, 114, 64, 0.2);
+    background-color: rgba(9, 14, 12, 0.418);
     padding: 1rem;
 }
 
 .text-primary{
-    color:#00695c;
+    color:rgb(0, 105, 92);
 }
 
-.text-secondary{
-    color:#fffefe;
+.text-light{
+    color:#e4eee9;
 }
 .bg-primary{
     background-color:#00695c;
 }
 
-.bg-secondary{
+.bg-light{
     background-color:#fffefe;
 }
 
@@ -61,13 +61,17 @@
 }
 
 .text-shadow-light {
-    text-shadow: 3px 3px #ffffff;
+    text-shadow: 3px 3px 1.5px #ffffff;
 }
-
-.text-shadow-blur-light {
-    text-shadow: 3px 3px 3px #ffffff;
-}
-
 .text-shadow-primary {
-    text-shadow: 3px 3px #00695c;
+    text-shadow: 3px 1px #00695c;
+}
+.text-shadow-blur-light {
+    text-shadow: 5px 0px 3px #ffffff;
+}
+.text-shadow-blur-primary {
+    text-shadow: 5px 0px 3px #00695c;
+}
+.cta-btn{
+    border: 3px solid #ffffff;
 }
