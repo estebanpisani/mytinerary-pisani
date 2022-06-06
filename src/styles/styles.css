@@ -1,8 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Comfortaa:wght@400;700&family=Cookie&family=Lobster+Two&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Comfortaa:wght@400;700&family=Cookie&family=Lobster+Two&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap'); */
+
+.text-primary{
+    color:rgb(0, 105, 92) !important;
+}
+.text-light{
+    color:#e4eee9 !important;
+}
+
+.text-shadow-light {
+    text-shadow: 3px 3px 1.5px #ffffff;
+}
+.text-shadow-primary {
+    text-shadow: 3px 1px #00695c;
+}
+.text-shadow-blur-light {
+    text-shadow: 5px 0px 3px #ffffff;
+}
+.text-shadow-blur-primary {
+    text-shadow: 5px 0px 3px #00695c;
+}
+
+.font-title {
+    font-family: 'Cookie', cursive !important;
+}
+.font-slogan {
+    font-family: 'Charm', cursive !important;
+    font-weight: 700;
+}
+.font-normal {
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 500;
+}
+.font-weird{
+    font-family: 'Lobster Two', cursive !important;
+}
+
+.bg-primary{
+    background-color:#00695c !important;
+}
+.bg-secondary{
+    background-color:#014e45 !important;
+}
+.bg-light{
+    background-color:#fffefe !important;
+}
 
 .hero-container {
-    display: flex;
     height: 90vh;
     width: 100%;
     background-image: url(../../public/img/home-hero.jpg);
@@ -27,51 +71,22 @@
     padding: 1rem;
 }
 
-.text-primary{
-    color:rgb(0, 105, 92);
-}
-
-.text-light{
-    color:#e4eee9;
-}
-.bg-primary{
-    background-color:#00695c;
-}
-
-.bg-light{
-    background-color:#fffefe;
-}
-
-.font-title {
-    font-family: 'Cookie', cursive;
-}
-
-.font-slogan {
-    font-family: 'Charm', cursive;
-    font-weight: 700;
-}
-
-.font-normal {
-    /* font-family: 'Comfortaa', cursive; */
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
-}
-.font-weird{
-    font-family: 'Lobster Two', cursive;
-}
-
-.text-shadow-light {
-    text-shadow: 3px 3px 1.5px #ffffff;
-}
-.text-shadow-primary {
-    text-shadow: 3px 1px #00695c;
-}
-.text-shadow-blur-light {
-    text-shadow: 5px 0px 3px #ffffff;
-}
-.text-shadow-blur-primary {
-    text-shadow: 5px 0px 3px #00695c;
-}
 .cta-btn{
     border: 3px solid #ffffff;
+    padding: 0 63px;
+}
+
+.cta-btn:hover{
+    background-color:#014e45 !important;
+}
+
+.carrousel-container{
+    background-image: url(../../public/img/home-carrousel.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

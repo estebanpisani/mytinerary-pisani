@@ -69,12 +69,12 @@ const NavBar = () => {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: 'block', md: 'none' },
+                                display: { xs: 'block', md: 'none' }                    
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography className="font-normal" textAlign="center">{page}</Typography>
+                                <MenuItem key={page} onClick={handleCloseNavMenu} >
+                                    <Typography sx={{fontFamily: 'Comfortaa'}}  textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -95,7 +95,7 @@ const NavBar = () => {
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
-                        className='font-normal'
+                        className='font-slogan'
                     >
                         MyTinerary
                     </Typography>
@@ -104,8 +104,12 @@ const NavBar = () => {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                                className="font-normal"
+                                sx={{ my: 2,
+                                color: 'white',
+                                display: 'block',
+                                fontFamily: 'Comfortaa'
+                                }}
+                                
                             >
                                 {page}
                             </Button>
@@ -119,7 +123,7 @@ const NavBar = () => {
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
+                            fontFamily: 'sans-serif',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
                             color: 'inherit',
