@@ -2,14 +2,14 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 import './styles/styles.css'
-import Carrousel from './components/Carrousel';
+import CarouselSection from './components/CarouselSection';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Hero />
-      <Carrousel />
+      <CarouselSection />
     </div>
   );
 }
