@@ -1,0 +1,52 @@
+{
+    "data": [
+    {
+        "name": "Bariloche",
+        "img": "https://i6g8k8z4.stackpathcdn.com/wp-content/uploads/2017/10/bariloche-argentina.jpg"
+    },
+    {
+        "name": "Sidney",
+        "img": "https://ep01.epimg.net/elviajero/imagenes/2019/06/05/album/1559747677_909530_1559748130_noticia_normal.jpg"
+    },
+    {
+        "name": "New York",
+        "img": "https://images.musement.com/cover/0002/42/view-on-manhattan-at-night-new-york-city_header-141511.jpeg?w=1200&h=630&q=95&fit=crop"
+    },
+    {
+        "name": "Tokio",
+        "img": "https://elviajerofeliz.com/wp-content/uploads/2020/05/Por-qu%C3%A9-Tokio-es-una-de-las-ciudades-m%C3%A1s-sorprendentes.jpg"
+    },
+    {
+        "name": "Moscow",
+        "img": "https://www.collinsdictionary.com/images/full/moscow_109024046_1000.jpg"
+    },
+    {
+        "name": "San Sebastian",
+        "img": "https://cdn1.intriper.com/wp-content/uploads/2021/11/29115617/Lugares-para-ver-en-San-Sebastian-1-1.jpg"
+    },
+    {
+        "name": "Cancun",
+        "img": "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_900,q_75,w_1700/v1/clients/quintanaroo/_cc911e74-049d-4172-b8d9-67b8942c9bc0.1392201394-2910bf3f5b8388c632d75b47bd71a0c94b1389b5c0b1926331aa7ed225a20103-d_640.jpg"
+    },
+    {
+        "name": "Sápmi",
+        "img": "https://lonelyplanetes.cdnstatics2.com/sites/default/files/styles/max_1300x1300/public/blog/finlandia_aurora_boreal_laponia_shutterstock_784223482_fabljq93_shutterstock.jpg?itok=w_kLOXiH"
+    },
+    {
+        "name": "Red Beach",
+        "img": "https://boricuaonline.com/wp-content/uploads/2019/08/vieques-playa-caracas2.jpg"
+    },
+    {
+        "name": "Rio",
+        "img": "https://cdn1.intriper.com/wp-content/uploads/2020/12/29101744/cristo-redentor-ano-nuevo.jpeg"
+    },
+    {
+        "name": "Atenas",
+        "img": "https://www.expreso.info/files/styles/expreso_theme_teaser_secundario_desktop/public/2021-12/Atenas_Acropolis.jpg?itok=Awg5rsgE"
+    },
+    {
+        "name": "Miami",
+        "img": "https://www.barnes-miami.com/wp-content/uploads/2021/03/MG_6_1_Miami.jpg"
+    }
+]
+}
