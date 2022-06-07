@@ -90,7 +90,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
-    background: #07a391;
+    background: #ffffff;
     transition: .5s ease;
     display: block;
     z-index: -1;
@@ -101,7 +101,7 @@
 }
 
 .cta-btn-2:hover {
-    color: #111;
+    color: #00695c;
 }
 
 /* From uiverse.io by @nikk7007 */
