@@ -11,10 +11,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { teal } from '@mui/material/colors';
 import { Link as LinkRouter } from "react-router-dom";
 
-const pages = ['Home', 'Cities'];
 const settings = ['Profile', 'Account', 'Logout'];
 const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
 

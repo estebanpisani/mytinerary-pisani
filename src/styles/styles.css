@@ -36,7 +36,6 @@ body{
 
 .font-slogan {
     font-family: 'Charm', cursive !important;
-    /* font-weight: 700; */
 }
 
 .font-normal {
@@ -60,6 +59,10 @@ body{
     background-color: #fffefe !important;
 }
 
+
+/* Calls to Action Options*/
+
+/* Call to Action 1 */
 .cta-btn {
     border: 3px solid #ffffff;
     padding: 0 63px;
@@ -68,6 +71,8 @@ body{
 .cta-btn:hover {
     background-color: #014e45 !important;
 }
+
+/* Hero CTA */
 
 .cta-btn-2 {
 
@@ -110,7 +115,7 @@ body{
     color: #00695c;
 }
 
-/* From uiverse.io by @nikk7007 */
+/* Call to Action 3 */
 .cta-btn-3 {
     --color: #00A97F;
     padding: 0.8em 1.7em;
@@ -166,6 +171,8 @@ body{
 .cta-btn-3:active {
     filter: brightness(.8);
 }
+
+/* Call to Action 4 */
 
 .cta-btn-4 {
     min-width: 120px;
