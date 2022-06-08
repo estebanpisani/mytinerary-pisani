@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link as LinkRouter } from "react-router-dom";
+
 import { Box, List, ListItem, ListItemText, Typography } from '@mui/material/';
+
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
+
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email';
 
 
 export const Footer = () => {
@@ -49,7 +52,7 @@ export const Footer = () => {
                     <List dense={true}>
                         <ListItemButton>
                             <ListItemIcon sx={{color:'#fff'}}>
-                                <a href="https://www.twitter.com" target="_blank" rel="noreferrer"><TwitterIcon /></a>
+                                <a href="mailto:example@mytinerary.com" target="_blank" rel="noreferrer"><EmailIcon /></a>
                             </ListItemIcon>
                         </ListItemButton>
                         <ListItemButton>
@@ -111,7 +114,7 @@ export const Footer = () => {
                 </Box >
             </Box>
             <Box className='copyright-container' sx={{backgroundColor:'#000', color:'#fff', padding:'2px'}}>
-                <Typography>&copy; All rights deserved Esteban Pisani | Mindhub Cohort 28</Typography>
+                <Typography>&copy; All rights reserved Esteban Pisani | Mindhub Cohort 28</Typography>
             </Box>
         </Box>
     )
