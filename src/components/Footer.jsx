@@ -21,7 +21,7 @@ export const Footer = () => {
             <Box className='footer-info bg-secondary'
                 sx={{
                     display: 'flex',
-                    justifyContent: 'space-around',
+                    justifyContent: {xs:'center', sm:'space-around', md:'space-around'},
                     alignItems: 'center',
                     width:'100%',
                     flexWrap:'wrap'
@@ -29,37 +29,38 @@ export const Footer = () => {
             >
                 <Box className='social-container 'sx={{
                     display: 'flex',
-                    justifyContent: 'start',
+                    justifyContent: 'center',
                     alignItems: 'center',flexGrow:'1'
                 }} >
                     <List dense={true} sx={{color:'#fff'}}>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <FacebookIcon />
+                            <ListItemIcon sx={{color:'#fff'}}>
+                                <a href="https://www.facebook.com" target="_blank" rel="noreferrer"><FacebookIcon /></a>
+                                
                             </ListItemIcon>
                         </ListItemButton>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <InstagramIcon />
+                            <ListItemIcon sx={{color:'#fff'}}>
+                                <a href="https://www.instagram.com" target="_blank" rel="noreferrer"><InstagramIcon /></a>
                             </ListItemIcon>
                         </ListItemButton>
                     </List>
                     <List dense={true}>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <TwitterIcon />
+                            <ListItemIcon sx={{color:'#fff'}}>
+                                <a href="https://www.twitter.com" target="_blank" rel="noreferrer"><TwitterIcon /></a>
                             </ListItemIcon>
                         </ListItemButton>
                         <ListItemButton>
-                            <ListItemIcon>
-                                <WhatsAppIcon />
+                            <ListItemIcon sx={{color:'#fff'}}>
+                                <a href="https://www.whatsapp.com/?lang=es" target="_blank" rel="noreferrer"><WhatsAppIcon /></a>
                             </ListItemIcon>
                         </ListItemButton>
                     </List>
                 </Box>
-                <Box className='footernav-container text-light'  sx={{flexGrow:'2', justifyContent:'center', display:'flex', flexWrap:'wrap'}}>
+                <Box className='footernav-container text-light'  sx={{flexGrow:'2', width:{xs:'30%'}, alignItems:{xs:'center', md:'center'}, justifyContent:'center', display:'flex', flexWrap:'wrap'}}>
                     <List dense={true}>
-                        <ListItemButton>
+                        <ListItemButton >
                             <ListItemText
                                 primary="HOME"
                             />
@@ -79,24 +80,24 @@ export const Footer = () => {
                     
                 }} >
                     <List dense={true} className='text-light' sx={{textDecoration:'underline', textAlign:'center'}}>
-                        <ListItem className='text-light' sx={{textAlign:'center'}}>
+                        <ListItem className='text-light' sx={{textAlign:'center', cursor:'pointer'}}>
                             <ListItemText
                                 primary="Privacy Policy"
                             />
                         </ListItem>
-                        <ListItem sx={{textAlign:'center'}}>
+                        <ListItem sx={{textAlign:'center', cursor:'pointer'}}>
                             <ListItemText
                                 primary="Terms and Conditions"
                             />
                         </ListItem>
                         </List>
                         <List dense={true} className='text-light' sx={{textDecoration:'underline', textAlign:'center'}}>
-                        <ListItem sx={{textAlign:'center'}}>
+                        <ListItem sx={{textAlign:'center', cursor:'pointer'}}>
                             <ListItemText
                                 primary="Refund Policy"
                             />
                         </ListItem>
-                        <ListItem sx={{textAlign:'center'}}>
+                        <ListItem sx={{textAlign:'center', cursor:'pointer'}}>
                             <ListItemText
                                 primary="Cookies Policy"
                             />
