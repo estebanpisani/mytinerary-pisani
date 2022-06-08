@@ -2,7 +2,7 @@ import React from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Carousel from './Carousel'
-import '../styles/Carousel.css';
+import '../styles/carousel.css';
 import data from '../data'
 
 const CarouselSection = () => {
