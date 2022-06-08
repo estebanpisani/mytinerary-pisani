@@ -36,7 +36,7 @@ body{
 
 .font-slogan {
     font-family: 'Charm', cursive !important;
-    font-weight: 700;
+    /* font-weight: 700; */
 }
 
 .font-normal {

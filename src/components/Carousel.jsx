@@ -41,7 +41,8 @@ const Carousel = ({cities}) => {
                         flexDirection:'column',
                         justifyContent:'center',
                         alignItems:'center'}}>
-                            <Typography variant='h3' className='font-slogan text-light text-shadow-primary'>{city.name}</Typography>
+                            <Typography variant='h3' sx={{ fontSize:{xs:'1.5rem', sm:'2rem'} }} className='font-slogan text-light text-shadow-primary'>{city.name}</Typography>
+                            <Typography variant='h6' sx={{  paddingTop: '0.5rem' }} className='font-slogan text-light text-shadow-primary'>{city.country}</Typography>
                         </Box>
                     </Box>
                 )}

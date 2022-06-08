@@ -38,7 +38,7 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="sticky" sx={{ backgroundColor: 'rgb(0, 105, 92, 0.8)' }}>
+        <AppBar position="fixed" sx={{ backgroundColor: 'rgb(0, 105, 92, 0.8)' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

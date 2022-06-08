@@ -5,6 +5,7 @@ import './styles/styles.css'
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
+import { UnderConstruction } from './pages/UnderConstruction';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/*' element={<NotFound />}   />
         <Route path='/' element={<Home />}/>
+        <Route path='/cities' element={<UnderConstruction />}/>
       </Routes>
       <Footer />
     </div>

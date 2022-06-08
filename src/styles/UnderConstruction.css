@@ -1,5 +1,5 @@
-.hero-container {
-    height: 100vh;
+.under-construction-container {
+    height: 90vh;
     width: 100%;
     background-image: url(../../public/img/home-hero.jpg);
     /* background-attachment: fixed; */
@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.hero-content {
+.under-construction-content {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -23,4 +23,3 @@
     background-color: rgba(9, 14, 12, 0.479);
     padding: 1rem;
 }
-
