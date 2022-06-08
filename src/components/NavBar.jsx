@@ -23,13 +23,17 @@ const NavBar = () => {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+
+
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
@@ -39,6 +43,7 @@ const NavBar = () => {
         <AppBar position="fixed" sx={{ backgroundColor: 'rgb(0, 105, 92, 0.8)' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+                    {/* Burger Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -80,7 +85,8 @@ const NavBar = () => {
                             </LinkRouter>
                         </Menu>
                     </Box>
-                    <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'none' } }} />
+                    <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'flex' } }} />
+                    {/* Center title (md resolution) */}
                     <Typography
                         variant="h5"
                         noWrap
@@ -100,6 +106,7 @@ const NavBar = () => {
                     >
                         MyTinerary
                     </Typography>
+                    {/* Nav Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <LinkRouter to={'/'} style={{ textDecoration: 'none' }}>
                             <Button
@@ -128,11 +135,10 @@ const NavBar = () => {
                             </Button>
                         </LinkRouter>
                     </Box>
+                    {/* md Title (flex-end) */}
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -146,6 +152,7 @@ const NavBar = () => {
                     >
                         MyTinerary
                     </Typography>
+                    {/* User session Menu */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
