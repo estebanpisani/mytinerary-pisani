@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as LinkRouter } from "react-router-dom";
 import Slider from "react-slick";
 import { Typography, Box } from "@mui/material";
 import "slick-carousel/slick/slick.css";
@@ -31,12 +32,13 @@ const Carousel = ({cities}) => {
 
             <Slider {...settings}>
                 {array.map((city,i) =>
+                <LinkRouter to='/cities' key={i}>
                     <Box sx={{
                         backgroundImage: `url(${city.img})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         height: '30vh',
-                    }} key={i}>
+                    }} >
                         <Box sx={{width:'100%', height:'100%', backgroundColor:'rgba(9, 14, 12, 0.4)',display: 'flex',
                         flexDirection:'column',
                         justifyContent:'center',
@@ -45,6 +47,7 @@ const Carousel = ({cities}) => {
                             <Typography variant='h6' sx={{  paddingTop: '0.5rem' }} className='font-slogan text-light text-shadow-primary'>{city.country}</Typography>
                         </Box>
                     </Box>
+                </LinkRouter>
                 )}
             </Slider>
 

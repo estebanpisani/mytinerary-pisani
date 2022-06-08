@@ -73,12 +73,12 @@ const NavBar = () => {
                                 display: { xs: 'block', md: 'none' }
                             }}
                         >
-                            <LinkRouter to={'/'} style={{ textDecoration: 'none' }}>
+                            <LinkRouter to={'/'}>
                                 <MenuItem onClick={handleCloseNavMenu} >
                                     <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center" >Home</Typography>
                                 </MenuItem>
                             </LinkRouter>
-                            <LinkRouter to={'/cities'} style={{ textDecoration: 'none' }}>
+                            <LinkRouter to={'/cities'}>
                                 <MenuItem onClick={handleCloseNavMenu} >
                                     <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center">Cities</Typography>
                                 </MenuItem>
@@ -108,7 +108,7 @@ const NavBar = () => {
                     </Typography>
                     {/* Nav Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        <LinkRouter to={'/'} style={{ textDecoration: 'none' }}>
+                        <LinkRouter to={'/'}>
                             <Button
                                 onClick={handleCloseNavMenu}
                                 sx={{
@@ -121,7 +121,7 @@ const NavBar = () => {
                                 <Typography className='font-normal' textAlign="center" >Home</Typography>
                             </Button>
                         </LinkRouter>
-                        <LinkRouter to={'/cities'} style={{ textDecoration: 'none' }}>
+                        <LinkRouter to={'/cities'}>
                             <Button
                                 onClick={handleCloseNavMenu}
                                 sx={{
