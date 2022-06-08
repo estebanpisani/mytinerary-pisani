@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import { Typography, Box, Container } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -13,7 +13,7 @@ const Carousel = ({cities}) => {
         slidesToScroll: 2,
         initialSlide: 0,
         rows: 2,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 3000,
         responsive: [
             {
@@ -27,7 +27,6 @@ const Carousel = ({cities}) => {
         ]
     }
 
-    
     return (
 
             <Slider {...settings}>
@@ -46,11 +45,9 @@ const Carousel = ({cities}) => {
                         </Box>
                     </Box>
                 )}
-
             </Slider>
 
     );
 }
-
 
 export default Carousel;
