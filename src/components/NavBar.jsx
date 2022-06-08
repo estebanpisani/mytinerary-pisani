@@ -12,9 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { teal } from '@mui/material/colors';
-
-const primary = teal[800];
-// const secondary = cyan[500];
+import { Link as LinkRouter } from "react-router-dom";
 
 const pages = ['Home', 'Cities'];
 const settings = ['Profile', 'Account', 'Logout'];
@@ -40,7 +38,7 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: primary }}>
+        <AppBar position="sticky" sx={{ backgroundColor: 'rgb(0, 105, 92, 0.8)' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -69,14 +67,19 @@ const NavBar = () => {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: 'block', md: 'none' }                    
+                                display: { xs: 'block', md: 'none' }
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu} >
-                                    <Typography sx={{fontFamily: 'Comfortaa'}}  textAlign="center">{page}</Typography>
+                            <LinkRouter to={'/'} style={{ textDecoration: 'none' }}>
+                                <MenuItem onClick={handleCloseNavMenu} >
+                                    <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center" >Home</Typography>
                                 </MenuItem>
-                            ))}
+                            </LinkRouter>
+                            <LinkRouter to={'/cities'} style={{ textDecoration: 'none' }}>
+                                <MenuItem onClick={handleCloseNavMenu} >
+                                    <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center">Cities</Typography>
+                                </MenuItem>
+                            </LinkRouter>
                         </Menu>
                     </Box>
                     <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'none' } }} />
@@ -87,7 +90,7 @@ const NavBar = () => {
                         href=""
                         sx={{
                             mr: 2,
-                            display: { xs: 'none', sm:'flex', md: 'none' },
+                            display: { xs: 'none', sm: 'flex', md: 'none' },
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
@@ -100,20 +103,32 @@ const NavBar = () => {
                         MyTinerary
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        <LinkRouter to={'/'} style={{ textDecoration: 'none' }}>
                             <Button
-                                key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2,
-                                color: 'white',
-                                display: 'block',
-                                fontFamily: 'Comfortaa'
+                                sx={{
+                                    my: 2,
+                                    color: 'white',
+                                    display: 'block',
+                                    fontFamily: 'Comfortaa'
                                 }}
-                                
                             >
-                                {page}
+                                <Typography className='font-normal' textAlign="center" >Home</Typography>
                             </Button>
-                        ))}
+                        </LinkRouter>
+                        <LinkRouter to={'/cities'} style={{ textDecoration: 'none' }}>
+                            <Button
+                                onClick={handleCloseNavMenu}
+                                sx={{
+                                    my: 2,
+                                    color: 'white',
+                                    display: 'block',
+                                    fontFamily: 'Comfortaa'
+                                }}
+                            >
+                                <Typography className='font-normal' textAlign="center">Cities</Typography>
+                            </Button>
+                        </LinkRouter>
                     </Box>
                     <Typography
                         variant="h6"

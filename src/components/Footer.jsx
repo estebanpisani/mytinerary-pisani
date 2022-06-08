@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as LinkRouter } from "react-router-dom";
 import { Box, List, ListItem, ListItemText, Typography } from '@mui/material/';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -60,16 +61,20 @@ export const Footer = () => {
                 </Box>
                 <Box className='footernav-container text-light'  sx={{flexGrow:'2', width:{xs:'30%'}, alignItems:{xs:'center', md:'center'}, justifyContent:'center', display:'flex', flexWrap:'wrap'}}>
                     <List dense={true}>
-                        <ListItemButton >
-                            <ListItemText
-                                primary="HOME"
-                            />
-                        </ListItemButton>
-                        <ListItemButton>
-                            <ListItemText
-                                primary="CITIES"
-                            />
-                        </ListItemButton>
+                        <LinkRouter to={'/'} style={{ textDecoration: 'none' }}>
+                            <ListItemButton >
+                                <ListItemText
+                                    primary="HOME"
+                                />
+                            </ListItemButton>
+                        </LinkRouter>
+                        <LinkRouter to={'/cities'} style={{ textDecoration: 'none' }}>
+                            <ListItemButton>
+                                <ListItemText
+                                    primary="CITIES"
+                                />
+                            </ListItemButton>
+                        </LinkRouter>
                     </List>
                 </Box>
                 <Box className='policies-container' sx={{
