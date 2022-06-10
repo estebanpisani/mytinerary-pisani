@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Carousel = ({cities}) => {
-    const array = cities;
+
     var settings = {
         dots: false,
         infinite: true,
@@ -31,7 +31,7 @@ const Carousel = ({cities}) => {
     return (
 
             <Slider {...settings}>
-                {array.map((city,i) =>
+                {cities.map((city,i) =>
                 <LinkRouter to='/cities' key={i}>
                     <Box sx={{
                         backgroundImage: `url(${city.img})`,

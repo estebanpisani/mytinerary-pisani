@@ -12,7 +12,7 @@ const CarouselSection = () => {
         <Box className='carrousel-section' sx={{backgroundImage:`url(${carouselBg})`, height: {xs:'200vh', sm:'100vh'} }}>
             <Typography className='font-weird text-primary text-shadow-blur-light' sx={{ fontSize:'3rem' }}> Popular MyTineraries!</Typography>
             <Box className='carrousel-container'>
-                <Carousel cities={data.data} />
+                <Carousel cities={data.cities} />
             </Box>
         </Box>
     )

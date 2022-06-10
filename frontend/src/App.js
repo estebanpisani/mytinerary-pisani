@@ -11,9 +11,9 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path='/*' element={<Hero subtitle='Content Not Found' button='Back!' slogan={false} linkUrl='/' />}   />
         <Route path='/' element={<Home />}/>
         <Route path='/cities' element={<Hero  subtitle='COMING SOON' button='Back!' slogan={false} linkUrl='/' />}/>
+        <Route path='/*' element={<Hero subtitle='Content Not Found' button='Back!' slogan={false} linkUrl='/' />}   />
       </Routes>
       <Footer />
     </div>
