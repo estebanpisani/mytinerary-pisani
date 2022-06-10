@@ -3,13 +3,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Input from '@mui/material/Input';
 import Card from '../components/Card';
 
 
 import '../styles/Hero.css';
 import '../styles/Cities.css';
-import { Link as LinkRouter } from "react-router-dom";
+// import { Link as LinkRouter } from "react-router-dom";
 import data from '../data'
 
 export const Cities = () => {

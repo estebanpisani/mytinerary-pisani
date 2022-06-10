@@ -23,7 +23,8 @@
 
 .card-grid-container{
     border: 1px solid red;
-    margin: 2rem !important;
+    margin: 2rem 0 !important;
+    width: 100%;
 }
 
 .search-input{
