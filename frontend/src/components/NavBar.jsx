@@ -40,7 +40,7 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="fixed" sx={{ backgroundColor: 'rgb(0, 105, 92, 0.8)' }}>
+        <AppBar position="fixed" className='navbar' sx={{ backgroundColor: 'rgb(0, 105, 92, 0.8)', flexGrow:'0' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* Burger Menu */}

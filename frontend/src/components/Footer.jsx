@@ -18,7 +18,8 @@ export const Footer = () => {
             sx={{
                 display: 'flex',
                 alignItems: 'space-around',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                flexGrow:'0'
             }}
             className='footer-container'
         >

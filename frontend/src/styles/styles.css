@@ -2,7 +2,14 @@ a {
     color: inherit !important;
     text-decoration: none !important;
 }
-
+.App{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main{
+    flex-grow: 1 !important ;
+}
 .text-primary {
     color: rgb(0, 105, 92) !important;
 }

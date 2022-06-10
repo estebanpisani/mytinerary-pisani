@@ -22,3 +22,8 @@
     padding: 1rem;
 }
 
+@media screen and (max-width: 300px) {
+.hero-container {
+    height: 100vh !important;
+}
+}
