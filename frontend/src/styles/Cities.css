@@ -1,0 +1,31 @@
+.cards-section {
+    /* background-attachment: fixed; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* height: 100vh; */
+    width: 100%;
+    /* padding: 1.5rem; */
+}
+
+.filters-container {
+    /* height: 8vh; */
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-grid-container{
+    border: 1px solid red;
+    margin: 2rem !important;
+}
+
+.search-input{
+    color: white !important;
+}
