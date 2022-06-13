@@ -38,7 +38,8 @@ const Carousel = ({cities}) => {
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         height: '30vh',
-                    }} >
+                    }}
+                    className='carousel-item' >
                         <Box sx={{width:'100%', height:'100%', backgroundColor:'rgba(9, 14, 12, 0.4)',display: 'flex',
                         flexDirection:'column',
                         justifyContent:'center',

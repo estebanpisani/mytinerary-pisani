@@ -1,10 +1,14 @@
-a {
+* a {
     color: inherit !important;
     text-decoration: none !important;
 }
 
 body {
     background-color: #00695c;
+
+}
+
+.App {
     display: flex;
     flex-direction: column;
 }
@@ -49,7 +53,7 @@ main {
 
 .font-normal {
     font-family: 'Comfortaa', sans-serif !important;
-    font-weight: 500;
+    font-weight: 800;
 }
 
 .font-weird {
@@ -73,8 +77,8 @@ main {
 
 /* Call to Action 1 */
 .cta-btn {
-    border: 3px solid #ffffff;
-    padding: 0 63px;
+    border: 3px solid #ffffff !important;
+    padding: 0 63px !important;
 }
 
 .cta-btn:hover {
@@ -128,7 +132,7 @@ main {
 .cta-btn-3 {
     --color: #00A97F;
     padding: 0.8em 1.7em;
-    background-color: transparent;
+    background-color: rgba(0, 169, 127, 0.3) !important;
     border-radius: .3em;
     position: relative;
     overflow: hidden;
@@ -136,7 +140,7 @@ main {
     transition: .5s;
     font-weight: 400;
     font-size: 17px;
-    border: 1px solid;
+    border: 1px solid #00A97F !important;
     font-family: inherit;
     text-transform: uppercase;
     color: var(--color);
@@ -163,8 +167,8 @@ main {
 }
 
 .cta-btn-3::after {
-    left: calc(100% + 1em);
-    top: calc(100% + 1em);
+    left: calc(100% + 2em);
+    top: calc(100% + 2em);
 }
 
 .cta-btn-3:hover::before,

@@ -15,7 +15,12 @@
     /* height: 70%; */
     width: 70%;
 }
-
+.carousel-item > div:hover{
+    background-color:rgb(51, 51, 51, 0.2) !important;
+}
+.carousel-item {
+margin: 0.5rem !important;
+}
 @media screen and (max-width: 300px) {
 .carrousel-section { 
     padding: 0.5rem;

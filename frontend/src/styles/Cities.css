@@ -21,12 +21,22 @@
     align-items: center;
 }
 
-.card-grid-container{
-    border: 1px solid red;
-    margin: 2rem 0 !important;
+.grid-container {
+    margin-top: 2rem !important;
     width: 100%;
 }
 
-.search-input{
+.citie-card {
+    max-width: 100% !important;
+    /* max-height: 100% !important; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.card-content:hover{
+    background-color:rgb(51, 51, 51, 0.2) !important;
+}
+
+.search-input {
     color: white !important;
 }

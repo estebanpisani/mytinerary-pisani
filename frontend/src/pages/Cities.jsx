@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Card from '../components/Card';
+// import FlipCard from '../components/FlipCard';
+import BasicCard from '../components/BasicCard';
 
 
 import '../styles/Hero.css';
@@ -35,15 +36,28 @@ export const Cities = () => {
             </Box>
             <Box className='cards-section' sx={{ backgroundImage: `url(${cardsBg})` }}>
                 <Box className='filters-container'>
-                    <Box sx={{ width: '40%',  padding: '1rem' }}>
+                    <Box sx={{ width: '40%', padding: '1rem' }}>
                         <TextField id="search-input" label="Search cities by name" color='primary' placeholder='Try searching "Bariloche"' variant="outlined" fullWidth />
                         {/* <Input placeholder="Search cities by name" fullWidth  margin='dense' /> */}
                     </Box>
                 </Box>
-                <Grid className='card-grid-container' container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                <Grid
+                    className='grid-container'
+                    container
+                    spacing={{ xs: 2, md: 2, lg: 5 }}
+                    columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 8 }}
+                    // columnSpacing={{ xs: 1, sm: 3 }}
+                    justifyContent="center"
+                    sx={{ padding: '1rem' }}
+                >
                     {data.cities.map((city, index) => (
-                        <Grid item xs={2} sm={4} md={4} key={index}>
-                            <Card name={city.name} country={city.country} bgImg={city.img} description={city.description}></Card>
+                        <Grid item xs={1} xl={1} key={index}>
+                            <BasicCard className='citie-card' name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
+                        </Grid>
+                    ))}
+                    {data.cities.map((city, index) => (
+                        <Grid item xs={1} xl={1} key={index}>
+                            <BasicCard name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
                         </Grid>
                     ))}
                 </Grid>
