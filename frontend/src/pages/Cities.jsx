@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -12,10 +13,26 @@ import '../styles/Cities.css';
 // import { Link as LinkRouter } from "react-router-dom";
 import data from '../data'
 
-export const Cities = ({theme}) => {
+
+
+export const Cities = ({ theme }) => {
     const heroBg = process.env.PUBLIC_URL + '/img/cities-hero.jpg';
     const cardsBg = process.env.PUBLIC_URL + '/img/cities-cards.jpg';
 
+    const [results, setResults] = useState(data.cities);
+    const [searchValue, setSearchValue] = useState('');
+
+    function handleSearchValue(event) {
+        setSearchValue(event.target.value)
+    }
+
+    useEffect(() => {
+        setResults(...data.cities);
+        let search = data.cities.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
+        setResults(search);
+    },
+        [searchValue]
+    )
 
     return (
         <main>
@@ -36,8 +53,16 @@ export const Cities = ({theme}) => {
             </Box>
             <Box className='cards-section' sx={{ backgroundImage: `url(${cardsBg})` }}>
                 <Box className='filters-container'>
-                    <Box sx={{ width: {xs:'80%', sm:'60%', md:'50%'}, padding: '1rem' }}>
-                        <TextField id="search-input" label="Search cities by name" color={theme.primary} placeholder='Try searching "Bariloche"' variant="filled" fullWidth />
+                    <Box sx={{ width: { xs: '80%', sm: '60%', md: '50%' }, padding: '1rem' }}>
+                        <TextField
+                            id="search-input"
+                            label="Search cities by name"
+                            color={theme.primary}
+                            placeholder='Try searching "Bariloche"'
+                            variant="filled"
+                            fullWidth
+                            onKeyUp={handleSearchValue}
+                        />
                     </Box>
                 </Box>
                 <Grid
@@ -45,20 +70,22 @@ export const Cities = ({theme}) => {
                     container
                     spacing={{ xs: 2, md: 2, lg: 5 }}
                     columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 8 }}
-                    // columnSpacing={{ xs: 1, sm: 3 }}
                     justifyContent="center"
-                    sx={{ padding: '1rem' }}
+                    alignItems='center'
+                    sx={{ padding: '3rem', margin:'0' }}
                 >
-                    {data.cities.map((city, index) => (
-                        <Grid item xs={1} xl={1} key={index}>
-                            <BasicCard className='citie-card' name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
+                    {
+                    results.length>0 ?
+                        results.map((city, index) => (
+                            <Grid item xs={1} xl={1} key={index}>
+                                <BasicCard className='citie-card' name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
+                            </Grid>)
+                        ) :
+                        <Grid item xs={2} xl={2} sx={{height:{md:'13rem'}}}>
+                            <Typography variant='h3' className='font-slogan text-light text-shadow-primary' >Cities not found</Typography>
                         </Grid>
-                    ))}
-                    {data.cities.map((city, index) => (
-                        <Grid item xs={1} xl={1} key={index}>
-                            <BasicCard name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
-                        </Grid>
-                    ))}
+                    }
+                    
                 </Grid>
             </Box>
 

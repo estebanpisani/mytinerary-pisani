@@ -108,7 +108,7 @@ const NavBar = () => {
                     {/* Nav Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
-                            <LinkRouter to={page.url}>
+                            <LinkRouter to={page.url} key={index}>
                                 <Button
                                     onClick={handleCloseNavMenu}
                                     sx={{

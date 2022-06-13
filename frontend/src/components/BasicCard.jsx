@@ -16,7 +16,7 @@ export default function BasicCard({ name, country, bgImg, description }) {
                     <Typography variant="h5" component="div" sx={{ fontSize: '3rem' }} className='font-slogan text-light text-shadow-primary'>
                         {name}
                     </Typography>
-                    <Typography variant='subtitle' sx={{  paddingTop: '0.5rem' }} className='font-slogan text-light text-shadow-primary'>
+                    <Typography variant='h6' sx={{  paddingTop: '0.5rem' }} className='font-slogan text-light text-shadow-primary'>
                         {country}
                     </Typography>
                 </CardContent>
