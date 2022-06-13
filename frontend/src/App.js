@@ -7,10 +7,12 @@ import { Home } from './pages/Home';
 import Hero from './components/Hero';
 import { Cities } from './pages/Cities';
 import City from './pages/City';
+import ScrollToTop from './components/ScrollToTop';
 import data from './data'
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
       <NavBar />
       <Routes >
         <Route path='/' element={<Home className='main'/>}/>

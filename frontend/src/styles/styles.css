@@ -132,7 +132,7 @@ main {
 .cta-btn-3 {
     --color: #00A97F;
     padding: 0.8em 1.7em;
-    background-color: rgba(0, 169, 127, 0.3) !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
     border-radius: .3em;
     position: relative;
     overflow: hidden;
