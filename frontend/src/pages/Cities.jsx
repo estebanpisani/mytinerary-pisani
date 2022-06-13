@@ -78,7 +78,7 @@ export const Cities = ({ theme }) => {
                     results.length>0 ?
                         results.map((city, index) => (
                             <Grid item xs={1} xl={1} key={index}>
-                                <BasicCard className='citie-card' name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
+                                <BasicCard className='citie-card' id={city.id} name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
                             </Grid>)
                         ) :
                         <Grid item xs={2} xl={2} sx={{height:{md:'13rem'}}}>
