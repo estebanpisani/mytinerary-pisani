@@ -247,10 +247,18 @@ main {
 
 
 
+@media screen and (max-width: 800px) {
+    .mouse-btn {
+        width: 30px;
+        height: 50px;
+    }
 
+    .mouse-scroll {
+        width: 10px;
+        height: 10px;
+    }
 
-
-
+}
 
 @media screen and (max-width: 300px) {
     h4 {
@@ -277,4 +285,15 @@ main {
         font-family: 'Lobster Two', cursive !important;
         font-size: 1rem !important;
     }
+
+    .mouse-btn {
+        width: 25px;
+        height: 40px;
+    }
+
+    .mouse-scroll {
+        width: 8px;
+        height: 5px;
+    }
+
 }

@@ -12,7 +12,7 @@ import '../styles/Cities.css';
 // import { Link as LinkRouter } from "react-router-dom";
 import data from '../data'
 
-export const Cities = () => {
+export const Cities = ({theme}) => {
     const heroBg = process.env.PUBLIC_URL + '/img/cities-hero.jpg';
     const cardsBg = process.env.PUBLIC_URL + '/img/cities-cards.jpg';
 
@@ -37,8 +37,7 @@ export const Cities = () => {
             <Box className='cards-section' sx={{ backgroundImage: `url(${cardsBg})` }}>
                 <Box className='filters-container'>
                     <Box sx={{ width: '40%', padding: '1rem' }}>
-                        <TextField id="search-input" label="Search cities by name" color='primary' placeholder='Try searching "Bariloche"' variant="outlined" fullWidth />
-                        {/* <Input placeholder="Search cities by name" fullWidth  margin='dense' /> */}
+                        <TextField id="search-input" label="Search cities by name" color={theme.primary} placeholder='Try searching "Bariloche"' variant="filled" fullWidth />
                     </Box>
                 </Box>
                 <Grid
