@@ -27,7 +27,6 @@ export const Cities = ({ theme }) => {
     }
 
     useEffect(() => {
-        setResults(...data.cities);
         let search = data.cities.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
         setResults(search);
     },
