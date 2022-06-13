@@ -75,7 +75,7 @@ const NavBar = () => {
                             }}
                         >
                             {pages.map((page, index) => (
-                                <LinkRouter key={index} to={page.name}>
+                                <LinkRouter key={index} to={page.url}>
                                     <MenuItem onClick={handleCloseNavMenu} >
                                         <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center" >{page.name}</Typography>
                                     </MenuItem>

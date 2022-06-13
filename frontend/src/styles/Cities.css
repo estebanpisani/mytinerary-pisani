@@ -40,3 +40,10 @@
 .search-input {
     color: white !important;
 }
+
+.city-description{
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.705)!important;
+    width: 70%;
+    
+}
