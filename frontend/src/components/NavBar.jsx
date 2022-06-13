@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link as LinkRouter } from "react-router-dom";
 
+const pages = [{ name: 'Home', url: '/' }, { name: 'Cities', url: '/cities' }];
 const settings = ['Profile', 'Account', 'Logout'];
 const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
 
@@ -73,16 +74,14 @@ const NavBar = () => {
                                 display: { xs: 'block', md: 'none' }
                             }}
                         >
-                            <LinkRouter to={'/'}>
-                                <MenuItem onClick={handleCloseNavMenu} >
-                                    <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center" >Home</Typography>
-                                </MenuItem>
-                            </LinkRouter>
-                            <LinkRouter to={'/cities'}>
-                                <MenuItem onClick={handleCloseNavMenu} >
-                                    <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center">Cities</Typography>
-                                </MenuItem>
-                            </LinkRouter>
+                            {pages.map((page, index) => (
+                                <LinkRouter key={index} to={page.name}>
+                                    <MenuItem onClick={handleCloseNavMenu} >
+                                        <Typography sx={{ fontFamily: 'Comfortaa' }} textAlign="center" >{page.name}</Typography>
+                                    </MenuItem>
+                                </LinkRouter>
+                            ))
+                            }
                         </Menu>
                     </Box>
                     <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'flex' } }} />
@@ -108,32 +107,21 @@ const NavBar = () => {
                     </Typography>
                     {/* Nav Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        <LinkRouter to={'/'}>
-                            <Button
-                                onClick={handleCloseNavMenu}
-                                sx={{
-                                    my: 2,
-                                    color: 'white',
-                                    display: 'block',
-                                    fontFamily: 'Comfortaa'
-                                }}
-                            >
-                                <Typography className='font-normal' textAlign="center" >Home</Typography>
-                            </Button>
-                        </LinkRouter>
-                        <LinkRouter to={'/cities'}>
-                            <Button
-                                onClick={handleCloseNavMenu}
-                                sx={{
-                                    my: 2,
-                                    color: 'white',
-                                    display: 'block',
-                                    fontFamily: 'Comfortaa'
-                                }}
-                            >
-                                <Typography className='font-normal' textAlign="center">Cities</Typography>
-                            </Button>
-                        </LinkRouter>
+                        {pages.map((page, index) => (
+                            <LinkRouter to={page.url}>
+                                <Button
+                                    onClick={handleCloseNavMenu}
+                                    sx={{
+                                        my: 2,
+                                        color: 'white',
+                                        display: 'block',
+                                        fontFamily: 'Comfortaa'
+                                    }}
+                                >
+                                    <Typography className='font-normal' textAlign="center" >{page.name}</Typography>
+                                </Button>
+                            </LinkRouter>
+                        ))}
                     </Box>
                     {/* md Title (flex-end) */}
                     <Typography

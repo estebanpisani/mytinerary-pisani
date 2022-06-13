@@ -36,7 +36,7 @@ export const Cities = ({theme}) => {
             </Box>
             <Box className='cards-section' sx={{ backgroundImage: `url(${cardsBg})` }}>
                 <Box className='filters-container'>
-                    <Box sx={{ width: '40%', padding: '1rem' }}>
+                    <Box sx={{ width: {xs:'80%', sm:'60%', md:'50%'}, padding: '1rem' }}>
                         <TextField id="search-input" label="Search cities by name" color={theme.primary} placeholder='Try searching "Bariloche"' variant="filled" fullWidth />
                     </Box>
                 </Box>

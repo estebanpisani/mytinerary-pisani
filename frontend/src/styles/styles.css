@@ -3,11 +3,6 @@
     text-decoration: none !important;
 }
 
-body {
-    background-color: #00695c;
-
-}
-
 .App {
     display: flex;
     flex-direction: column;
