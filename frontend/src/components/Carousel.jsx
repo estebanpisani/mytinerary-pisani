@@ -32,7 +32,7 @@ const Carousel = ({cities}) => {
 
             <Slider {...settings}>
                 {cities.map((city,i) =>
-                <LinkRouter to='/cities' key={i}>
+                <LinkRouter to='' key={i}>
                     <Box sx={{
                         backgroundImage: `url(${city.img})`,
                         backgroundPosition: 'center',

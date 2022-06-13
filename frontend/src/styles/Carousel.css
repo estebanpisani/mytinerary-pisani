@@ -17,6 +17,7 @@
 }
 .carousel-item > div:hover{
     background-color:rgb(51, 51, 51, 0.2) !important;
+    cursor: pointer;
 }
 .carousel-item {
 margin: 0.5rem !important;

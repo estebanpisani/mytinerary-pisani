@@ -17,6 +17,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-scroll-to-top": "^1.0.8",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^8.2.2",
