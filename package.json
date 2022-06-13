@@ -1,0 +1,19 @@
+{
+  "name": "myitinerary-pisani",
+  "version": "1.0.0",
+  "description": "\"API for MyTinerary\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebanpisani/mytinerary-pisani.git"
+  },
+  "author": "Esteban Pisani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estebanpisani/mytinerary-pisani/issues"
+  },
+  "homepage": "https://github.com/estebanpisani/mytinerary-pisani#readme"
+}
