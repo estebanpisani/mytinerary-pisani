@@ -1,6 +1,7 @@
 * a {
     color: inherit !important;
     text-decoration: none !important;
+    margin: 0;
 }
 html {
     min-height:100% !important;
@@ -75,7 +76,6 @@ main {
     min-height: 100%!important;
     width: 100% !important;
 }
-
 
 /* Calls to Action Options*/
 

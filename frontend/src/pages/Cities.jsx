@@ -26,9 +26,7 @@ export const Cities = ({ theme }) => {
             .then(APIresp => {
                 setCities(APIresp.data.response.cities)
             });
-    },
-        []
-    )
+    },[])
 
     let search = cities?.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
 

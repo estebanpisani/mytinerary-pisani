@@ -34,7 +34,7 @@ const Carousel = ({cities}) => {
                 {cities.map((city,i) =>
                 <LinkRouter to='' key={i}>
                     <Box sx={{
-                        backgroundImage: `url(${city.img})`,
+                        backgroundImage: `url(${city.image})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         height: '30vh',

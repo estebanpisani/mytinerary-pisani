@@ -85,32 +85,29 @@ const NavBar = () => {
                         </Menu>
                     </Box>
                     <LinkRouter to="/">
-                    <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'flex' } }} />
+                        <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'flex' } }} />
                     </LinkRouter>
                     {/* Center title (md resolution) */}
-                    
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="a"
-                            href=""
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', sm: 'flex', md: 'none' },
-                                flexGrow: 1,
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                            className='font-slogan'
-                        >
-                            <LinkRouter to="/">
-                            MyTinerary
-                            </LinkRouter>
-                        </Typography>
-                    
+                    <Box sx={{
+                        mr: 2,
+                        display: { xs: 'none', sm: 'flex', md: 'none' },
+                        flexGrow: 1,
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        letterSpacing: '.3rem',
+                        color: 'inherit',
+                        textDecoration: 'none',
+                    }}>
+                        <LinkRouter to="/" >
+                            <Typography
+                                variant="h5"
+                                noWrap
+                                className='font-slogan'
+                            >
+                                MyTinerary
+                            </Typography>
+                        </LinkRouter>
+                    </Box>
                     {/* Nav Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (

@@ -21,7 +21,7 @@ export default function BasicCard({ id, name, country, bgImg, description }) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <LinkRouter to={`/city/:${id}`}>
+                    <LinkRouter to={`/city/${id}`}>
                         <Button size="small" className='cta-btn-3 text-light font-normal'>Look for itineraries</Button>
                     </LinkRouter>
                 </CardActions>

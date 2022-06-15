@@ -1,86 +1,86 @@
 {
     "cities": [
         {
-            "id": 1,
+            "_id": 1,
             "name": "Bariloche",
-            "img": "https://i6g8k8z4.stackpathcdn.com/wp-content/uploads/2017/10/bariloche-argentina.jpg",
+            "image": "https://i6g8k8z4.stackpathcdn.com/wp-content/uploads/2017/10/bariloche-argentina.jpg",
             "country": "Argentina",
             "description": "Part of Argentina’s Lake District and northern Patagonia, the popular tourist destination of San Carlos de Bariloche is filled with magnificent scenery, lots of hiking, and tons of outdoor adventure activities. Known as Patagonia 'light,' the town is definitely a year-round travel destination, but visitors can also go skiing at the nearby Cerro Catedral in the wintertime."
         },
         {
-            "id": 2,
+            "_id": 2,
             "name": "Sydney",
-            "img": "https://ep01.epimg.net/elviajero/imagenes/2019/06/05/album/1559747677_909530_1559748130_noticia_normal.jpg",
+            "image": "https://ep01.epimg.net/elviajero/imagenes/2019/06/05/album/1559747677_909530_1559748130_noticia_normal.jpg",
             "country": "Australia",
             "description": "The search for what to do in Sydney begins and ends here with our huge range of activities on sale at discounted prices. If nature is what you crave then a Blue Mountains day tour from Sydney will fit perfectly into your itinerary too. Browse our range of top Sydney tours and attractions here and you’ll soon discover why you need to visit Sydney."
         },
         {
-            "id": 3,
+            "_id": 3,
             "name": "New York",
-            "img": "https://images.musement.com/cover/0002/42/view-on-manhattan-at-night-new-york-city_header-141511.jpeg?w=1200&h=630&q=95&fit=crop",
+            "image": "https://images.musement.com/cover/0002/42/view-on-manhattan-at-night-new-york-city_header-141511.jpeg?w=1200&h=630&q=95&fit=crop",
             "country": "USA",
             "description": "New York City is one of the largest, most influential cities in the world. With its rich history, famous landmarks, museums and theaters, and its ever changing skyline, the to-do list for visitors is enormous. 50 things to do in New York City sounds like a lot, and it is, but there are many more places we could have added to this list."
         },
         {
-            "id": 4,
+            "_id": 4,
             "name": "Tokio",
-            "img": "https://elviajerofeliz.com/wp-content/uploads/2020/05/Por-qu%C3%A9-Tokio-es-una-de-las-ciudades-m%C3%A1s-sorprendentes.jpg",
+            "image": "https://elviajerofeliz.com/wp-content/uploads/2020/05/Por-qu%C3%A9-Tokio-es-una-de-las-ciudades-m%C3%A1s-sorprendentes.jpg",
             "country": "Japan",
             "description": "Tokyo is the administrative, cultural, financial, commercial, and educational centre of Japan and the focus of an extensive urban complex that includes Kawasaki and Yokohama. Attractions include the Imperial Palace, encircled by stone-walled moats and broad gardens, and numerous temples and shrines."
         },
         {
-            "id": 5,
+            "_id": 5,
             "name": "Moscow",
-            "img": "https://www.collinsdictionary.com/images/full/moscow_109024046_1000.jpg",
+            "image": "https://www.collinsdictionary.com/images/full/moscow_109024046_1000.jpg",
             "country": "Russia",
             "description": "As a vibrant capital and Europe’s largest city, Moscow is a powerful mix of history and edginess, full of world-famous sites. Russia’s capital was just a small town when it was first recorded 800 years ago, but there is enough here today to keep you busy for months."
         },
         {
-            "id": 6,
+            "_id": 6,
             "name": "San Sebastian",
-            "img": "https://cdn1.intriper.com/wp-content/uploads/2021/11/29115617/Lugares-para-ver-en-San-Sebastian-1-1.jpg",
+            "image": "https://cdn1.intriper.com/wp-content/uploads/2021/11/29115617/Lugares-para-ver-en-San-Sebastian-1-1.jpg",
             "country": "Spain",
             "description": "It’s impossible not to fall for the Basque charm of San Sebastián, known locally as Donostia. In addition to its reputation for culinary excellence, the city boasts a unique landscape thanks to its coastal scenery and mountainous surroundings. Here are the best things to see and do."
         },
         {
-            "id": 7,
+            "_id": 7,
             "name": "Cancun",
-            "img": "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_900,q_75,w_1700/v1/clients/quintanaroo/_cc911e74-049d-4172-b8d9-67b8942c9bc0.1392201394-2910bf3f5b8388c632d75b47bd71a0c94b1389b5c0b1926331aa7ed225a20103-d_640.jpg",
+            "image": "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_900,q_75,w_1700/v1/clients/quintanaroo/_cc911e74-049d-4172-b8d9-67b8942c9bc0.1392201394-2910bf3f5b8388c632d75b47bd71a0c94b1389b5c0b1926331aa7ed225a20103-d_640.jpg",
             "country": "Mexico",
             "description": "Cancun is the official party capital of Mexico with great beachfront access to the Caribbean Sea. But there are so many more things to do in Cancun besides the beaches! Known as the gateway to the Yucatan Peninsula, Cancun is often the first travel experience that most Americans have in Mexico. In fact up to 40% of American travelers are picking Mexico for their vacation."
         },
         {
-            "id": 8,
+            "_id": 8,
             "name": "Sápmi",
-            "img": "https://lonelyplanetes.cdnstatics2.com/sites/default/files/styles/max_1300x1300/public/blog/finlandia_aurora_boreal_laponia_shutterstock_784223482_fabljq93_shutterstock.jpg?itok=w_kLOXiH",
+            "image": "https://lonelyplanetes.cdnstatics2.com/sites/default/files/styles/max_1300x1300/public/blog/finlandia_aurora_boreal_laponia_shutterstock_784223482_fabljq93_shutterstock.jpg?itok=w_kLOXiH",
             "country": "Finland",
             "description": "The Sami are the northernmost indigenous people of Europe, and the attractions on the Norwegian tundra all reflect Sami history, heritage, and life today. No wonder, as nine out of ten people here are Sami. At winter nights, wonder at the northern lights that dance above your head."
         },
         {
-            "id": 9,
+            "_id": 9,
             "name": "Red Beach",
-            "img": "https://boricuaonline.com/wp-content/uploads/2019/08/vieques-playa-caracas2.jpg",
+            "image": "https://boricuaonline.com/wp-content/uploads/2019/08/vieques-playa-caracas2.jpg",
             "country": "Puerto Rico",
             "description": "Playa Caracas (previously known as 'Red Beach') is a family friendly beach and one of the local’s favorites for enjoying fun days under the sun. The waters have beautiful tones of turquoise, and the sand is a very soft and light white coral."
         },
         {
-            "id": 10,
+            "_id": 10,
             "name": "Rio",
-            "img": "https://cdn1.intriper.com/wp-content/uploads/2020/12/29101744/cristo-redentor-ano-nuevo.jpeg",
+            "image": "https://cdn1.intriper.com/wp-content/uploads/2020/12/29101744/cristo-redentor-ano-nuevo.jpeg",
             "country": "Brazil",
             "description": "This alluring city has always had a dramatic natural beauty, cultural richness and flirty energy that draws visitors from around the globe. With rain-forest pinnacles and crescent-shaped beaches, the town is dotted with Art Deco, Beaux-Arts and skyscraper architecture. Day or night, the pulse of Brazil’s second largest metropolis never stops. You’ll soon realize why Rio’s nickname is the “marvellous city”. Here is the definitive must-do list of what to eat, see and experience when in Rio."
         },
         {
-            "id": 11,
+            "_id": 11,
             "name": "Atenas",
-            "img": "https://www.expreso.info/files/styles/expreso_theme_teaser_secundario_desktop/public/2021-12/Atenas_Acropolis.jpg?itok=Awg5rsgE",
+            "image": "https://www.expreso.info/files/styles/expreso_theme_teaser_secundario_desktop/public/2021-12/Atenas_Acropolis.jpg?itok=Awg5rsgE",
             "country": "Greece",
             "description": "A symbol of Western Civilization at its most magnificent, Athens' illustrious history stretches back more than 3,000 years. The city flourished during classical antiquity and was the birthplace of Socrates, Pericles, and Sophocles. More than just a relic of its glorious past, today Athens is a bustling and modern capital city and home to some of the country's most important tourist attractions."
         },
         {
-            "id": 12,
+            "_id": 12,
             "name": "Miami",
-            "img": "https://www.barnes-miami.com/wp-content/uploads/2021/03/MG_6_1_Miami.jpg",
+            "image": "https://www.barnes-miami.com/wp-content/uploads/2021/03/MG_6_1_Miami.jpg",
             "country": "USA",
             "description": "Miami is one of the world’s greatest and most iconic tourist destinations thanks to its sub tropical climate, pristine beaches and relaxed ambiance."
         }
