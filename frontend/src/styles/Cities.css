@@ -77,7 +77,7 @@
 .city-description {
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.705) !important;
-    width: 70%;
+    width: 80%;
 }
 
 @media screen and (max-width: 599px) {

@@ -30,9 +30,9 @@ const City = () => {
                 <>
                     <Box className='city-container' sx={{ backgroundImage: `url(${city?.image})`, minHeight: '25rem' }} >
                         {city ? (
-                            <Box className='city-content' sx={{ backgroundColor: 'rgba(9, 14, 12, 0.2)' }} >
-                                <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary city-title' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>{city.name}</Typography>
-                                <Typography variant='h6' sx={{ padding: '1rem', fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem', lg: '1.5rem' } }} className='font-normal text-light city-description'>
+                            <Box className='city-content' sx={{ backgroundColor: 'rgba(9, 14, 12, 0.2)', flexGrow: '2' }} >
+                                <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary city-title' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' }, marginTop:'1rem' }}>{city.name}</Typography>
+                                <Typography variant='h6' sx={{ padding: '1rem', fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem', lg: '1.5rem' }, marginBottom:'1rem' }} className='font-normal text-light city-description'>
                                     {city.description}
                                 </Typography>
                                 <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter>
@@ -62,7 +62,7 @@ const City = () => {
                             </>
                             )}
                     </Box>
-                    <Box sx={{ flexGrow: '2', backgroundColor: `rgba(0, 0, 0)`, height: '10rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
+                    <Box sx={{ flexGrow: '1', backgroundColor: `rgba(0, 0, 0)`, height: '10rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
                         <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Avalaible Itineraries yet</Typography>
                     </Box>
                 </>
