@@ -84,27 +84,33 @@ const NavBar = () => {
                             }
                         </Menu>
                     </Box>
+                    <LinkRouter to="/">
                     <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'flex' } }} />
+                    </LinkRouter>
                     {/* Center title (md resolution) */}
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href=""
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', sm: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                        className='font-slogan'
-                    >
-                        MyTinerary
-                    </Typography>
+                    
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            component="a"
+                            href=""
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', sm: 'flex', md: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                            className='font-slogan'
+                        >
+                            <LinkRouter to="/">
+                            MyTinerary
+                            </LinkRouter>
+                        </Typography>
+                    
                     {/* Nav Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
@@ -124,22 +130,24 @@ const NavBar = () => {
                         ))}
                     </Box>
                     {/* md Title (flex-end) */}
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'sans-serif',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                        className='font-slogan'
-                    >
-                        MyTinerary
-                    </Typography>
+                    <LinkRouter to="/">
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'sans-serif',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                            className='font-slogan'
+                        >
+                            MyTinerary
+                        </Typography>
+                    </LinkRouter>
                     {/* User session Menu */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
