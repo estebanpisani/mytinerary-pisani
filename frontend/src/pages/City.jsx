@@ -4,7 +4,7 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Link as LinkRouter } from "react-router-dom";
-import '../styles/Hero.css';
+import '../styles/Cities.css';
 import { useParams } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -25,40 +25,50 @@ const City = () => {
     }, []);
 
     return (
-        <main style={{backgroundColor: 'rgba(0, 0, 0, 0.8)',display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             {
-                city ?
-                    (
-                        <>
-                            <Box className='hero-container' sx={{ backgroundImage: `url(${city.image})`, minHeight: '25rem' }} >
-                                <Box className='hero-content' sx={{ backgroundColor: 'rgba(9, 14, 12, 0.2)' }} >
-                                    <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>{city.name}</Typography>
-                                    <Typography variant='h6' sx={{ padding: '1rem' }} className='font-normal text-light city-description'>
-                                        {city.description}
-                                    </Typography>
-                                    <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter>
+                <>
+                    <Box className='city-container' sx={{ backgroundImage: `url(${city?.image})`, minHeight: '25rem' }} >
+                        {city ? (
+                            <Box className='city-content' sx={{ backgroundColor: 'rgba(9, 14, 12, 0.2)' }} >
+                                <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary city-title' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>{city.name}</Typography>
+                                <Typography variant='h6' sx={{ padding: '1rem', fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem', lg: '1.5rem' } }} className='font-normal text-light city-description'>
+                                    {city.description}
+                                </Typography>
+                                <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter>
+                            </Box>) :
+                            (
+                                <>
+                                <Box className='' sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, marginBottom:'1rem' }} >
+                                    <Skeleton variant="rectangular" animation="wave" width={300} height={177} sx={{ marginRight: '1rem', display: { xs: 'none', md: 'flex' } }} />
+                                    <Box className='' sx={{ display: { xs: 'none', sm: 'flex' }, flexDirection: 'column' }} >
+                                        <Skeleton variant="rectangular" animation="wave" width={250} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={250} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={250} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={250} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={250} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={250} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                    </Box>
+                                    <Box className='' sx={{ display: { xs: 'flex', sm: 'none' }, flexDirection: 'column' }} >
+                                        <Skeleton variant="rectangular" animation="wave" width={150} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={150} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={150} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={150} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={150} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                        <Skeleton variant="rectangular" animation="wave" width={150} height={20} sx={{ marginBottom: '0.7rem' }} />
+                                    </Box>
                                 </Box>
-                            </Box>
-                            <Box sx={{ backgroundColor: `rgba(0, 0, 0)`, height: '10rem', width:'100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
-                                <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Avalaible Itineraries yet</Typography>
-                            </Box>
-                        </>
-                    )
-                    : (
-                        <Box className='skeleton-container' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap:'wrap' }} >
-                            <Skeleton variant="rectangular" animation="wave" width={210} height={118} sx={{ marginBottom: '1rem', marginRight:'1rem' }} />
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
-                                <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
-                                <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
-                                <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
-                                <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
-                            </Box>
-                        </Box>
-                    )
+                                <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter>
+                            </>
+                            )}
+                    </Box>
+                    <Box sx={{ flexGrow: '2', backgroundColor: `rgba(0, 0, 0)`, height: '10rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
+                        <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Avalaible Itineraries yet</Typography>
+                    </Box>
+                </>
             }
-        </main>
+                </main>
     )
 }
 
-export default City;
+            export default City;

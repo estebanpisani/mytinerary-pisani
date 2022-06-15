@@ -33,17 +33,76 @@
     background-position: center;
     background-size: cover;
 }
-.card-content:hover{
-    background-color:rgb(51, 51, 51, 0.2) !important;
+
+.card-content:hover {
+    background-color: rgb(51, 51, 51, 0.2) !important;
 }
 
 .search-input {
     color: white !important;
 }
 
-.city-description{
+.city-container {
+    height: 60vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.city-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(9, 14, 12, 0.31);
+    padding: 1rem;
+    box-shadow: -16px -16px white;
+}
+
+@media screen and (max-width: 300px) {
+    .city-container {
+        height: 60vh !important;
+    }
+}
+
+
+.city-description {
     border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.705)!important;
+    background-color: rgba(0, 0, 0, 0.705) !important;
     width: 70%;
-    
+}
+
+@media screen and (max-width: 599px) {
+    .city-title {
+        font-size: 2rem !important;
+    }
+
+    .city-description {
+        font-size: 0.5rem !important;
+    }
+
+}
+
+@media screen and (max-width: 300px) {
+    .hero-container {
+    height: 100vh !important;
+}
+    .city-title {
+        font-size: 2rem !important;
+    }
+
+    .city-description {
+        font-size: 0.4rem !important;
+    }
+    .cities-subtitle{
+        font-size: 1rem !important;
+    }
 }

@@ -36,9 +36,8 @@ export const Cities = ({ theme }) => {
         <main>
             <Box className='hero-container' sx={{ backgroundImage: `url(${heroBg})`, height: '60vh' }} >
                 <Box className='hero-content' sx={{ backgroundColor: 'rgba(9, 14, 12, 0.2)' }} >
-                    {/* <Typography variant='h1' className='font-title text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '4rem', sm: '4rem', md: '7rem' } }}>MyTinerary</Typography> */}
                     <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>Find your dream destination!!</Typography>
-                    <Typography variant='h4' className='text-light text-shadow-primary' sx={{
+                    <Typography variant='h4' className='text-light text-shadow-primary cities-subtitle' sx={{
                         fontSize: { xs: '1.5em', sm: '2rem', md: '2rem' },
                         fontFamily: 'Cookie'
                     }}>Your adventure begins down below!</Typography>
