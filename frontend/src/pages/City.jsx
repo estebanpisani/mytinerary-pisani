@@ -30,7 +30,7 @@ const City = () => {
                                 <Typography variant='h6' sx={{ padding: '1rem', fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem', lg: '1.5rem' }, marginBottom: '1rem' }} className='font-normal text-light city-description'>
                                     {city.description}
                                 </Typography>
-                                <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter>
+                                <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back to Cities!</button></LinkRouter>
                             </Box>) :
                             (
                                 <>
@@ -53,12 +53,12 @@ const City = () => {
                                             <Skeleton variant="rectangular" animation="wave" width={150} height={20} sx={{ marginBottom: '0.7rem' }} />
                                         </Box>
                                     </Box>
-                                    <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter>
+                                    <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back to Cities!</button></LinkRouter>
                                 </>
                             )}
                     </Box>
                     <Box sx={{ flexGrow: '1', backgroundColor: `rgba(0, 0, 0)`, height: '10rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
-                        <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Avalaible Itineraries yet</Typography>
+                        <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Available Itineraries yet</Typography>
                     </Box>
                 </>
             }
