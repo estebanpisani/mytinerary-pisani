@@ -16,7 +16,7 @@ export const Cities = ({ theme }) => {
     const heroBg = process.env.PUBLIC_URL + '/img/cities-hero.jpg';
     const cardsBg = process.env.PUBLIC_URL + '/img/cities-cards.jpg';
 
-    const [results, setResults] = useState([]);
+    const [cities, setCities] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
     function handleSearchValue(event) {
@@ -26,18 +26,13 @@ export const Cities = ({ theme }) => {
     useEffect(() => {
         axios.get('http://localhost:4000/api/cities')
             .then(APIresp => {
-                setResults(APIresp.data.response.cities)
+                setCities(APIresp.data.response.cities)
             });
     },
         []
     )
 
-    let search = results.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
-
-    console.log(search)
-
-
-
+    let search = cities.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
 
     return (
         <main>
