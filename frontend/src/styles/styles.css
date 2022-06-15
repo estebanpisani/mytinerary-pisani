@@ -2,16 +2,20 @@
     color: inherit !important;
     text-decoration: none !important;
 }
+html {
+    min-height:100% !important;
+}
 
 .App {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
     flex-grow: 1 !important;
     background-color: #00695c;
-    /* margin: 0; */
+    height: inherit;
 }
 
 .text-primary {
@@ -65,6 +69,11 @@ main {
 
 .bg-light {
     background-color: #fffefe !important;
+}
+
+.skeleton-container{
+    min-height: 100%!important;
+    width: 100% !important;
 }
 
 

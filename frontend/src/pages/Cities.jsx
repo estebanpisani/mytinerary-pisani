@@ -4,19 +4,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-// import FlipCard from '../components/FlipCard';
 import BasicCard from '../components/BasicCard';
 import axios from 'axios';
-
 import '../styles/Hero.css';
 import '../styles/Cities.css';
-
+import ReactLoading from 'react-loading';
 
 export const Cities = ({ theme }) => {
     const heroBg = process.env.PUBLIC_URL + '/img/cities-hero.jpg';
     const cardsBg = process.env.PUBLIC_URL + '/img/cities-cards.jpg';
 
-    const [cities, setCities] = useState([]);
+    const [cities, setCities] = useState();
     const [searchValue, setSearchValue] = useState('');
 
     function handleSearchValue(event) {
@@ -32,7 +30,7 @@ export const Cities = ({ theme }) => {
         []
     )
 
-    let search = cities.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
+    let search = cities?.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
 
     return (
         <main>
@@ -65,28 +63,36 @@ export const Cities = ({ theme }) => {
                         />
                     </Box>
                 </Box>
-                <Grid
-                    className='grid-container'
-                    container
-                    spacing={{ xs: 2, md: 2, lg: 5 }}
-                    columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 8 }}
-                    justifyContent="center"
-                    alignItems='center'
-                    sx={{ padding: '3rem', margin: '0' }}
-                >
-                    {
-                        search.length > 0 ?
+                {cities ? (
+                    <Grid
+                        className='grid-container'
+                        container
+                        spacing={{ xs: 2, md: 2, lg: 5 }}
+                        columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 8 }}
+                        justifyContent="center"
+                        alignItems='center'
+                        sx={{ padding: '3rem', margin: '0' }}
+                    >
+                        {search.length > 0 ?
                             search.map((city, index) => (
                                 <Grid item xs={1} xl={1} key={index}>
                                     <BasicCard className='citie-card' id={city._id} name={city.name} country={city.country} bgImg={city.image} description={city.description}></BasicCard>
                                 </Grid>)
-                            ) :
-                            <Grid item xs={2} xl={2} sx={{ height: { md: '13rem' } }}>
-                                <Typography variant='h3' className='font-slogan text-light text-shadow-primary' >Cities not found</Typography>
-                            </Grid>
-                    }
+                            ) : (
+                                <Grid item xs={2} xl={2} sx={{ height: { md: '13rem' } }}>
+                                    <Typography variant='h3' className='font-slogan text-light text-shadow-primary' >Cities not found</Typography>
+                                </Grid>)}
+                    </Grid>
+                )
+                    : (
+                        <Box className='skeleton-container' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', flexDirection: 'column', height: '50vh' }} >
+                            <ReactLoading type={"spokes"} color={"#fff"} height={120} width={120} />
+                            <Typography variant='h4' className='text-light font-slogan'>Loading cities...</Typography>
+                        </Box>
+                    )
+                }
 
-                </Grid>
+
             </Box>
 
         </main>

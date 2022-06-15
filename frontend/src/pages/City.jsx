@@ -19,13 +19,13 @@ const City = () => {
         axios.get('http://localhost:4000/api/cities/' + idCity)
             .then(APIresp => {
                 console.log(APIresp);
-                // setCity(APIresp.data.response.city);
+                setCity(APIresp.data.response.city);
             });
 
     }, []);
 
     return (
-        <main>
+        <main style={{backgroundColor: 'rgba(0, 0, 0, 0.8)',display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
             {
                 city ?
                     (
@@ -39,13 +39,13 @@ const City = () => {
                                     <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter>
                                 </Box>
                             </Box>
-                            <Box sx={{ backgroundColor: `rgba(0, 0, 0)`, height: '10rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
+                            <Box sx={{ backgroundColor: `rgba(0, 0, 0)`, height: '10rem', width:'100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
                                 <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Avalaible Itineraries yet</Typography>
                             </Box>
                         </>
                     )
-                    : (<>
-                        <Box sx={{ backgroundColor: 'rgba(9, 14, 12, 0.2)', height: '72vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+                    : (
+                        <Box className='skeleton-container' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap:'wrap' }} >
                             <Skeleton variant="rectangular" animation="wave" width={210} height={118} sx={{ marginBottom: '1rem', marginRight:'1rem' }} />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
@@ -54,10 +54,7 @@ const City = () => {
                                 <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
                                 <Skeleton variant="rectangular" animation="wave" width={210} height={10} sx={{ marginBottom: '1rem' }} />
                             </Box>
-
-                            {/* <LinkRouter to={'/cities'}><button className='cta-btn-2 font-normal'>Back!</button></LinkRouter> */}
                         </Box>
-                    </>
                     )
             }
         </main>
