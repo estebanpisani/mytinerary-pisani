@@ -15,7 +15,6 @@ const City = () => {
     useEffect(() => {
         axios.get('http://localhost:4000/api/cities/' + id)
             .then(APIresp => {
-                console.log(APIresp);
                 setCity(APIresp.data.response.city);
             });
     },[]);
