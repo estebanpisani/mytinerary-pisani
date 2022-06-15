@@ -1,6 +1,7 @@
 require('dotenv').config();
 require('./config/database');
 
+const cors = require('cors');
 const express = require('express');
 const app = express();
 const PORT = 4000;
@@ -13,7 +14,7 @@ app.get('/', (req,res) => {
 });
 
 //Middlewares
-app.cors();
+app.use(cors());
 //Definimos formato de las requests y responses
 app.use(express.json());
 //Las rutas definidas van a ser consecutivas a '/api'

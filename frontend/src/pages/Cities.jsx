@@ -6,32 +6,38 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 // import FlipCard from '../components/FlipCard';
 import BasicCard from '../components/BasicCard';
-
+import axios from 'axios';
 
 import '../styles/Hero.css';
 import '../styles/Cities.css';
-// import { Link as LinkRouter } from "react-router-dom";
-import data from '../data'
-
 
 
 export const Cities = ({ theme }) => {
     const heroBg = process.env.PUBLIC_URL + '/img/cities-hero.jpg';
     const cardsBg = process.env.PUBLIC_URL + '/img/cities-cards.jpg';
 
-    const [results, setResults] = useState(data.cities);
+    const [results, setResults] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
     function handleSearchValue(event) {
-        setSearchValue(event.target.value)
+        setSearchValue(event.target.value);
     }
 
     useEffect(() => {
-        let search = data.cities.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
-        setResults(search);
+        axios.get('http://localhost:4000/api/cities')
+            .then(APIresp => {
+                setResults(APIresp.data.response.cities)
+            });
     },
-        [searchValue]
+        []
     )
+
+    let search = results.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
+
+    console.log(search)
+
+
+
 
     return (
         <main>
@@ -71,20 +77,20 @@ export const Cities = ({ theme }) => {
                     columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 8 }}
                     justifyContent="center"
                     alignItems='center'
-                    sx={{ padding: '3rem', margin:'0' }}
+                    sx={{ padding: '3rem', margin: '0' }}
                 >
                     {
-                    results.length>0 ?
-                        results.map((city, index) => (
-                            <Grid item xs={1} xl={1} key={index}>
-                                <BasicCard className='citie-card' id={city.id} name={city.name} country={city.country} bgImg={city.img} description={city.description}></BasicCard>
-                            </Grid>)
-                        ) :
-                        <Grid item xs={2} xl={2} sx={{height:{md:'13rem'}}}>
-                            <Typography variant='h3' className='font-slogan text-light text-shadow-primary' >Cities not found</Typography>
-                        </Grid>
+                        search.length > 0 ?
+                            search.map((city, index) => (
+                                <Grid item xs={1} xl={1} key={index}>
+                                    <BasicCard className='citie-card' id={city._id} name={city.name} country={city.country} bgImg={city.image} description={city.description}></BasicCard>
+                                </Grid>)
+                            ) :
+                            <Grid item xs={2} xl={2} sx={{ height: { md: '13rem' } }}>
+                                <Typography variant='h3' className='font-slogan text-light text-shadow-primary' >Cities not found</Typography>
+                            </Grid>
                     }
-                    
+
                 </Grid>
             </Box>
 
