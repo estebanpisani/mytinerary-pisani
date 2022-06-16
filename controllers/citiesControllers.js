@@ -31,7 +31,7 @@ const citiesControllers = {
 
         res.json(
             {
-                response: error ? 'Error al solicitar ciudad' : {city},
+                response: error ? 'Error requesting city data' : {city},
                 success: error ? false : true,
                 error: error
             }
@@ -55,7 +55,7 @@ const citiesControllers = {
 
         res.json(
             {
-                response: error ? 'Error al crear ciudad' : city,
+                response: error ? 'Error creating city' : city,
                 success: error ? false : true,
                 error: error
             }
@@ -77,7 +77,7 @@ const citiesControllers = {
 
         res.json(
             {
-                response: error ? 'Error al modificar datos de ciudad' : cityDB,
+                response: error ? 'Error updating city' : cityDB,
                 success: error ? false : true,
                 error: error
             }
@@ -96,7 +96,7 @@ const citiesControllers = {
 
         res.json(
             {
-                response: error ? 'Error al eliminar ciudad' : city,
+                response: error ? 'Error removing city' : city,
                 success: error ? false : true,
                 error: error
             }
