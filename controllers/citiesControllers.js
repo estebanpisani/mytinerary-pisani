@@ -12,7 +12,7 @@ const citiesControllers = {
 
         res.json(
             {
-                response: error ? 'Error al solicitar ciudades' : {cities},
+                response: error ? 'Error requesting cities data' : {cities},
                 success: error ? false : true,
                 error: error
             }
