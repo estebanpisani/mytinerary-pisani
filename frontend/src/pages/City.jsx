@@ -72,9 +72,9 @@ const City = () => {
                     </div> */}
 
 
-                    <Itinerary title='Paseo Nocturno' userName='Juan Carlos' userPhoto='' price={2} duration={3}></Itinerary>
-                    <Itinerary title='Paseito' description='Un paseito por el lago.' userName='Cosme Fulanito' userPhoto='' price={5} duration={2}></Itinerary>
-                    <Itinerary title='Caminata por el Bosque' userName='Hernán MalaFama' userPhoto='' price={3} duration={1}></Itinerary>
+                    <Itinerary title='Paseo Nocturno' userName='Juan Carlos' userPhoto='https://www.cmtv.com.ar/imagenes_artistas/2603.jpg?Mala%20Fama' price={2} duration={3} likes={5}></Itinerary>
+                    <Itinerary title='Paseito' description='Un paseito por el lago.' userName='Cosme Fulanito' userPhoto='' price={5} duration={2} tags='#lake #relax #walk'></Itinerary>
+                    <Itinerary title='Caminata por el Bosque' userName='Hernán MalaFama' userPhoto='' price={3} duration={1} tags='#kumbia #musika'></Itinerary>
                 </Box>
             </Box>
         </main>

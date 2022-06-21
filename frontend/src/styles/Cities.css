@@ -91,6 +91,18 @@
     width: 80%;
 }
 
+.itinerary-card-container{
+    background-color: rgba(34, 34, 34, 0.98) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: #fff !important;
+}
+.itinerary-card-container:hover{
+    background-color: rgba(61, 61, 61, 0.98) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+}
+
+
+
 
 /* Card Loader */
 .card {
