@@ -39,9 +39,10 @@ const itinerariesControllers = {
     },
     getItinerariesFromOneCity: async (req,res) => {
         const id = req.params.id;
+        let error = null;
         let itineraries = [];
         try{
-            itineraries = await Itinerary.find({company:id})
+            itineraries = await Itinerary.find({city:id})
         } catch(err){
             error = err;
             console.log(error);
@@ -53,7 +54,7 @@ const itinerariesControllers = {
         })
     },
     addItinerary: async (req,res) => {
-        const {title, userName, userPhoto, price, duration, tags, likes, activities}=req.body
+        const {title, userName, userPhoto, price, duration, tags, likes, activities, city}=req.body
         let itinerary;
         let error = null;
         try {
@@ -66,6 +67,7 @@ const itinerariesControllers = {
                 tags: tags,
                 likes: likes,
                 activities: activities,
+                city: city
             }).save();
         }catch (err){
             error = err;
