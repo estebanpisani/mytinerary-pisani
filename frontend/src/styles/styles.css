@@ -74,10 +74,13 @@ main {
 }
 
 .skeleton-container{
-    min-height: 100%!important;
+    min-height: 100% !important;
     width: 100% !important;
 }
 
+.like-btn{
+    cursor: pointer !important;
+}
 /* Calls to Action Options*/
 
 /* Call to Action 1 */
