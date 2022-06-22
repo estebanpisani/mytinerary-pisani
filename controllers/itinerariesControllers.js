@@ -37,6 +37,21 @@ const itinerariesControllers = {
             }
         )
     },
+    getItinerariesFromOneCity: async (req,res) => {
+        const id = req.params.id;
+        let itineraries = [];
+        try{
+            itineraries = await Itinerary.find({company:id})
+        } catch(err){
+            error = err;
+            console.log(error);
+        }
+        res.json({
+            response: error ? 'Error requesting itineraries data' : itineraries,
+            success: error ? false : true,
+            error: error
+        })
+    },
     addItinerary: async (req,res) => {
         const {title, userName, userPhoto, price, duration, tags, likes, activities}=req.body
         let itinerary;
