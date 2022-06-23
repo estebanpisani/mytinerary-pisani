@@ -18,7 +18,7 @@ const itinerariesControllers = {
             }
         )
     },
-    getOneItinerary: async (req,res) => {
+    getItineraryById: async (req,res) => {
         const id = req.params.id;
         let itinerary;
         let error = null;
@@ -37,7 +37,7 @@ const itinerariesControllers = {
             }
         )
     },
-    getItinerariesFromOneCity: async (req,res) => {
+    getItinerariesByCity: async (req,res) => {
         const id = req.params.id;
         let error = null;
         let itineraries = [];
