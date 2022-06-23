@@ -151,8 +151,12 @@ main {
     border: 1px solid #00A97F !important;
     font-family: inherit;
     text-transform: uppercase;
+    display: flex;
+    align-items: middle;
+    justify-content: center;
     color: var(--color);
     z-index: 1;
+    
 }
 
 .cta-btn-3::before,

@@ -20,6 +20,14 @@ const itineraryReducer = (state=initialState, action) => {
                 ...state,
                 itinerary: action.payload,
             }
+
+        case 'GET_ITINERARIES_BY_CITY':
+            return {
+                ...state,
+                itineraries: action.payload,
+            }
+
+
         // Si llegara a necesitarlo:
         // case 'FILTER_ITINERARIES':
         //     let results = state.itineraries.filter(itinerary => itinerary.name.toLowerCase().startsWith(action.payload.trim().toLowerCase()));

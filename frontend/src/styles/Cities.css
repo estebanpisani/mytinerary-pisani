@@ -102,10 +102,18 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
 }
 
+.itinerary-hashtag{
+    cursor: pointer;
+    color:rgba(218, 218, 218,0.5);
+}
+.itinerary-hashtag:hover{
+    color:grey;
+}
 .activities-container {
     display: flex;
     animation: displayElement 2s !important;
 }
+
 
 
 

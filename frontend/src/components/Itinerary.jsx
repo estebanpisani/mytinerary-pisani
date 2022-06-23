@@ -8,7 +8,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Avatar from '@mui/material/Avatar';
-import Carousel from './Carousel';
+// import Carousel from './Carousel';
 
 export default function Itinerary(props) {
 
@@ -20,18 +20,19 @@ export default function Itinerary(props) {
     };
     let price = [];
     for (let i = 0; i < props.price; i++) {
-        price.push(<img src={dollarIcon} height='30px' width='30px' />);
+        price.push(<img src={dollarIcon} alt='price-value-unit' height='30px' width='30px' />);
     }
 
+    props.tags?.map(tag => console.log(tag));
 
     return (
         <>
             <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '1rem', width: { xs: '80%', md: '60%', lg: '60%', xl: '50%' }, padding: '1rem' }} className='itinerary-card-container'>
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems:'center', width: '100%', padding: '1rem' }}>
-                    <Box sx={{ display: 'flex', flexDirection:'column', justifyContent: 'space-between', alignItems: 'center', flexWrap:'wrap' }}>
-                        <Avatar variant='circular' alt={props.userName} sx={{ bgcolor: 'rgb(0, 105, 92)', width: {xs:'90px', sm:'120px', md:'200px'}, height:{xs:'90px',sm:'120px', md:'200px'} }} src={props.userPhoto}>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center', width: '100%', padding: '1rem' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
+                        <Avatar variant='circular' alt={props.userName} sx={{ bgcolor: 'rgb(0, 105, 92)', width: { xs: '90px', sm: '120px', md: '200px' }, height: { xs: '90px', sm: '120px', md: '200px' } }} src={props.userPhoto}>
                         </Avatar>
-                        <Typography variant="overline" component="div" sx={{ marginBottom: '1rem' }} className='font-normal'>
+                        <Typography variant="overline" component="div" sx={{ marginTop: '1rem' }} className='font-normal'>
                             {props.userName}
                         </Typography>
                     </Box>
@@ -53,19 +54,21 @@ export default function Itinerary(props) {
 
                                 <Typography variant="body1" className='font-normal'>Duration: {props.duration}hs</Typography>
                             </Box>
-                            {props.tags &&
-                                <Typography variant="subtitle1" component="div" sx={{ marginTop: '1rem', marginBottom: '1rem' }}>
-                                    {props.tags}
-                                </Typography>
+                            <Box>
+                            {props.tags && props.tags.map(tag => (
+                                <span className='itinerary-hashtag'>{tag} </span>
+                            ))
                             }
+                            </Box>
+
                         </CardContent>
 
                     </Box>
                 </Box>
 
                 {expand === false && (
-                    <Box>
-                        <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View Itineraries! <ExpandMoreIcon /> </button>
+                    <Box sx={{display:'flex', justifyContent:'center'}}>
+                        <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View More <ExpandMoreIcon /> </button>
                     </Box>)
                 }
                 {expand && (

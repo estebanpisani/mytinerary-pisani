@@ -1,6 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Link as LinkRouter } from "react-router-dom";
@@ -9,18 +8,29 @@ import { useParams } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
 import Itinerary from '../components/Itinerary';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+import cityActions from '../redux/actions/cityActions';
+import itineraryActions from '../redux/actions/itineraryActions';
+
 const City = () => {
 
     const { id } = useParams();
     const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg';
-    const [city, setCity] = useState();
+    const dispatch = useDispatch();
+    // const [city, setCity] = useState();
+
     useEffect(() => {
-        axios.get('http://localhost:4000/api/cities/' + id)
-            .then(APIresp => {
-                setCity(APIresp.data.response.city);
-            });
-            // eslint-disable-next-line
+        dispatch(cityActions.getCityById(id));
+        dispatch(itineraryActions.getItinerariesByCity(id))
+        // eslint-disable-next-line
     }, []);
+
+    let city = useSelector(store => store.cityReducer.city);
+    console.log(city);
+
+    let itineraries = useSelector(store => store.itineraryReducer.itineraries);
+    console.log(itineraries);
 
     return (
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -64,7 +74,7 @@ const City = () => {
                 {/* <Box sx={{ backgroundColor: `rgba(0, 0, 0, 0.4)`, minHeight: '60vh', maxHeight:'100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding:'1rem' }} >
                     <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Available Itineraries yet</Typography>                
                 </Box> */}
-                <Box className='itineraries-container' sx={{ maxHeight: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems:'center', padding: '1rem' }}>
+                <Box className='itineraries-container' sx={{ maxHeight: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem' }}>
                     {/* Skeleton */}
                     {/* <div className="card">
                         <div className="card_load"></div>
@@ -72,10 +82,11 @@ const City = () => {
                         <div className="card_load_extreme_descripion"></div>
                     </div> */}
 
+                    {itineraries?.map(itinerary => 
+                        <Itinerary title={itinerary.title} userName={itinerary.userName} userPhoto={itinerary.userPhoto&&itinerary.userPhoto} price={itinerary.price} duration={itinerary.duration} likes={itinerary.likes && itinerary.likes} description={itinerary.description && itinerary.description} tags={itinerary.tags && itinerary.tags} ></Itinerary>
+                    )
+                    }
 
-                    <Itinerary title='Paseo Nocturno' userName='Juan Carlos' userPhoto='https://www.cmtv.com.ar/imagenes_artistas/2603.jpg?Mala%20Fama' price={2} duration={3} likes={5} description='Una larga caminata bajo el manto de la oscura noche de verano, iluminada sólo por la Luna y el polvo de estrellas.'></Itinerary>
-                    <Itinerary title='Paseito' description='Un paseito por el lago.' userName='Cosme Fulanito' userPhoto='' price={5} duration={2} tags='#lake #relax #walk'></Itinerary>
-                    <Itinerary title='Caminata por el Bosque' userName='Hernán MalaFama' userPhoto='' price={3} duration={1} tags='#kumbia #musika'></Itinerary>
                 </Box>
             </Box>
         </main>

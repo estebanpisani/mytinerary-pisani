@@ -17,21 +17,19 @@ const itineraryActions = {
             }
         };
     },
-    getItinerariesByCity: () => {
+    getItinerariesByCity: (id) => {
         return async(dispatch, getState) => {
             try{
-                const res = await axios.get(url+'/cities/:id/itineraries');
+                const res = await axios.get(url+'/cities/'+id+'/itineraries');
                 dispatch({
                     type:'GET_ITINERARIES_BY_CITY',
-                    payload: res.data.response.itineraries
+                    payload: res.data.response
                 })
             } catch(error){
                 console.log(error);
             }
         };
     },
-
-
     getItineraryById: (id) => {
         return async(dispatch, getState) => {
             try {

@@ -26,7 +26,7 @@ export const Cities = ({ theme }) => {
     useEffect(() => {
         //Seteo el estado cities con getCities
         dispatch(cityActions.getCities());
-
+        // eslint-disable-next-line
     }, []);
 
     //Obtengo las ciudades del store de Redux
@@ -36,7 +36,7 @@ export const Cities = ({ theme }) => {
     useEffect(() => {
         //Seteo el estado cities con getCities
         dispatch(cityActions.filterCities(search));
-
+        // eslint-disable-next-line
     }, [search]);
 
     //Obtengo las ciudades filtradas del store de Redux
