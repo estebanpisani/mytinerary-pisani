@@ -5,30 +5,43 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import BasicCard from '../components/BasicCard';
-import axios from 'axios';
 import '../styles/Hero.css';
 import '../styles/Cities.css';
 import ReactLoading from 'react-loading';
+
+import { useDispatch, useSelector } from 'react-redux';
+import cityActions from '../redux/actions/cityActions';
 
 export const Cities = ({ theme }) => {
     const heroBg = process.env.PUBLIC_URL + '/img/cities-hero.jpg';
     const cardsBg = process.env.PUBLIC_URL + '/img/cities-cards.jpg';
 
-    const [cities, setCities] = useState();
-    const [searchValue, setSearchValue] = useState('');
+    const [search, setSearch] = useState('');
 
-    function handleSearchValue(event) {
-        setSearchValue(event.target.value);
+    const dispatch = useDispatch();
+
+    function handleSearch(event) {
+        setSearch(event.target.value);
     }
+    useEffect(() => {
+        //Seteo el estado cities con getCities
+        dispatch(cityActions.getCities());
+
+    }, []);
+
+    //Obtengo las ciudades del store de Redux
+    let cities = useSelector(store => store.cityReducer.cities);
+    console.log(cities)
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/cities')
-            .then(APIresp => {
-                setCities(APIresp.data.response.cities)
-            });
-    },[])
+        //Seteo el estado cities con getCities
+        dispatch(cityActions.filterCities(search));
 
-    let search = cities?.filter(city => city.name.toLowerCase().startsWith(searchValue.trim().toLowerCase()));
+    }, [search]);
+
+    //Obtengo las ciudades filtradas del store de Redux
+    let results = useSelector(store => store.cityReducer.filteredCities);
+    console.log(results);
 
     return (
         <main>
@@ -56,7 +69,7 @@ export const Cities = ({ theme }) => {
                             placeholder='Try searching "Bariloche"'
                             variant="filled"
                             fullWidth
-                            onKeyUp={handleSearchValue}
+                            onKeyUp={handleSearch}
                         />
                     </Box>
                 </Box>
@@ -70,8 +83,8 @@ export const Cities = ({ theme }) => {
                         alignItems='center'
                         sx={{ padding: '3rem', margin: '0' }}
                     >
-                        {search.length > 0 ?
-                            search.map((city, index) => (
+                        {results?.length > 0 ?
+                            results?.map((city, index) => (
                                 <Grid item xs={1} xl={1} key={index}>
                                     <BasicCard className='citie-card' id={city._id} name={city.name} country={city.country} bgImg={city.image} description={city.description}></BasicCard>
                                 </Grid>)
