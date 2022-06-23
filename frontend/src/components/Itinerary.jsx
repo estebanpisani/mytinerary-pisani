@@ -76,7 +76,7 @@ export default function Itinerary(props) {
                                 <Typography className='font-normal' sx={{ marginBottom: '1rem' }}>{props.description}</Typography>
                             }
                             <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', marginBottom: '1rem' }}>Activities</Typography>
-
+                            {/* Carousel con actividades de cada itinerario */}
                             <Box className='carrousel-container'>
                                 {/* <Carousel /> */}
                             </Box>
