@@ -73,7 +73,7 @@ export const Cities = ({ theme }) => {
                         />
                     </Box>
                 </Box>
-                {cities ? (
+                {cities && cities.length>0 ? (
                     <Grid
                         className='grid-container'
                         container

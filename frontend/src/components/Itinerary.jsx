@@ -27,10 +27,10 @@ export default function Itinerary(props) {
 
     return (
         <>
-            <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '1rem', width: { xs: '80%', md: '60%', lg: '60%', xl: '50%' }, padding: '1rem' }} className='itinerary-card-container'>
+            <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '1rem', width: { xs: '80%', md: '60%', lg: '70%', xl: '50%' }, padding: '1rem' }} className='itinerary-card-container'>
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center', width: '100%', padding: '1rem' }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-                        <Avatar variant='circular' alt={props.userName} sx={{ bgcolor: 'rgb(0, 105, 92)', width: { xs: '90px', sm: '120px', md: '200px' }, height: { xs: '90px', sm: '120px', md: '200px' } }} src={props.userPhoto}>
+                        <Avatar variant='circular' alt={props.userName} sx={{ bgcolor: 'rgb(0, 105, 92)', width: { xs: '70px', sm: '120px', md: '200px' }, height: { xs: '70px', sm: '120px', md: '200px' } }} src={props.userPhoto}>
                         </Avatar>
                         <Typography variant="overline" component="div" sx={{ marginTop: '1rem' }} className='font-normal'>
                             {props.userName}
@@ -45,7 +45,7 @@ export default function Itinerary(props) {
                             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, justifyContent: 'space-evenly', alignItems: 'center', width: '100%', flexWrap: 'wrap', marginBottom: '1rem' }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
                                     <FavoriteBorderIcon className='like-btn' fontSize='medium' />
-                                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginLeft: '0.5rem' }} className='font-normal'> {props.likes ? props.likes : 0}</Typography>
+                                    <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', marginLeft: '0.5rem' }} className='font-normal'> {props.likes ? props.likes : 0}</Typography>
                                 </Box>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                     <Typography variant="body1" className='font-normal' >Price:</Typography>
