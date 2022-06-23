@@ -1,7 +1,7 @@
 const Router = require('express').Router();
 
 const citiesControllers = require('../controllers/citiesControllers');
-const {getCities, getOneCity, addCity, modifyCity, removeCity} = citiesControllers;
+const {getCities, getCityById, addCity, modifyCity, removeCity} = citiesControllers;
 const itinerariesControllers = require('../controllers/itinerariesControllers');
 const {getItineraries, getOneItinerary, getItinerariesFromOneCity,addItinerary, modifyItinerary, removeItinerary} = itinerariesControllers;
 // Cities Routues
@@ -10,7 +10,7 @@ Router.route('/cities')
 .post(addCity);
 
 Router.route('/cities/:id')
-.get(getOneCity)
+.get(getCityById)
 .put(modifyCity)
 .delete(removeCity);
 

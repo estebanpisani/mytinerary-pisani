@@ -19,6 +19,7 @@ const City = () => {
             .then(APIresp => {
                 setCity(APIresp.data.response.city);
             });
+            // eslint-disable-next-line
     }, []);
 
     return (
