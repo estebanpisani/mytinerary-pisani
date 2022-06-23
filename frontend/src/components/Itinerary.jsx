@@ -23,8 +23,6 @@ export default function Itinerary(props) {
         price.push(<img src={dollarIcon} alt='price-value-unit' height='30px' width='30px' />);
     }
 
-    props.tags?.map(tag => console.log(tag));
-
     return (
         <>
             <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '1rem', width: { xs: '80%', md: '60%', lg: '70%', xl: '50%' }, padding: '1rem' }} className='itinerary-card-container'>
@@ -55,8 +53,8 @@ export default function Itinerary(props) {
                                 <Typography variant="body1" className='font-normal'>Duration: {props.duration}hs</Typography>
                             </Box>
                             <Box>
-                            {props.tags && props.tags.map(tag => (
-                                <span className='itinerary-hashtag'>{tag} </span>
+                            {props.tags && props.tags.map((tag, i) => (
+                                <span className='itinerary-hashtag' key={i}>{tag} </span>
                             ))
                             }
                             </Box>

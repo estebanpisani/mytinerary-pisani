@@ -69,8 +69,8 @@ const City = () => {
                         <div className="card_load_extreme_descripion"></div>
                     </div> */}
 
-                    {itineraries.length > 0 ? itineraries.map(itinerary =>
-                        <Itinerary title={itinerary.title} userName={itinerary.userName} userPhoto={itinerary.userPhoto && itinerary.userPhoto} price={itinerary.price} duration={itinerary.duration} likes={itinerary.likes && itinerary.likes} description={itinerary.description && itinerary.description} tags={itinerary.tags && itinerary.tags} ></Itinerary>
+                    {itineraries.length > 0 ? itineraries.map((itinerary, i) =>
+                        <Itinerary key={i} title={itinerary.title} userName={itinerary.userName} userPhoto={itinerary.userPhoto && itinerary.userPhoto} price={itinerary.price} duration={itinerary.duration} likes={itinerary.likes && itinerary.likes} description={itinerary.description && itinerary.description} tags={itinerary.tags && itinerary.tags} ></Itinerary>
                     ) : (
                         <Box sx={{ backgroundColor: `rgba(0, 0, 0, 0.7)`, height: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding: '1rem' }} >
                             <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Available Itineraries yet</Typography>
