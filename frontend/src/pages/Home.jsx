@@ -3,7 +3,7 @@ import CarouselSection from '../components/CarouselSection';
 import Hero from './../components/Hero';
 
 
-export const Home = () => {
+const Home = () => {
     const heroBg = process.env.PUBLIC_URL + '/img/home-hero.jpg';
     return (
         <main className='main'>
@@ -13,3 +13,5 @@ export const Home = () => {
         </main>
     )
 }
+
+export default Home;

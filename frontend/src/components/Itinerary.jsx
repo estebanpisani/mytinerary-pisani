@@ -47,7 +47,7 @@ export default function Itinerary(props) {
                                 </Box>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                     <Typography variant="body1" className='font-normal' >Price:</Typography>
-                                    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>{price.map((billetin, i) => <span key={i}>{billetin}</span>)}</Box>
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}><span>{price}</span></Box>
                                 </Box>
 
                                 <Typography variant="body1" className='font-normal'>Duration: {props.duration}hs</Typography>

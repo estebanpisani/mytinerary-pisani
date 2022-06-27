@@ -5,10 +5,11 @@ import './styles/styles.css'
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Home } from './pages/Home';
+import Home from './pages/Home';
 import Hero from './components/Hero';
-import { Cities } from './pages/Cities';
+import Cities from './pages/Cities';
 import City from './pages/City';
+import Login from './pages/Login';
 import ScrollToTop from "react-scroll-to-top";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -41,7 +42,10 @@ function App() {
         <NavBar />
         <Routes >
           <Route path='/' element={<Home className='main'/>}/>
-          <Route path='/cities' element={<Cities theme={myTheme} />}/>
+          <Route path='/signup' element={<Login />}/>
+          <Route path='/login' element={<Login />}/>
+          <Route path='/logout' element={<Login />}/>
+          <Route path='/cities' element={<Cities />}/>
           <Route path='/city/:id' element={<City />}/>
           <Route path='/*' element={<Hero subtitle='Content Not Found' button='Back!' slogan={false} linkUrl='/' />}   />
         </Routes>

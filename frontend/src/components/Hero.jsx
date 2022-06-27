@@ -1,7 +1,6 @@
 import React from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-// import '../styles/styles.css'
 import '../styles/Hero.css'
 import {Link as LinkRouter} from "react-router-dom";
 

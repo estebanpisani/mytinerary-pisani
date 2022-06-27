@@ -13,8 +13,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link as LinkRouter } from "react-router-dom";
 
+let logged = false;
+
 const pages = [{ name: 'Home', url: '/' }, { name: 'Cities', url: '/cities' }];
-const settings = ['Profile', 'Account', 'Logout'];
+
+const loggedSettings = [{ name: 'Logout', url: '/logout' }];
+const guestSettings = [{ name: 'Sign Up', url: '/signup' }, { name: 'Login', url: '/login' }];
+
 const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
 
 const NavBar = () => {
@@ -41,7 +46,7 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="sticky" className='navbar' sx={{ backgroundColor: 'rgb(0, 105, 92, 1)' }}>
+        <AppBar position="static" sx={{ backgroundColor: 'rgb(0, 105, 92, 1)' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* Burger Menu */}
@@ -168,11 +173,20 @@ const NavBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+                            {logged ? loggedSettings.map((setting, index) => (
+                                <LinkRouter key={index} to={setting.url}>
+                                    <MenuItem onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">{setting.name}</Typography>
+                                    </MenuItem>
+                                </LinkRouter>
+                            )) :
+                            guestSettings.map((setting, index) => (
+                                <LinkRouter key={index} to={setting.url}>
+                                    <MenuItem onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">{setting.name}</Typography>
+                                    </MenuItem>
+                                </LinkRouter>))
+                                }
                         </Menu>
                     </Box>
                 </Toolbar>

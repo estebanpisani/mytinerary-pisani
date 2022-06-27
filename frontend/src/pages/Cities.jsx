@@ -12,7 +12,7 @@ import ReactLoading from 'react-loading';
 import { useDispatch, useSelector } from 'react-redux';
 import cityActions from '../redux/actions/cityActions';
 
-export const Cities = ({ theme }) => {
+const Cities = () => {
     const heroBg = process.env.PUBLIC_URL + '/img/cities-hero.jpg';
     const cardsBg = process.env.PUBLIC_URL + '/img/cities-cards.jpg';
 
@@ -65,7 +65,7 @@ export const Cities = ({ theme }) => {
                         <TextField
                             id="search-input"
                             label="Search cities by name"
-                            color={theme.primary}
+                            color='primary'
                             placeholder='Try searching "Bariloche"'
                             variant="filled"
                             fullWidth
@@ -108,3 +108,5 @@ export const Cities = ({ theme }) => {
         </main>
     )
 }
+
+export default Cities;

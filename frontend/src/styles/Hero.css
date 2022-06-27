@@ -20,7 +20,7 @@
     height: 100%;
     background-color: rgba(9, 14, 12, 0.31);
     padding: 1rem;
-    box-shadow: -16px -16px white;
+    /* box-shadow: -16px -16px white; */
 }
 
 @media screen and (max-width: 300px) {
