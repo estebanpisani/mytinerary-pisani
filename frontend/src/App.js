@@ -10,6 +10,7 @@ import Hero from './components/Hero';
 import Cities from './pages/Cities';
 import City from './pages/City';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import ScrollToTop from "react-scroll-to-top";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -42,7 +43,7 @@ function App() {
         <NavBar />
         <Routes >
           <Route path='/' element={<Home className='main'/>}/>
-          <Route path='/signup' element={<Login />}/>
+          <Route path='/signup' element={<SignUp />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/logout' element={<Login />}/>
           <Route path='/cities' element={<Cities />}/>

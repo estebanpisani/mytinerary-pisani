@@ -1,13 +1,10 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
@@ -30,7 +27,6 @@ export default function SignInSide() {
             backgroundSize: 'cover',
             backgroundPosition: 'center', padding: '1.5rem'
         }}>
-            <CssBaseline />
             <Box className='text-primary font-normal' sx={{ backgroundColor: 'rgba(255, 255, 255, 0.92)', width: { xs: '70%', sm: '50%', md: '35%' }, borderRadius: '10px' }} >
                 <Box
                     sx={{
@@ -99,7 +95,6 @@ export default function SignInSide() {
                     </Box>
                 </Box>
             </Box>
-
         </Box>
     );
 }
