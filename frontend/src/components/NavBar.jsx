@@ -18,7 +18,7 @@ let logged = false;
 const pages = [{ name: 'Home', url: '/' }, { name: 'Cities', url: '/cities' }];
 
 const loggedSettings = [{ name: 'Logout', url: '/logout' }];
-const guestSettings = [{ name: 'Sign Up', url: '/signup' }, { name: 'Login', url: '/login' }];
+const guestSettings = [{ name: 'Login', url: '/login' }, { name: 'Sign Up', url: '/signup' }];
 
 const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
 

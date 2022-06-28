@@ -1,18 +1,19 @@
-import * as React from 'react';
+import React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Link as LinkRouter } from "react-router-dom";
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function SignInSide() {
-    const [country, setCountry] = React.useState('');
+    const [country, setCountry] = useState('');
     let countries = ["Argentina", "Colombia", "Chile", "Uruguay", "Australia", "Japan"]
 
     const handleChange = (event) => {
@@ -21,7 +22,6 @@ export default function SignInSide() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
     };
 
     return (
@@ -74,7 +74,7 @@ export default function SignInSide() {
                                 labelId="country-select-helper-label"
                                 id="country-select"
                                 value={country}
-                                label="Country"
+                                label= "🌍 Country"
                                 onChange={handleChange}
 
                             >
@@ -87,7 +87,7 @@ export default function SignInSide() {
                             margin="normal"
                             fullWidth
                             id="photoUrl"
-                            label="Photo URL"
+                            label="📷 Photo URL"
                             name="photoUrl"
                             autoComplete="name"
                             color='primary'
@@ -98,7 +98,7 @@ export default function SignInSide() {
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label="📧 Email Address"
                             name="email"
                             autoComplete="email"
                             color='primary'
@@ -109,7 +109,7 @@ export default function SignInSide() {
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label="🔑 Password"
                             type="password"
                             id="password"
                             autoComplete="current-password"
@@ -123,6 +123,7 @@ export default function SignInSide() {
                             color='primary'
                             sx={{ mt: 3, mb: 2 }}
                             className='font-normal'
+                            onSubmit={handleSubmit}
                         >
                             Sign Up
                         </Button>
@@ -136,11 +137,11 @@ export default function SignInSide() {
                         <Typography component="p" variant="subtitle2" >
                             Already registered?
                         </Typography>
-                        <Link href="/login" >
+                        <LinkRouter to="/login" >
                             <button className='cta-btn-5 font-title'>
                                 <p>Sign In!</p>
                             </button>
-                        </Link>
+                        </LinkRouter>
                     </Box>
                 </Box>
             </Box>

@@ -1,11 +1,18 @@
-import * as React from 'react';
+import React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Link as LinkRouter } from "react-router-dom";
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
@@ -17,6 +24,26 @@ export default function SignInSide() {
             email: data.get('email'),
             password: data.get('password'),
         });
+    };
+
+    const [values, setValues] = useState({
+        password: '',
+        showPassword: false,
+    });
+
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+
+    const handleClickShowPassword = () => {
+        setValues({
+            ...values,
+            showPassword: !values.showPassword,
+        });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
     };
 
     return (
@@ -40,29 +67,39 @@ export default function SignInSide() {
                     <Typography component="h2" variant="h4" sx={{ fontFamily: 'Charm', mb: 2 }} >
                         Sign in
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            color='primary'
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            color='primary'
-                        />
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} >
+                        <FormControl fullWidth required>
+                            <InputLabel htmlFor="email">Email</InputLabel>
+                            <OutlinedInput
+                                id="email"
+                                label="Email"
+                                type='email'
+                                required
+                            />
+                        </FormControl>
+                        <FormControl sx={{ width: '100%', my: 2 }} variant="outlined" required>
+                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                            <OutlinedInput
+                                required
+                                id="outlined-adornment-password"
+                                type={values.showPassword ? 'text' : 'password'}
+                                value={values.password}
+                                onChange={handleChange('password')}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Password"
+                            />
+                        </FormControl>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
@@ -74,6 +111,7 @@ export default function SignInSide() {
                             color='primary'
                             sx={{ mt: 3, mb: 2 }}
                             className='font-normal'
+                            onSubmit={handleSubmit}
                         >
                             Sign In
                         </Button>
@@ -87,11 +125,11 @@ export default function SignInSide() {
                         <Typography component="p" variant="subtitle2" >
                             Don't have an account?
                         </Typography>
-                        <Link href="/signup" >
+                        <LinkRouter to="/signup" >
                             <button className='cta-btn-5 font-title'>
                                 <p>Sign Up!</p>
                             </button>
-                        </Link>
+                        </LinkRouter>
                     </Box>
                 </Box>
             </Box>
