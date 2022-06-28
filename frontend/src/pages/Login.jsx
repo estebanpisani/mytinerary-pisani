@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -13,18 +13,30 @@ import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Link as LinkRouter } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import userActions from '../redux/actions/userActions';
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function SignInSide() {
+
+    const dispatch = useDispatch();
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+        const userCredentials = {
+            email: event.target[0].value,
+            password: event.target[2].value,
+            method: 'register-form'
+        }
+        dispatch(userActions.login(userCredentials));
     };
+
+
+    let message = useSelector(store => store.userReducer.message);
+    let userData = useSelector(store => store.userReducer.userData);
+
 
     const [values, setValues] = useState({
         password: '',
@@ -117,7 +129,7 @@ export default function SignInSide() {
                         </Button>
                         <Typography > Or </Typography>
 
-                        <button class="login-with-google-btn" >
+                        <button className="login-with-google-btn" >
                             Sign in with Google
                         </button>
                     </Box>

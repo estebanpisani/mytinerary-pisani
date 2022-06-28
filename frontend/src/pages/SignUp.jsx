@@ -25,21 +25,29 @@ export default function SignInSide() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const userData = {
-            firstName: event.target[0].value,
-            lastName: event.target[2].value,
-            country: event.target[4].value,
-            userPhoto: event.target[6].value,
-            email: event.target[8].value,
-            password: event.target[10].value,
-            password2: event.target[12].value,
-            method: 'register-form'
+        let password1 = event.target[10].value;
+        let password2 = event.target[12].value;
+
+        if (password1 === password2) {
+            const userData = {
+                firstName: event.target[0].value,
+                lastName: event.target[2].value,
+                country: event.target[4].value,
+                userPhoto: event.target[6].value,
+                email: event.target[8].value,
+                password: password1,
+                method: 'register-form',
+                verified: true
+            }
+            dispatch(userActions.signUp(userData));
+            console.log(message);
+        }else{
+            console.log('Las contraseñas no coinciden.');
         }
-        dispatch(userActions.signUp(userData));
+
     };
 
     let message = useSelector(store => store.userReducer.message);
-    console.log(message);
 
     return (
 
