@@ -9,10 +9,13 @@ import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Link as LinkRouter } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import userActions from '../redux/actions/userActions';
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function SignInSide() {
+    const dispatch = useDispatch();
     const [country, setCountry] = useState('');
     let countries = ["Argentina", "Colombia", "Chile", "Uruguay", "Australia", "Japan"]
 
@@ -22,7 +25,21 @@ export default function SignInSide() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const userData = {
+            firstName: event.target[0].value,
+            lastName: event.target[2].value,
+            country: event.target[4].value,
+            userPhoto: event.target[6].value,
+            email: event.target[8].value,
+            password: event.target[10].value,
+            password2: event.target[12].value,
+            method: 'register-form'
+        }
+        dispatch(userActions.signUp(userData));
     };
+
+    let message = useSelector(store => store.userReducer.message);
+    console.log(message);
 
     return (
 
@@ -74,7 +91,7 @@ export default function SignInSide() {
                                 labelId="country-select-helper-label"
                                 id="country-select"
                                 value={country}
-                                label= "🌍 Country"
+                                label="🌍 Country"
                                 onChange={handleChange}
 
                             >
@@ -115,6 +132,16 @@ export default function SignInSide() {
                             autoComplete="current-password"
                             color='primary'
                         />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password2"
+                            label="🔑 Confirm Password"
+                            type="password"
+                            id="password2"
+                            color='primary'
+                        />
 
                         <Button
                             type="submit"
@@ -129,7 +156,7 @@ export default function SignInSide() {
                         </Button>
                         <Typography > Or </Typography>
 
-                        <button class="login-with-google-btn" >
+                        <button className="login-with-google-btn" >
                             Sign up with Google
                         </button>
                     </Box>

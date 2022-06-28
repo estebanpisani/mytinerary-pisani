@@ -4,7 +4,10 @@ const citiesControllers = require('../controllers/citiesControllers');
 const {getCities, getCityById, addCity, modifyCity, removeCity} = citiesControllers;
 const itinerariesControllers = require('../controllers/itinerariesControllers');
 const {getItineraries, getItineraryById, getItinerariesByCity,addItinerary, modifyItinerary, removeItinerary} = itinerariesControllers;
-// Cities Routues
+const userControllers = require('../controllers/userControllers');
+const { signUp, login, getUsers } = userControllers;
+
+// Cities Routes
 Router.route('/cities')
 .get(getCities)
 .post(addCity);
@@ -27,6 +30,14 @@ Router.route('/itineraries/:id')
 .put(modifyItinerary)
 .delete(removeItinerary);
 
+// User Routes
+Router.route('/auth/signup')
+.post(signUp);
 
+Router.route('/auth/login')
+.post(login);
+
+Router.route('/auth/users')
+.get(getUsers);
 
 module.exports = Router;

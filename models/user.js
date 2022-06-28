@@ -6,9 +6,8 @@ const userSchema = new mongoose.Schema(
         lastName: { type:String, require:true },
         email:{type:String, require:true},
         password: [{type:String, require:true}],
-        from: {type:Array, require: true},
+        method: {type:Array, require: true},
         userPhoto: { type:String, require:false},
-        birthdate: { type:String, require:true},
         country: {type:String, require:true}
     }
 )

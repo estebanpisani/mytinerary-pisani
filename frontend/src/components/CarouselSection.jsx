@@ -17,6 +17,7 @@ const CarouselSection = () => {
 
     useEffect(() => {
         dispatch(cityActions.getCities());
+        // eslint-disable-next-line
     }, []);
 
         let cities = useSelector(store => store.cityReducer.cities.slice(0, 12));

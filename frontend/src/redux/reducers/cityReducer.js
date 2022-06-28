@@ -5,8 +5,7 @@ const initialState = {
 };
 
 const cityReducer = (state=initialState, action) => {
-    console.log('State:');
-    console.log(state);
+    
     switch (action.type) {
         case 'GET_CITIES':
             return {
