@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,16 +15,18 @@ const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function SignInSide() {
     const dispatch = useDispatch();
-    const [country, setCountry] = useState('');
+    // const [country, setCountry] = useState('');
     let countries = ["Argentina", "Colombia", "Chile", "Uruguay", "Australia", "Japan"]
 
-    const handleChange = (event) => {
-        setCountry(event.target.value);
-    };
+    // const handleChange = (event) => {
+    //     setCountry(event.target.value);
+    // };
 
     async function handleSubmit(event) {
         event.preventDefault();
-
+        let password = event.target[10].value;
+        let password2 = event.target[12].value;
+        if (password===password2){
         const userData = {
             firstName: event.target[0].value,
             lastName: event.target[2].value,
@@ -33,15 +34,18 @@ export default function SignInSide() {
             userPhoto: event.target[6].value,
             email: event.target[8].value,
             password: event.target[10].value,
-            passwordRepeat: event.target[12].value,
             method: 'register-form',
             verified: true
         };
         let response = await dispatch(userActions.signUp(userData));
         console.log(response);
+        } else{
+            console.log('Passwords doesn\'t match.');
+        };
     };
 
     let message = useSelector(store => store.userReducer.message);
+    message &&  console.log(message);
 
     return (
 
@@ -92,10 +96,8 @@ export default function SignInSide() {
                             <Select
                                 labelId="country-select-helper-label"
                                 id="country-select"
-                                value={country}
+                                value=''
                                 label="🌍 Country"
-                                onChange={handleChange}
-
                             >
                                 {countries.map((country, i) =>
                                     <MenuItem value={country} key={i}>{country}</MenuItem>

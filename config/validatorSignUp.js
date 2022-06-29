@@ -8,7 +8,7 @@ const validatorSignUp = (req, res, next) => {
             .required()
             .messages({
                 'string.email': 'The email format is incorrect.',
-                'string.required': 'Please, enter your account email to login.',
+                'string.required': 'Please, enter your account email to login.'
             }),
         password: joi.string()
             .min(4)
@@ -19,7 +19,6 @@ const validatorSignUp = (req, res, next) => {
                 'string.max': 'The password must have 40 characters max.',
                 'string.required': 'Password field is required.'
             }),
-        passwordRepeat: joi.ref('password'),
         firstName: joi.string()
             .required(),
         lastName: joi.string()
@@ -29,7 +28,8 @@ const validatorSignUp = (req, res, next) => {
         method: joi.string()
             .required(),
         userPhoto: joi.string()
-            .required()
+            .allow(''),
+        verified: joi.boolean()
     });
 
     const validation = schema.validate(req.body, { abortEarly: false })  //abortEarly - when true, stops validation on the first error, otherwise returns all the errors found. Defaults to true.
@@ -38,8 +38,7 @@ const validatorSignUp = (req, res, next) => {
         return res.json({
             success: false,
             from: 'Sign Up Validator',
-            message: validation.error.details,
-            test: validation
+            message: validation.error.details
         })
     }
 

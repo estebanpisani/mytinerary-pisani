@@ -22,7 +22,7 @@ export default function SignInSide() {
 
     const dispatch = useDispatch();
 
-    const handleSubmit = (event) => {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         const userCredentials = {
@@ -30,7 +30,9 @@ export default function SignInSide() {
             password: event.target[2].value,
             method: 'register-form'
         }
-        dispatch(userActions.login(userCredentials));
+
+        let response = await dispatch(userActions.login(userCredentials));
+        console.log(response);
     };
 
 

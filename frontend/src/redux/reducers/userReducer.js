@@ -1,7 +1,7 @@
 const initialState = {
     users: [],
     userData: {},
-    message: '',
+    message: [],
 };
 
 const userReducer = (state = initialState, action) => {
