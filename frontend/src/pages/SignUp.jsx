@@ -38,7 +38,6 @@ export default function SignInSide() {
             verified: true
         };
         let response = await dispatch(userActions.signUp(userData));
-        console.log(response);
         } else{
             console.log('Passwords doesn\'t match.');
         };

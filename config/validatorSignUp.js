@@ -8,7 +8,7 @@ const validatorSignUp = (req, res, next) => {
             .required()
             .messages({
                 'string.email': 'The email format is incorrect.',
-                'string.required': 'Please, enter your account email to login.'
+                'string.empty': 'Please, enter a valid email.'
             }),
         password: joi.string()
             .min(4)
@@ -17,16 +17,28 @@ const validatorSignUp = (req, res, next) => {
             .messages({
                 'string.min': 'The password must have 4 characters at least',
                 'string.max': 'The password must have 40 characters max.',
-                'string.required': 'Password field is required.'
+                'string.empty': 'Password field is required.'
             }),
         firstName: joi.string()
-            .required(),
+            .required()
+            .messages({
+                'string.empty': 'Please, enter your first name.'
+            }),
         lastName: joi.string()
-            .required(),
+            .required()
+            .messages({
+                'string.empty': 'Please, enter your last name.'
+            }),
         country: joi.string()
-            .required(),
+            .required()
+            .messages({
+                'string.empty': 'Please, enter your country.'
+            }),
         method: joi.string()
-            .required(),
+            .required()
+            .messages({
+                'string.empty': 'The Registration method can\'t be empty.'
+            }),
         userPhoto: joi.string()
             .allow(''),
         verified: joi.boolean()
