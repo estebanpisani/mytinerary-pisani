@@ -31,7 +31,6 @@ const Cities = () => {
 
     //Obtengo las ciudades del store de Redux
     let cities = useSelector(store => store.cityReducer.cities);
-    console.log(cities)
 
     useEffect(() => {
         //Seteo el estado cities con getCities
@@ -41,7 +40,6 @@ const Cities = () => {
 
     //Obtengo las ciudades filtradas del store de Redux
     let results = useSelector(store => store.cityReducer.filteredCities);
-    console.log(results);
 
     return (
         <main>
