@@ -65,7 +65,7 @@ export default function SignInSide() {
         });
         window.google.accounts.id.renderButton(
             document.getElementById("buttonDiv"),
-            { theme: "outline", size: "medium" }  // customization attributes
+            { theme: "outline", size: "medium", locale: "en-IN" }
         );
     });
 

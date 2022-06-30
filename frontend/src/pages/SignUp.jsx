@@ -30,6 +30,7 @@ export default function SignUp() {
 
     let countries = ["Argentina", "Colombia", "Chile", "Uruguay", "Australia", "Japan"]
     const [country, setCountry] = useState('');
+
     const handleChange = (e) => {
         setCountry(e.target.value);
     }
@@ -68,7 +69,7 @@ export default function SignUp() {
         const userData = {
             firstName: event.target[0].value,
             lastName: event.target[2].value,
-            country: event.target[4].value,
+            country: country,
             userPhoto: event.target[6].value,
             email: event.target[8].value,
             password: event.target[10].value,
@@ -94,7 +95,7 @@ export default function SignUp() {
             email: responseData.email,
             password: responseData.jti,
             passwordRepeat: responseData.jti,
-            country: 'Argentina',
+            country: country,
             method: 'google',
             verified: responseData.email_verified
         };
@@ -110,7 +111,7 @@ export default function SignUp() {
         });
         window.google.accounts.id.renderButton(
             document.getElementById("buttonDiv"),
-            { theme: "outline", size: "medium" }  // customization attributes
+            { theme: "outline", size: "medium", text: 'signup_with', locale: "en-IN" }  // customization attributes
         );
     });
 
@@ -254,7 +255,7 @@ export default function SignUp() {
             {errors.length > 0 &&
                 <Snackbar
                     open={open}
-                    autoHideDuration={3000}
+                    autoHideDuration={5000}
                     onClose={handleClose}
                     message="Error"
                     action={action}

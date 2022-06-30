@@ -36,7 +36,7 @@ const validatorSignUp = (req, res, next) => {
         country: joi.string()
             .required()
             .messages({
-                'string.empty': 'Please, enter your country.'
+                'string.empty': 'Please, enter your country in the registration form.'
             }),
         method: joi.string()
             .required()
