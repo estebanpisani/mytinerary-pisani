@@ -37,9 +37,11 @@ export default function SignInSide() {
 
 
     let message = useSelector(store => store.userReducer.message);
-    let userData = useSelector(store => store.userReducer.userData);
+    console.log(message);
 
 
+
+    // Show/Hide Password
     const [values, setValues] = useState({
         password: '',
         showPassword: false,
@@ -61,7 +63,6 @@ export default function SignInSide() {
     };
 
     return (
-
         <Box container component="main" sx={{
             display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundImage: `url(${bgImg})`,
             backgroundRepeat: 'no-repeat',

@@ -26,10 +26,7 @@ const City = () => {
     }, []);
 
     let city = useSelector(store => store.cityReducer.city);
-    console.log(city);
-
     let itineraries = useSelector(store => store.itineraryReducer.itineraries);
-    console.log(itineraries);
 
     return (
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>

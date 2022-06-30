@@ -21,7 +21,6 @@ const CarouselSection = () => {
     }, []);
 
         let cities = useSelector(store => store.cityReducer.cities.slice(0, 12));
-        console.log(cities);
 
     return (
         <Box className='carrousel-section' sx={{ backgroundImage: `url(${carouselBg})`, height: { xs: '180vh', sm: '100vh' } }}>

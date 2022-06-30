@@ -19,6 +19,10 @@ const validatorSignUp = (req, res, next) => {
                 'string.max': 'The password must have 40 characters max.',
                 'string.empty': 'Password field is required.'
             }),
+        passwordRepeat: joi.string().required().valid(joi.ref('password')).messages({
+            'string.empty': 'Please, repeat the password.',
+            'any.only': 'Passwords doesn\'t match.'
+        }),
         firstName: joi.string()
             .required()
             .messages({
@@ -47,10 +51,12 @@ const validatorSignUp = (req, res, next) => {
     const validation = schema.validate(req.body, { abortEarly: false })  //abortEarly - when true, stops validation on the first error, otherwise returns all the errors found. Defaults to true.
 
     if (validation.error) {
+        let messages = validation.error.details.map(error=> error.message);
         return res.json({
             success: false,
             from: 'Sign Up Validator',
-            message: validation.error.details
+            message: messages,
+            details: validation.error.details
         })
     }
 

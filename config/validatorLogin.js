@@ -8,17 +8,17 @@ const validatorLogin = (req, res, next) => {
             .required()
             .messages({
                 'string.email': 'The email format is incorrect.',
-                'string.required': 'Please, enter your account email to login.',
+                'string.empty': 'Please, enter your account email to login.',
             }),
         password: joi.string()
             .required()
             .messages({
-                'string.required': 'Password field is required.'
+                'string.empty': 'Password field is required.'
             }),
         method: joi.string()
             .required()
             .messages({
-                'string.required': 'The registration method is required.'
+                'string.empty': 'The registration method is required.'
             })            
     });
 
@@ -28,8 +28,7 @@ const validatorLogin = (req, res, next) => {
         return res.json({
             success: false,
             from: 'Login Validator',
-            message: validation.error.details,
-            test: validation
+            message: validation.error.details
         })
     }
 
