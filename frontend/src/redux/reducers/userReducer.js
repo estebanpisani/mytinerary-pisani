@@ -1,7 +1,8 @@
 const initialState = {
     users: [],
     userData: {},
-    message: [],
+    errors: [],
+    message: ''
 };
 
 const userReducer = (state = initialState, action) => {
@@ -9,21 +10,32 @@ const userReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case 'SIGN_UP':
-            return {
-                ...state,
-                message: action.payload.message,
-            };
+            if (action.payload.success) {
+                return {
+                    ...state,
+                    message: action.payload.message,
+                    errors: []
+                };
+            } else {
+                return {
+                    ...state,
+                    errors: action.payload.message,
+                    message: ''
+                };
+            }
         case 'LOGIN':
             if (action.payload.success) {
                 return {
                     ...state,
                     userData: action.payload.response,
                     message: action.payload.message,
+                    errors: []
                 };
             } else {
                 return {
                     ...state,
-                    message: action.payload.message,
+                    errors: action.payload.message,
+                    message: ''
                 };
             }
         default:

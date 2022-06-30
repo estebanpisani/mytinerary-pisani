@@ -25,10 +25,12 @@ const validatorLogin = (req, res, next) => {
     const validation = schema.validate(req.body, { abortEarly: false })  //abortEarly - when true, stops validation on the first error, otherwise returns all the errors found. Defaults to true.
 
     if (validation.error) {
+        let messages = validation.error.details.map(error=> error.message);
         return res.json({
             success: false,
             from: 'Login Validator',
-            message: validation.error.details
+            message: messages,
+            details: validation.error.details
         })
     }
 

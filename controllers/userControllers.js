@@ -22,7 +22,7 @@ const userControllers = {
                     res.json({
                         success: true,
                         from: 'signup',
-                        message: [method + ' registration method successful.']
+                        message: method + ' registration method successful.'
                     })
                 }
             } else {
@@ -42,14 +42,14 @@ const userControllers = {
                     res.json({
                         success: true,
                         from: 'signup',
-                        message: ['Registration with ' + method + ' successful']
+                        message: 'Registration with ' + method + ' successful'
                     })
                 }
                 else {
                     res.json({
                         success: true,
                         from: 'signup',
-                        message: ['We have sent you a verification email. Please check your inbox to activate your account.']
+                        message: 'We have sent you a verification email. Please check your inbox to activate your account.'
                     })
                 }
             }
@@ -92,7 +92,7 @@ const userControllers = {
                             res.json({
                                 success: false,
                                 from: 'login',
-                                message: ['Incorrect email or password.']
+                                message: ['Incorrect email or password. Please enter correct data or sign up.']
                             })
                         }
                     } else {

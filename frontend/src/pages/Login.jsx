@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,6 +12,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Alert from '@mui/material/Alert';
+
 import { Link as LinkRouter } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions';
@@ -31,15 +36,38 @@ export default function SignInSide() {
             method: 'register-form'
         }
 
-        let response = await dispatch(userActions.login(userCredentials));
-        console.log(response);
+        dispatch(userActions.login(userCredentials));
     };
 
 
-    let message = useSelector(store => store.userReducer.message);
-    console.log(message);
+    let errors = useSelector(store => store.userReducer.errors);
 
+    //SnackBar
 
+    const [open, setOpen] = useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+
+    const action = (
+        <>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </>
+    );
 
     // Show/Hide Password
     const [values, setValues] = useState({
@@ -127,6 +155,7 @@ export default function SignInSide() {
                             sx={{ mt: 3, mb: 2 }}
                             className='font-normal'
                             onSubmit={handleSubmit}
+                            onClick={handleClick}
                         >
                             Sign In
                         </Button>
@@ -148,6 +177,20 @@ export default function SignInSide() {
                     </Box>
                 </Box>
             </Box>
+            {  errors.length>0 && 
+            <Snackbar
+                open={open}
+                autoHideDuration={3000}
+                onClose={handleClose}
+                message="Error"
+                action={action}
+            >
+                <Alert onClose={handleClose} severity="error">{errors.map((message, i) => (
+                    <p key={i}>{message}</p>
+                )
+                )}</Alert>
+            </Snackbar>
+            }
         </Box>
     );
 }

@@ -8,8 +8,7 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(url + '/signup', userData);
-                // console.log('Respuesta SignUp');
-                // console.log(res);
+
                 dispatch({
                     type: 'SIGN_UP',
                     payload: res.data
@@ -23,8 +22,6 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(url + '/login', userCredentials);
-                console.log('Respuesta Login:');             
-                console.log(res);
                 dispatch({
                     type: 'LOGIN',
                     payload: res.data
