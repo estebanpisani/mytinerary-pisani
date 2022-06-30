@@ -1,7 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link as LinkRouter } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+
+import jwt_decode from 'jwt-decode';
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -17,7 +19,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
 
 import userActions from '../redux/actions/userActions';
-
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
@@ -60,6 +61,7 @@ export default function SignUp() {
         </>
     );
 
+    // Sign Up Form
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -76,10 +78,46 @@ export default function SignUp() {
         };
 
         dispatch(userActions.signUp(userData));
+        
     };
+
+    // Google Sign Up
+    function handleCredentialResponse(response) {
+
+        let responseData = jwt_decode(response.credential)
+        console.log(responseData);
+
+        const userData = {
+            firstName: responseData.given_name,
+            lastName: responseData.family_name,
+            userPhoto: responseData.picture,
+            email: responseData.email,
+            password: responseData.jti,
+            passwordRepeat: responseData.jti,
+            country: 'Argentina',
+            method: 'google',
+            verified: responseData.email_verified
+        };
+
+        dispatch(userActions.signUp(userData))
+        setOpen(true);
+    }
+
+    useEffect(() => {
+        window.google.accounts.id.initialize({
+            client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        window.google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "medium" }  // customization attributes
+        );
+    });
 
     let errors = useSelector(store => store.userReducer.errors);
     let message = useSelector(store => store.userReducer.message);
+
+    errors && console.log(errors)
 
     return (
 
@@ -102,7 +140,7 @@ export default function SignUp() {
                     <Typography component="h2" variant="h4" sx={{ fontFamily: 'Charm', mb: 2 }} >
                         Sign Up
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
                         <TextField
                             margin="normal"
                             required
@@ -194,11 +232,12 @@ export default function SignUp() {
                         >
                             Sign Up
                         </Button>
-                        <Typography > Or </Typography>
 
-                        <button className="login-with-google-btn" >
-                            Sign up with Google
-                        </button>
+                        <Typography > Or </Typography>
+                        <Box sx={{ margin: '1rem', display: 'flex', justifyContent: 'center' }}>
+                            <div id="buttonDiv"></div>
+                        </Box>
+
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                         <Typography component="p" variant="subtitle2" >

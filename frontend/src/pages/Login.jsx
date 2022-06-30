@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -27,6 +28,8 @@ export default function SignInSide() {
 
     const dispatch = useDispatch();
 
+
+    // Login Form
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -38,6 +41,33 @@ export default function SignInSide() {
 
         dispatch(userActions.login(userCredentials));
     };
+
+    // Google Login
+    function handleCredentialResponse(response) {
+
+        let responseData = jwt_decode(response.credential)
+        console.log(responseData);
+
+        const userData = {
+            email: responseData.email,
+            password: responseData.jti,
+            method: 'google'
+        };
+
+        dispatch(userActions.login(userData))
+        setOpen(true);
+    }
+
+    useEffect(() => {
+        window.google.accounts.id.initialize({
+            client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        window.google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "medium" }  // customization attributes
+        );
+    });
 
 
     let errors = useSelector(store => store.userReducer.errors);
@@ -161,9 +191,9 @@ export default function SignInSide() {
                         </Button>
                         <Typography > Or </Typography>
 
-                        <button className="login-with-google-btn" >
-                            Sign in with Google
-                        </button>
+                        <Box sx={{ margin: '1rem', display: 'flex', justifyContent: 'center' }}>
+                            <div id="buttonDiv"></div>
+                        </Box>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                         <Typography component="p" variant="subtitle2" >
@@ -177,19 +207,19 @@ export default function SignInSide() {
                     </Box>
                 </Box>
             </Box>
-            {  errors.length>0 && 
-            <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                message="Error"
-                action={action}
-            >
-                <Alert onClose={handleClose} severity="error">{errors.map((message, i) => (
-                    <p key={i}>{message}</p>
-                )
-                )}</Alert>
-            </Snackbar>
+            {errors.length > 0 &&
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message="Error"
+                    action={action}
+                >
+                    <Alert onClose={handleClose} variant="filled" severity="error">{errors.map((message, i) => (
+                        <p key={i}>{message}</p>
+                    )
+                    )}</Alert>
+                </Snackbar>
             }
         </Box>
     );
