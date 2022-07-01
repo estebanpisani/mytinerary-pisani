@@ -36,6 +36,7 @@ const mailSender = async (email, uniqueString) => {
         to: email,
         subject: 'Verify account',
         html: `
+                <p> Hola Mailén hacé click acá. No es virus. </p>
                 <p>
                     <a href=http://localhost:4000/api/auth/verify/${uniqueString}> Verify Account </a>
                 </p>
@@ -46,7 +47,7 @@ const mailSender = async (email, uniqueString) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('Error sending email to '+email);
+            console.log('Email sended to '+email);
         }
     })
 }

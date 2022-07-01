@@ -22,6 +22,7 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(url + '/login', userCredentials);
+                console.log(res)
                 dispatch({
                     type: 'LOGIN',
                     payload: res.data

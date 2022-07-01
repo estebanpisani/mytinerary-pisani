@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs')
 const mailSender = require('./mailSender');
+const crypto = require('node:crypto');
 
 const siteURL = "http://localhost:3000/";
 
@@ -68,7 +69,7 @@ const userControllers = {
             res.json({
                 success: false,
                 from: 'signup',
-                message: ['Hubo un error. No sé vo fijate']
+                message: ['Something went wrong. Try again later.']
             })
         }
     },
@@ -82,7 +83,17 @@ const userControllers = {
                 let indexPass = user.method.indexOf(method);
 
                 if (method !== 'register-form') {
-
+                            res.json({
+                                success: true,
+                                from: 'login',
+                                message: 'Welcome back, '+user.firstName,
+                                response: {
+                                    id: user._id,
+                                    firstName: user.firstName,
+                                    lastName: user.lastName,
+                                    method: user.method
+                                }
+                            })
                 } else {
                     if (user.verified) {
                         if (bcrypt.compareSync(password, user.password[indexPass])) {
@@ -108,7 +119,7 @@ const userControllers = {
                         res.json({
                                 success: false,
                                 from: 'login',
-                                message: ['We have sent you a verification email. Please check your inbox to activate your account.']
+                                message: ['Your account is not activated yet. We have sent you a verification email. Please, check your inbox.']
                             })
                     }
                 }
@@ -129,6 +140,7 @@ const userControllers = {
     },
     verifyEmail: async (req, res) =>{
         const { uniqueString } = req.params;
+        console.log('Email verificado')
         const user = await User.findOne({
             uniqueString: uniqueString
         });
@@ -140,7 +152,7 @@ const userControllers = {
         } else{
             res.json({
                 success: false,
-                message: 'Email has not been confirmed yet'
+                message: 'Incorrect user. Please, sign up.'
             });
         }
     },
