@@ -1,11 +1,14 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs')
 
+const siteURL = "http://localhost:3000/";
+
 const userControllers = {
     signUp: async (req, res) => {
         let { firstName, lastName, userPhoto, email, password, country, method, verified } = req.body;
-        let userData = req.body;
-        console.log(userData);
+
+        const uniqueString = crypto.randomBytes(20).toString('hex');
+
         try {
             const userDB = await User.findOne({ email });
             if (userDB) {
@@ -19,6 +22,8 @@ const userControllers = {
                     const encryptedPass = bcrypt.hashSync(password, 10);
                     userDB.method.push(method);
                     userDB.password.push(encryptedPass);
+                    userDB.verified = verified;
+                    await userDB.save();
                     res.json({
                         success: true,
                         from: 'signup',
@@ -35,7 +40,8 @@ const userControllers = {
                     password: [encryptedPass],
                     country,
                     method: [method],
-                    verified
+                    verified,
+                    uniqueString: uniqueString
                 });
                 await newUser.save();
                 if (method !== 'register-form') {                 
@@ -46,6 +52,8 @@ const userControllers = {
                     })
                 }
                 else {
+                    await sendEmail(email, uniqueString);
+
                     res.json({
                         success: true,
                         from: 'signup',
@@ -118,7 +126,23 @@ const userControllers = {
             })
         }
     },
+    verifyEmail: async (req, res) =>{
+        const { uniqueString } = req.params;
+        const user = await User.findOne({
+            uniqueString: uniqueString
+        });
 
+        if (user){
+            user.verified = true;
+            await user.save();
+            res.redirect(siteURL)
+        } else{
+            res.json({
+                success: false,
+                message: 'Email has not been confirmed yet'
+            });
+        }
+    },
     getUsers: async (req, res) => {
         let users;
         let error = null;

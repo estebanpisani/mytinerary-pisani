@@ -75,7 +75,7 @@ export default function SignUp() {
             password: event.target[10].value,
             passwordRepeat: event.target[12].value,
             method: 'register-form',
-            verified: true
+            verified: false
         };
 
         dispatch(userActions.signUp(userData));
