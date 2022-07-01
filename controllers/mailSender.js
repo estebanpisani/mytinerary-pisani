@@ -2,7 +2,7 @@ const nodeMailer = require('nodemailer');
 const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 
-const sendVerification = async (email, uniqueString) => {
+const mailSender = async (email, uniqueString) => {
 
     const myOAuth2Client = new OAuth2(
         process.env.CLIENT_ID,
@@ -21,7 +21,6 @@ const sendVerification = async (email, uniqueString) => {
         auth: {
             user: process.env.USER,
             type: "OAuth2",
-            user: 'user',
             clientId: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
             refreshToken: process.env.REFRESH_TOKEN,
@@ -52,7 +51,7 @@ const sendVerification = async (email, uniqueString) => {
     })
 }
 
-module.exports = sendVerification;
+module.exports = mailSender;
 
 
 

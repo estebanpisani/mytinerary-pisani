@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs')
+const mailSender = require('./mailSender');
 
 const siteURL = "http://localhost:3000/";
 
@@ -52,7 +53,7 @@ const userControllers = {
                     })
                 }
                 else {
-                    await sendEmail(email, uniqueString);
+                    await mailSender(email, uniqueString);
 
                     res.json({
                         success: true,
