@@ -27,28 +27,25 @@ export default function SignUp() {
     const dispatch = useDispatch();
 
     //    Country Select
-
     let countries = ["Argentina", "Colombia", "Chile", "Uruguay", "Australia", "Japan"]
-    const [country, setCountry] = useState('');
+    const [country, setCountry] = useState('undefined');
 
     const handleChange = (e) => {
         setCountry(e.target.value);
+        setForm(true);
     }
 
     //SnackBar
-
-    const [open, setOpen] = useState(false);
-
+    const [alert, setAlert] = useState(false);
     const handleClick = () => {
-        setOpen(true);
+        setAlert(true);
     };
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setOpen(false);
+        setAlert(false);
     };
-
     const action = (
         <>
             <IconButton
@@ -62,13 +59,15 @@ export default function SignUp() {
         </>
     );
 
+    const [form, setForm] = useState(false);
+
     // Sign Up Form
     async function handleSubmit(event) {
         event.preventDefault();
 
         const userData = {
-            firstName: event.target[0].value,
-            lastName: event.target[2].value,
+            firstName: event.target[2].value,
+            lastName: event.target[4].value,
             country: country,
             userPhoto: event.target[6].value,
             email: event.target[8].value,
@@ -79,7 +78,7 @@ export default function SignUp() {
         };
 
         dispatch(userActions.signUp(userData));
-        
+
     };
 
     // Google Sign Up
@@ -101,9 +100,8 @@ export default function SignUp() {
         };
 
         dispatch(userActions.signUp(userData))
-        setOpen(true);
+        setAlert(true);
     }
-
     useEffect(() => {
         window.google.accounts.id.initialize({
             client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
@@ -117,8 +115,6 @@ export default function SignUp() {
 
     let errors = useSelector(store => store.userReducer.errors);
     let message = useSelector(store => store.userReducer.message);
-
-    errors && console.log(errors)
 
     return (
 
@@ -142,28 +138,9 @@ export default function SignUp() {
                         Sign Up
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="firstname"
-                            label="First Name"
-                            name="firstname"
-                            autoComplete="name"
-                            color='primary'
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="lastname"
-                            label="Last Name"
-                            name="lastname"
-                            autoComplete="name"
-                            color='primary'
-                            autoFocus
-                        />
+                        {!form && (
+                            <Typography sx={{ mb: '1rem' }}>Before start registration, enter your country, please</Typography>
+                        )}
                         <FormControl sx={{ width: '100%' }}>
                             <InputLabel id="country-select-helper-label" required>Country</InputLabel>
                             <Select
@@ -178,67 +155,91 @@ export default function SignUp() {
                                 )}
                             </Select>
                         </FormControl>
-                        <TextField
-                            margin="normal"
-                            fullWidth
-                            id="photoUrl"
-                            label="📷 Photo URL"
-                            name="photoUrl"
-                            autoComplete="name"
-                            color='primary'
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="📧 Email Address"
-                            name="email"
-                            autoComplete="email"
-                            color='primary'
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="🔑 Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            color='primary'
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password2"
-                            label="🔑 Confirm Password"
-                            type="password"
-                            id="password2"
-                            color='primary'
-                        />
+                        {form && (<>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="firstname"
+                                label="First Name"
+                                name="firstname"
+                                autoComplete="name"
+                                color='primary'
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="lastname"
+                                label="Last Name"
+                                name="lastname"
+                                autoComplete="name"
+                                color='primary'
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                fullWidth
+                                id="photoUrl"
+                                label="📷 Photo URL"
+                                name="photoUrl"
+                                autoComplete="name"
+                                color='primary'
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="📧 Email Address"
+                                name="email"
+                                autoComplete="email"
+                                color='primary'
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="🔑 Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                color='primary'
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password2"
+                                label="🔑 Confirm Password"
+                                type="password"
+                                id="password2"
+                                color='primary'
+                            />
 
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color='primary'
-                            sx={{ mt: 3, mb: 2 }}
-                            className='font-normal'
-                            onSubmit={handleSubmit}
-                            onClick={handleClick}
-                        >
-                            Sign Up
-                        </Button>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color='primary'
+                                sx={{ mt: 3, mb: 2 }}
+                                className='font-normal'
+                                onSubmit={handleSubmit}
+                                onClick={handleClick}
+                            >
+                                Sign Up
+                            </Button>
 
-                        <Typography > Or </Typography>
-                        <Box sx={{ margin: '1rem', display: 'flex', justifyContent: 'center' }}>
-                            <div id="buttonDiv"></div>
-                        </Box>
-
+                            <Typography > Or </Typography>
+                            <Box sx={{ margin: '1rem', display: 'flex', justifyContent: 'center' }}>
+                                <div id="buttonDiv"></div>
+                            </Box>
+                        </>
+                        )}
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                         <Typography component="p" variant="subtitle2" >
@@ -251,10 +252,11 @@ export default function SignUp() {
                         </LinkRouter>
                     </Box>
                 </Box>
+
             </Box>
             {errors.length > 0 &&
                 <Snackbar
-                    open={open}
+                    open={alert}
                     autoHideDuration={5000}
                     onClose={handleClose}
                     message="Error"
@@ -268,7 +270,7 @@ export default function SignUp() {
             }
             {message &&
                 <Snackbar
-                    open={open}
+                    open={alert}
                     autoHideDuration={3000}
                     onClose={handleClose}
                     message="Welcome"
