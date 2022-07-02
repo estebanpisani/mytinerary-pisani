@@ -93,8 +93,8 @@ export default function SignUp() {
             lastName: responseData.family_name,
             userPhoto: responseData.picture,
             email: responseData.email,
-            password: responseData.jti,
-            passwordRepeat: responseData.jti,
+            password: responseData.sub,
+            passwordRepeat: responseData.sub,
             country: country,
             method: 'google',
             verified: responseData.email_verified

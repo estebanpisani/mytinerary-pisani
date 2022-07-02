@@ -50,7 +50,7 @@ export default function SignInSide() {
 
         const userData = {
             email: responseData.email,
-            password: responseData.jti,
+            password: responseData.sub,
             method: 'google'
         };
 

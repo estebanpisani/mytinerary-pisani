@@ -2,6 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs')
 const mailSender = require('./mailSender');
 const crypto = require('node:crypto');
+const jwt = require('jsonwebtoken');
 
 const siteURL = "http://localhost:3000/";
 
@@ -14,6 +15,7 @@ const userControllers = {
         try {
             const userDB = await User.findOne({ email });
             if (userDB) {
+                console.log('Encontré el usuario.')
                 if (userDB.method.indexOf(method) !== -1) {
                     res.json({
                         success: false,
@@ -24,7 +26,6 @@ const userControllers = {
                     const encryptedPass = bcrypt.hashSync(password, 10);
                     userDB.method.push(method);
                     userDB.password.push(encryptedPass);
-                    userDB.verified = verified;
                     await userDB.save();
                     res.json({
                         success: true,
@@ -46,7 +47,7 @@ const userControllers = {
                     uniqueString: uniqueString
                 });
                 await newUser.save();
-                if (method !== 'register-form') {                 
+                if (method !== 'register-form') {
                     res.json({
                         success: true,
                         from: 'signup',
@@ -75,32 +76,18 @@ const userControllers = {
     },
     login: async (req, res) => {
         let { email, password, method } = req.body;
-        console.log(req.body);
-        let user;
+        let user = null;
         try {
             user = await User.findOne({ email });
             if (user) {
                 let indexPass = user.method.indexOf(method);
-
-                if (method !== 'register-form') {
-                            res.json({
-                                success: true,
-                                from: 'login',
-                                message: 'Welcome back, '+user.firstName,
-                                response: {
-                                    id: user._id,
-                                    firstName: user.firstName,
-                                    lastName: user.lastName,
-                                    method: user.method
-                                }
-                            })
-                } else {
-                    if (user.verified) {
+                if (indexPass > -1) {
+                    if (method !== 'register-form') {
                         if (bcrypt.compareSync(password, user.password[indexPass])) {
                             res.json({
                                 success: true,
                                 from: 'login',
-                                message: 'Welcome back, '+user.firstName,
+                                message: 'Welcome back, ' + user.firstName,
                                 response: {
                                     id: user._id,
                                     firstName: user.firstName,
@@ -108,21 +95,51 @@ const userControllers = {
                                     method: user.method
                                 }
                             })
-                        }else{
+                        } else {
                             res.json({
                                 success: false,
                                 from: 'login',
-                                message: ['Incorrect email or password. Please enter correct data or sign up.']
+                                message: [method + ' password doesn\'t match'],
                             })
                         }
+
                     } else {
-                        res.json({
+                        if (user.verified) {
+                            if (bcrypt.compareSync(password, user.password[indexPass])) {
+                                res.json({
+                                    success: true,
+                                    from: 'login',
+                                    message: 'Welcome back, ' + user.firstName,
+                                    response: {
+                                        id: user._id,
+                                        firstName: user.firstName,
+                                        lastName: user.lastName,
+                                        method: user.method
+                                    }
+                                })
+                            } else {
+                                res.json({
+                                    success: false,
+                                    from: 'login',
+                                    message: ['Incorrect email or password. Please enter correct data or sign up.']
+                                })
+                            }
+                        } else {
+                            res.json({
                                 success: false,
                                 from: 'login',
                                 message: ['Your account is not activated yet. We have sent you a verification email. Please, check your inbox.']
                             })
+                        }
                     }
+                } else {
+                    res.json({
+                        success: false,
+                        from: 'login',
+                        message: ["Incorrect email or password. Please enter correct data or sign up."]
+                    })
                 }
+
             } else {
                 res.json({
                     success: false,
@@ -130,7 +147,7 @@ const userControllers = {
                     message: ["Incorrect email or password. Please enter correct data or sign up."]
                 })
             }
-        } catch (error){
+        } catch (error) {
             res.json({
                 success: false,
                 from: 'login',
@@ -138,18 +155,18 @@ const userControllers = {
             })
         }
     },
-    verifyEmail: async (req, res) =>{
+    verifyEmail: async (req, res) => {
         const { uniqueString } = req.params;
         console.log('Email verificado')
         const user = await User.findOne({
             uniqueString: uniqueString
         });
 
-        if (user){
+        if (user) {
             user.verified = true;
             await user.save();
             res.redirect(siteURL)
-        } else{
+        } else {
             res.json({
                 success: false,
                 message: 'Incorrect user. Please, sign up.'
@@ -172,13 +189,13 @@ const userControllers = {
             }
         )
     },
-    deleteUser: async (req,res) => {
+    deleteUser: async (req, res) => {
         const id = req.params.id;
         let userDB;
         let error = null;
         try {
-            userDB = await User.findOneAndDelete({_id:id});
-        }catch (err){
+            userDB = await User.findOneAndDelete({ _id: id });
+        } catch (err) {
             error = err;
             console.log(error);
         }
