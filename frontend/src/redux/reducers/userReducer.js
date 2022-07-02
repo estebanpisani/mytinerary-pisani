@@ -27,7 +27,7 @@ const userReducer = (state = initialState, action) => {
             if (action.payload.success) {
                 return {
                     ...state,
-                    userData: action.payload.response,
+                    userData: action.payload.response.data,
                     message: action.payload.message,
                     errors: []
                 };
@@ -38,6 +38,14 @@ const userReducer = (state = initialState, action) => {
                     message: ''
                 };
             }
+
+        case 'LOGOUT':
+            return {
+                    ...state,
+                    userData: {},
+                    message: {},
+                    errors: []
+                };
         default:
             return state;
     }

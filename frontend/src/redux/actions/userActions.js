@@ -23,6 +23,9 @@ const userActions = {
             try {
                 const res = await axios.post(url + '/login', userCredentials);
                 console.log(res)
+                if (res.data.success) {
+                    localStorage.setItem('Token', res.data.response.token)
+                }
                 dispatch({
                     type: 'LOGIN',
                     payload: res.data
@@ -31,6 +34,14 @@ const userActions = {
                 console.log(error);
             }
         };
+    },
+    logout: () => {
+        return async (dispatch, getState) => {
+            localStorage.removeItem('token');
+            dispatch({
+                type: 'LOGOUT'
+            })
+        }
     }
 
 }

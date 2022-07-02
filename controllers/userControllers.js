@@ -15,7 +15,6 @@ const userControllers = {
         try {
             const userDB = await User.findOne({ email });
             if (userDB) {
-                console.log('Encontré el usuario.')
                 if (userDB.method.indexOf(method) !== -1) {
                     res.json({
                         success: false,
@@ -84,38 +83,45 @@ const userControllers = {
                 if (indexPass > -1) {
                     if (method !== 'register-form') {
                         if (bcrypt.compareSync(password, user.password[indexPass])) {
+                            data = {
+                                id: user._id,
+                                firstName: user.firstName,
+                                lastName: user.lastName,
+                                userPhoto: user.userPhoto,
+                                country: user.country
+                            }
+                            const token = jwt.sign({ ...data }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 })
+
                             res.json({
                                 success: true,
                                 from: 'login',
                                 message: 'Welcome back, ' + user.firstName,
-                                response: {
-                                    id: user._id,
-                                    firstName: user.firstName,
-                                    lastName: user.lastName,
-                                    method: user.method
-                                }
+                                response: { token, data }
                             })
                         } else {
                             res.json({
                                 success: false,
                                 from: 'login',
-                                message: [method + ' password doesn\'t match'],
+                                message: ['Incorrect email or password. Please enter correct data or sign up.'],
                             })
                         }
 
                     } else {
                         if (user.verified) {
                             if (bcrypt.compareSync(password, user.password[indexPass])) {
+                                data = {
+                                    id: user._id,
+                                    firstName: user.firstName,
+                                    lastName: user.lastName,
+                                    userPhoto: user.userPhoto,
+                                    country: user.country
+                                }
+                                const token = jwt.sign({ ...data }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 })
                                 res.json({
                                     success: true,
                                     from: 'login',
                                     message: 'Welcome back, ' + user.firstName,
-                                    response: {
-                                        id: user._id,
-                                        firstName: user.firstName,
-                                        lastName: user.lastName,
-                                        method: user.method
-                                    }
+                                    response: { token, data }
                                 })
                             } else {
                                 res.json({

@@ -46,8 +46,6 @@ export default function SignInSide() {
     function handleCredentialResponse(response) {
 
         let responseData = jwt_decode(response.credential)
-        console.log(responseData);
-
         const userData = {
             email: responseData.email,
             password: responseData.sub,
