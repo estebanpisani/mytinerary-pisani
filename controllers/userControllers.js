@@ -179,6 +179,28 @@ const userControllers = {
             });
         }
     },
+    verifyToken: async (req, res) => {
+        if (req.user) {
+            data = {
+                id: user._id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                userPhoto: user.userPhoto,
+                country: user.country
+            }
+            res.json({
+                    success: true,
+                    from: 'authentication',
+                    response: data
+                })
+        } else {
+            res.json({
+                    success: false,
+                    from: 'authentication',
+                    message: ["Session expired. Login again, please"]
+                })            
+        }
+    },
     getUsers: async (req, res) => {
         let users;
         let error = null;

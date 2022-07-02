@@ -22,7 +22,7 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(url + '/login', userCredentials);
-                console.log(res)
+                // console.log(res)
                 if (res.data.success) {
                     localStorage.setItem('Token', res.data.response.token)
                 }
@@ -42,6 +42,41 @@ const userActions = {
                 type: 'LOGOUT'
             })
         }
+    },
+    verifyToken: (token) => {
+        return async (dispatch, getState) => {
+            
+            await axios.get(url + '/tokenauth', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
+                .then(res => {
+                    console.log(res)
+                    if (res.data.success) {
+                        dispatch({
+                            type: 'LOGIN',
+                            payload: res.data
+                        })
+                    } else {
+                        localStorage.removeItem('token');
+                    }
+                })
+                .catch(error => {
+                    if (error.response.status=== 401){
+                        dispatch({
+                            type:'LOGOUT'
+                        });
+                        localStorage.removeItem('token');
+                    }
+                })
+
+
+
+
+
+
+
+        }
+
     }
 
 }
