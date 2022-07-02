@@ -90,7 +90,7 @@ const userControllers = {
                                 userPhoto: user.userPhoto,
                                 country: user.country
                             }
-                            const token = jwt.sign({ ...data }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 })
+                            const token = jwt.sign({ ...data }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 * 30 })
 
                             res.json({
                                 success: true,
@@ -180,8 +180,7 @@ const userControllers = {
         }
     },
     verifyToken: async (req, res) => {
-        console.log('Controlador')
-        console.log(req.user);
+        // console.log(req.user);
         if (req.user) {
             data = {
                 id: req.user._id,
