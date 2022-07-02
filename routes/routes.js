@@ -39,7 +39,7 @@ Router.route('/auth/signup')
 Router.route('/auth/login')
 .post(validatorLogin, login);
 
-Router.route('/auth//tokenauth')
+Router.route('/auth')
 .get(passport.authenticate('jwt', { session: false }), verifyToken);
 
 Router.route('/auth/users')

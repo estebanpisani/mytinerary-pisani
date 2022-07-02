@@ -46,7 +46,7 @@ const userActions = {
     verifyToken: (token) => {
         return async (dispatch, getState) => {
             
-            await axios.get(url + '/tokenauth', {
+            await axios.get(url, {
                 headers: { 'Authorization': 'Bearer ' + token }
             })
                 .then(res => {

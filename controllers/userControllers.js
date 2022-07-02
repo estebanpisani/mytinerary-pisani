@@ -180,18 +180,21 @@ const userControllers = {
         }
     },
     verifyToken: async (req, res) => {
+        console.log('Controlador')
+        console.log(req.user);
         if (req.user) {
             data = {
-                id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                userPhoto: user.userPhoto,
-                country: user.country
+                id: req.user._id,
+                firstName: req.user.firstName,
+                lastName: req.user.lastName,
+                userPhoto: req.user.userPhoto,
+                country: req.user.country
             }
             res.json({
                     success: true,
                     from: 'authentication',
-                    response: data
+                    response: {data},
+                    message: 'Welcome back, ' + data.firstName
                 })
         } else {
             res.json({

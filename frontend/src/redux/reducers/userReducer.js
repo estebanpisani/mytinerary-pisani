@@ -43,7 +43,7 @@ const userReducer = (state = initialState, action) => {
             return {
                     ...state,
                     userData: {},
-                    message: 'Sesión finalizada.',
+                    message: 'Session ended.',
                     errors: []
                 };
         default:
