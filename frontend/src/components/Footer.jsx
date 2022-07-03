@@ -12,7 +12,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 
 
-export const Footer = () => {
+const Footer = () => {
     return (
         <Box
             sx={{
@@ -120,3 +120,5 @@ export const Footer = () => {
         </Box>
     )
 }
+
+export default Footer;

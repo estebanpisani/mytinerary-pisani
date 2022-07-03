@@ -4,13 +4,13 @@ import jwt_decode from 'jwt-decode';
 
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControlLabel from '@mui/material/FormControlLabel';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Checkbox from '@mui/material/Checkbox';
+// import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
@@ -25,16 +25,14 @@ import userActions from '../redux/actions/userActions';
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function SignInSide() {
-
     const dispatch = useDispatch();
-
 
     // Login Form
     async function handleSubmit(event) {
         event.preventDefault();
 
         const userCredentials = {
-            email: event.target[0].value,
+            email: event.target[0].value.trim(),
             password: event.target[2].value,
             method: 'register-form'
         }
@@ -65,7 +63,8 @@ export default function SignInSide() {
             document.getElementById("buttonDiv"),
             { theme: "outline", size: "medium", locale: "en-IN" }
         );
-    });
+        // eslint-disable-next-line
+    }, []);
 
 
     let errors = useSelector(store => store.userReducer.errors);
@@ -171,10 +170,10 @@ export default function SignInSide() {
                                 label="Password"
                             />
                         </FormControl>
-                        <FormControlLabel
+                        {/* <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
-                        />
+                        /> */}
                         <Button
                             type="submit"
                             fullWidth

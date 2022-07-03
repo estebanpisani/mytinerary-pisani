@@ -36,8 +36,9 @@ const userActions = {
         };
     },
     logout: () => {
+        localStorage.removeItem('Token');
         return async (dispatch, getState) => {
-            localStorage.removeItem('token');
+            
             dispatch({
                 type: 'LOGOUT'
             })
@@ -57,7 +58,7 @@ const userActions = {
                             payload: res.data
                         })
                     } else {
-                        localStorage.removeItem('token');
+                        localStorage.removeItem('Token');
                     }
                 })
                 .catch(error => {
@@ -65,7 +66,7 @@ const userActions = {
                         dispatch({
                             type:'LOGOUT'
                         });
-                        localStorage.removeItem('token');
+                        localStorage.removeItem('Token');
                     }
                 })
 

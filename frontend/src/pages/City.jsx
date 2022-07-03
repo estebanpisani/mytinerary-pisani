@@ -59,12 +59,6 @@ const City = () => {
             {/* Itineraries section */}
             <Box className='itineraries-section' sx={{ flexGrow: '1', backgroundImage: `url(${bgImg})`, minHeight: '60vh', padding: '1rem' }} >
                 <Box className='itineraries-container' sx={{ maxHeight: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem' }}>
-                    {/* Skeleton */}
-                    {/* <div className="card">
-                        <div className="card_load"></div>
-                        <div className="card_load_extreme_title"></div>
-                        <div className="card_load_extreme_descripion"></div>
-                    </div> */}
 
                     {itineraries.length > 0 ? itineraries.map((itinerary, i) =>
                         <Itinerary key={i} title={itinerary.title} userName={itinerary.userName} userPhoto={itinerary.userPhoto && itinerary.userPhoto} price={itinerary.price} duration={itinerary.duration} likes={itinerary.likes && itinerary.likes} description={itinerary.description && itinerary.description} tags={itinerary.tags && itinerary.tags} ></Itinerary>

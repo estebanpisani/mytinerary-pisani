@@ -66,11 +66,11 @@ export default function SignUp() {
         event.preventDefault();
 
         const userData = {
-            firstName: event.target[2].value,
-            lastName: event.target[4].value,
+            firstName: event.target[2].value.trim(),
+            lastName: event.target[4].value.trim(),
             country: country,
-            userPhoto: event.target[6].value,
-            email: event.target[8].value,
+            userPhoto: event.target[6].value.trim(),
+            email: event.target[8].value.trim(),
             password: event.target[10].value,
             passwordRepeat: event.target[12].value,
             method: 'register-form',

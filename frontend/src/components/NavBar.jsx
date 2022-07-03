@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React from 'react';
+import { useState } from 'react';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,39 +13,42 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+
 import { Link as LinkRouter } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
-let logged = false;
+import userActions from '../redux/actions/userActions';
 
-const pages = [{ name: 'Home', url: '/' }, { name: 'Cities', url: '/cities' }];
-
-const loggedSettings = [{ name: 'Logout', url: '/logout' }];
-const guestSettings = [{ name: 'Login', url: '/login' }, { name: 'Sign Up', url: '/signup' }];
-
-const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
-
-const NavBar = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+function NavBar() {
+    const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
+    const dispatch = useDispatch();
+    //Nav controlls
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
-
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
-
-
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogOut = () => {
+        dispatch(userActions.logout());
+    }
+
+    const pages = [{ name: 'Home', url: '/' }, { name: 'Cities', url: '/cities' }];
+    // const loggedSettings = [{ name: 'Logout', url: '/logout' }];
+    const guestSettings = [{ name: 'Login', url: '/login' }, { name: 'Sign Up', url: '/signup' }];
+
+    // User Data
+
+    let userData = useSelector(store => store.userReducer.userData);
 
     return (
         <AppBar position="static" sx={{ backgroundColor: 'rgb(0, 105, 92, 1)' }}>
@@ -93,6 +98,7 @@ const NavBar = () => {
                         <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'flex' } }} />
                     </LinkRouter>
                     {/* Center title (md resolution) */}
+
                     <Box sx={{
                         mr: 2,
                         display: { xs: 'none', sm: 'flex', md: 'none' },
@@ -113,6 +119,7 @@ const NavBar = () => {
                             </Typography>
                         </LinkRouter>
                     </Box>
+
                     {/* Nav Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
@@ -132,9 +139,9 @@ const NavBar = () => {
                         ))}
                     </Box>
                     {/* md Title (flex-end) */}
-                    <LinkRouter to="/">
-                        <Typography
-                            variant="h6"
+                    {userData.firstName ?
+
+                        <Typography variant="h6"
                             noWrap
                             sx={{
                                 mr: 2,
@@ -145,16 +152,38 @@ const NavBar = () => {
                                 color: 'inherit',
                                 textDecoration: 'none',
                             }}
-                            className='font-slogan'
-                        >
-                            MyTinerary
+                            className='font-slogan'> {`${userData.firstName} ${userData.lastName}`}
                         </Typography>
-                    </LinkRouter>
+
+                        :
+                        <LinkRouter to="/">
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                sx={{
+                                    mr: 2,
+                                    display: { xs: 'none', md: 'flex' },
+                                    fontFamily: 'sans-serif',
+                                    fontWeight: 700,
+                                    letterSpacing: '.3rem',
+                                    color: 'inherit',
+                                    textDecoration: 'none',
+                                }}
+                                className='font-slogan'
+                            >
+                                MyTinerary
+                            </Typography>
+                        </LinkRouter>
+                    }
                     {/* User session Menu */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar src="/broken-image.jpg" />
+                                {userData.userPhoto ?
+                                    (<Avatar src={userData.userPhoto} />)
+                                    :
+                                    (<Avatar src="/broken-image.jpg" />)
+                                }
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -173,19 +202,21 @@ const NavBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {logged ? loggedSettings.map((setting, index) => (
-                                <LinkRouter key={index} to={setting.url}>
-                                    <MenuItem onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting.name}</Typography>
-                                    </MenuItem>
-                                </LinkRouter>
-                            )) :
-                            guestSettings.map((setting, index) => (
-                                <LinkRouter key={index} to={setting.url}>
-                                    <MenuItem onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting.name}</Typography>
-                                    </MenuItem>
-                                </LinkRouter>))
+                            {userData.id ? (
+
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center" onClick={handleLogOut}>Logout</Typography>
+                                </MenuItem>
+
+                            ) : (
+                                guestSettings.map((setting, index) => (
+                            <LinkRouter key={index} to={setting.url}>
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center">{setting.name}</Typography>
+                                </MenuItem>
+                            </LinkRouter>)
+                            )
+                                )
                                 }
                         </Menu>
                     </Box>
