@@ -70,6 +70,7 @@ export default function Login() {
     }
 
     useEffect(() => {
+        if (window.google) {
         window.google.accounts.id.initialize({
             client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
             callback: handleCredentialResponse
@@ -78,6 +79,7 @@ export default function Login() {
             document.getElementById("buttonDiv"),
             { theme: "outline", size: "medium", locale: "en-IN" }
         );
+        }
         // eslint-disable-next-line
     }, []);
 

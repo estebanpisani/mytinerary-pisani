@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link as LinkRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
 import jwt_decode from 'jwt-decode';
@@ -24,6 +25,7 @@ const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function SignUp() {
 
+    let navigate = useNavigate();
     const dispatch = useDispatch();
 
     //    Country Select
@@ -78,14 +80,17 @@ export default function SignUp() {
         };
 
         dispatch(userActions.signUp(userData));
-
+        if (message !== '') {
+            navigate("/", { replace: true });
+        } else {
+            setAlert(true);
+        }
     };
 
     // Google Sign Up
-    function handleCredentialResponse(response) {
+    async function handleCredentialResponse(response) {
 
         let responseData = jwt_decode(response.credential)
-        console.log(responseData);
 
         const userData = {
             firstName: responseData.given_name,
@@ -100,8 +105,15 @@ export default function SignUp() {
         };
 
         dispatch(userActions.signUp(userData))
-        setAlert(true);
+
+        if (message !== '') {
+            navigate("/", { replace: true });
+        } else {
+            setAlert(true);
+        }
+
     }
+
     useEffect(() => {
         window.google.accounts.id.initialize({
             client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
@@ -111,7 +123,7 @@ export default function SignUp() {
             document.getElementById("buttonDiv"),
             { theme: "outline", size: "medium", text: 'signup_with', locale: "en-IN" }  // customization attributes
         );
-    });
+    }, [form]);
 
     let errors = useSelector(store => store.userReducer.errors);
     let message = useSelector(store => store.userReducer.message);

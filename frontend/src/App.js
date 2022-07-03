@@ -1,12 +1,11 @@
 import ScrollToTop from "react-scroll-to-top";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // Components
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Hero from './components/Hero';
 import Cities from './pages/Cities';
 import City from './pages/City';
 import Login from './pages/Login';
@@ -47,8 +46,11 @@ function App() {
       const token = localStorage.getItem('Token');
       dispatch(userActions.verifyToken(token));
     }
-  })
+    // eslint-disable-next-line
+  },[])
 
+  let user = useSelector(store => store.userReducer.userData)
+console.log(user)
   return (
     <div className="App">
       <ThemeProvider theme={myTheme}>
@@ -56,12 +58,11 @@ function App() {
         <NavBar />
         <Routes >
           <Route path='/' element={<Home className='main' />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/logout' element={<Login />} />
+          { !user && <Route path='/signup' element={<SignUp />} />}
+          { !user && <Route path='/login' element={<Login />} />}
           <Route path='/cities' element={<Cities />} />
           <Route path='/city/:id' element={<City />} />
-          <Route path='/*' element={<Hero subtitle='Content Not Found' button='Back!' slogan={false} linkUrl='/' />} />
+          <Route path='/*' element={<Home className='main' />} />
         </Routes>
         <Footer />
       </ThemeProvider>

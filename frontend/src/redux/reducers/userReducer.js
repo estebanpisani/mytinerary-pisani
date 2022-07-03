@@ -1,6 +1,6 @@
 const initialState = {
     users: [],
-    userData: {},
+    userData: null,
     errors: [],
     message: ''
 };
@@ -42,7 +42,7 @@ const userReducer = (state = initialState, action) => {
         case 'LOGOUT':
             return {
                     ...state,
-                    userData: {},
+                    userData: null,
                     message: 'Session ended.',
                     errors: []
                 };

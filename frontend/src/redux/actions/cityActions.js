@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let url = 'http://localhost:4000/api/';
+let url = 'http://localhost:4000/api';
 
 const cityActions = {
 

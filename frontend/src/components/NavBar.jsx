@@ -15,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 import { Link as LinkRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
 import userActions from '../redux/actions/userActions';
@@ -22,6 +23,7 @@ import userActions from '../redux/actions/userActions';
 function NavBar() {
     const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
     const dispatch = useDispatch();
+    let navigate = useNavigate();
     //Nav controlls
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -40,6 +42,7 @@ function NavBar() {
 
     const handleLogOut = () => {
         dispatch(userActions.logout());
+        navigate("/", { replace: true });
     }
 
     const pages = [{ name: 'Home', url: '/' }, { name: 'Cities', url: '/cities' }];
@@ -139,7 +142,7 @@ function NavBar() {
                         ))}
                     </Box>
                     {/* md Title (flex-end) */}
-                    {userData.firstName ?
+                    {userData ?
 
                         <Typography variant="h6"
                             noWrap
@@ -179,7 +182,7 @@ function NavBar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                {userData.userPhoto ?
+                                {userData && userData.userPhoto ?
                                     (<Avatar src={userData.userPhoto} />)
                                     :
                                     (<Avatar src="/broken-image.jpg" />)
@@ -202,7 +205,7 @@ function NavBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {userData.id ? (
+                            {userData ? (
 
                                 <MenuItem onClick={handleCloseUserMenu}>
                                     <Typography textAlign="center" onClick={handleLogOut}>Logout</Typography>
@@ -210,14 +213,14 @@ function NavBar() {
 
                             ) : (
                                 guestSettings.map((setting, index) => (
-                            <LinkRouter key={index} to={setting.url}>
-                                <MenuItem onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting.name}</Typography>
-                                </MenuItem>
-                            </LinkRouter>)
-                            )
+                                    <LinkRouter key={index} to={setting.url}>
+                                        <MenuItem onClick={handleCloseUserMenu}>
+                                            <Typography textAlign="center">{setting.name}</Typography>
+                                        </MenuItem>
+                                    </LinkRouter>)
                                 )
-                                }
+                            )
+                            }
                         </Menu>
                     </Box>
                 </Toolbar>
