@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import userActions from './redux/actions/userActions';
+
 //Styles
 import './styles/styles.css';
 import './App.css';
@@ -39,6 +40,7 @@ function ScrollToTopOnNav() {
 
 function App() {
   ScrollToTopOnNav();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,10 +49,10 @@ function App() {
       dispatch(userActions.verifyToken(token));
     }
     // eslint-disable-next-line
-  },[])
+  }, [])
 
-  let user = useSelector(store => store.userReducer.userData)
-console.log(user)
+  let user = useSelector(store => store.userReducer.userData);
+
   return (
     <div className="App">
       <ThemeProvider theme={myTheme}>
@@ -58,8 +60,8 @@ console.log(user)
         <NavBar />
         <Routes >
           <Route path='/' element={<Home className='main' />} />
-          { !user && <Route path='/signup' element={<SignUp />} />}
-          { !user && <Route path='/login' element={<Login />} />}
+          {!user && <Route path='/signup' element={<SignUp />} />}
+          {!user && <Route path='/login' element={<Login />} />}
           <Route path='/cities' element={<Cities />} />
           <Route path='/city/:id' element={<City />} />
           <Route path='/*' element={<Home className='main' />} />

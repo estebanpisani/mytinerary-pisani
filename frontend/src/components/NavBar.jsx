@@ -13,6 +13,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 import { Link as LinkRouter } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +25,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions';
 
 function NavBar() {
-    const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
+    // const logo = process.env.PUBLIC_URL + '/img/planeIcon.png';
     const dispatch = useDispatch();
     let navigate = useNavigate();
     //Nav controlls
@@ -45,20 +49,18 @@ function NavBar() {
         navigate("/", { replace: true });
     }
 
-    const pages = [{ name: 'Home', url: '/' }, { name: 'Cities', url: '/cities' }];
+    const pages = [{ name: 'HOME', url: '/' }, { name: 'CITIES', url: '/cities' }];
     // const loggedSettings = [{ name: 'Logout', url: '/logout' }];
-    const guestSettings = [{ name: 'Login', url: '/login' }, { name: 'Sign Up', url: '/signup' }];
-
+    
     // User Data
-
     let userData = useSelector(store => store.userReducer.userData);
 
     return (
         <AppBar position="static" sx={{ backgroundColor: 'rgb(0, 105, 92, 1)' }}>
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
+            <Container maxWidth="xl" >
+                <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}  >
                     {/* Burger Menu */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -97,71 +99,42 @@ function NavBar() {
                             }
                         </Menu>
                     </Box>
-                    <LinkRouter to="/">
-                        <img className='logo' src={logo} alt="" sx={{ display: { xs: 'none', md: 'flex' } }} />
-                    </LinkRouter>
+                    {/* Nav Menu */}
+                    <Box sx={{ display: { xs: 'none', sm: 'flex'} }}>
+                        {pages.map((page, index) => (
+                            <LinkRouter to={page.url} key={index}>
+                                <MenuItem sx={{
+                                    color: 'white'
+                                }} >
+                                    <Typography className='font-normal' textAlign="center" >{page.name}</Typography>
+                                </MenuItem>
+                            </LinkRouter>
+                        ))}
+                    </Box>
                     {/* Center title (md resolution) */}
-
                     <Box sx={{
-                        mr: 2,
-                        display: { xs: 'none', sm: 'flex', md: 'none' },
-                        flexGrow: 1,
+                        display: { xs: 'none', sm: 'flex' },
                         fontFamily: 'monospace',
                         fontWeight: 700,
                         letterSpacing: '.3rem',
                         color: 'inherit',
-                        textDecoration: 'none',
+                        textDecoration: 'none'
                     }}>
                         <LinkRouter to="/" >
                             <Typography
-                                variant="h5"
+                                variant="h4"
                                 noWrap
                                 className='font-slogan'
+                                sx={{ padding: '1rem' }}
                             >
                                 MyTinerary
                             </Typography>
                         </LinkRouter>
                     </Box>
-
-                    {/* Nav Menu */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page, index) => (
-                            <LinkRouter to={page.url} key={index}>
-                                <Button
-                                    onClick={handleCloseNavMenu}
-                                    sx={{
-                                        my: 2,
-                                        color: 'white',
-                                        display: 'block',
-                                        fontFamily: 'Comfortaa'
-                                    }}
-                                >
-                                    <Typography className='font-normal' textAlign="center" >{page.name}</Typography>
-                                </Button>
-                            </LinkRouter>
-                        ))}
-                    </Box>
-                    {/* md Title (flex-end) */}
-                    {userData ?
-
-                        <Typography variant="h6"
-                            noWrap
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'sans-serif',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                            className='font-slogan'> {`${userData.firstName} ${userData.lastName}`}
-                        </Typography>
-
-                        :
-                        <LinkRouter to="/">
-                            <Typography
-                                variant="h6"
+                    {/* User session Menu */}
+                    {userData ? (
+                        <Box sx={{ display: 'flex', alignItems: 'center' }} >
+                            <Typography variant="h6"
                                 noWrap
                                 sx={{
                                     mr: 2,
@@ -172,60 +145,102 @@ function NavBar() {
                                     color: 'inherit',
                                     textDecoration: 'none',
                                 }}
-                                className='font-slogan'
-                            >
-                                MyTinerary
+                                className='font-slogan'> {`${userData.firstName} ${userData.lastName}`}
                             </Typography>
-                        </LinkRouter>
-                    }
-                    {/* User session Menu */}
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                {userData && userData.userPhoto ?
-                                    (<Avatar src={userData.userPhoto} />)
-                                    :
-                                    (<Avatar src="/broken-image.jpg" />)
-                                }
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {userData ? (
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    {userData.userPhoto ?
+                                        (<Avatar src={userData.userPhoto} />)
+                                        :
+                                        (<Avatar src="/broken-image.jpg" />)
+                                    }
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
 
                                 <MenuItem onClick={handleCloseUserMenu}>
+                                    <LogoutIcon></LogoutIcon>
                                     <Typography textAlign="center" onClick={handleLogOut}>Logout</Typography>
                                 </MenuItem>
+                            </Menu>
+                        </Box>
+                    ) : (
+                        <>
+                            {/* Session Burger Menu */}
+                            <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: '#fff' }}>
+                                        <AccountBoxIcon />
+                                        <MenuIcon />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
 
-                            ) : (
-                                guestSettings.map((setting, index) => (
-                                    <LinkRouter key={index} to={setting.url}>
+                                    <LinkRouter to="/login">
+                                        <MenuItem onClick={handleCloseUserMenu} >
+                                            <LoginIcon />
+                                            <Typography textAlign="center">Login</Typography>
+                                        </ MenuItem>
+                                    </LinkRouter>
+                                    <LinkRouter to="/signup">
                                         <MenuItem onClick={handleCloseUserMenu}>
-                                            <Typography textAlign="center">{setting.name}</Typography>
+                                            <AccountCircleIcon />
+                                            <Typography textAlign="center">Sign Up</Typography>
                                         </MenuItem>
-                                    </LinkRouter>)
-                                )
-                            )
-                            }
-                        </Menu>
-                    </Box>
-                </Toolbar>
-            </Container>
-        </AppBar>
+                                    </LinkRouter>
+                                </Menu>
+                            </Box>
+                            {/* Session Nav */}
+                            < Box sx={{ display: { xs: 'none', sm: 'flex' }, flexDirection: 'space-between' }} >
+                                <LinkRouter to="/login">
+                                    <MenuItem >
+                                        <LoginIcon />
+                                        <Typography textAlign="center">Login</Typography>
+                                    </ MenuItem>
+                                </LinkRouter>
+                                <LinkRouter to="/signup">
+                                    <MenuItem >
+                                        <AccountCircleIcon />
+                                        <Typography textAlign="center">Sign Up</Typography>
+                                    </MenuItem>
+                                </LinkRouter>
+                            </ Box >
+                        </>
+                    )
+                    }
+                </Toolbar >
+            </Container >
+        </AppBar >
     );
 };
 export default NavBar;
