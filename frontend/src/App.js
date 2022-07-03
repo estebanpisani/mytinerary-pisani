@@ -1,7 +1,6 @@
 import ScrollToTop from "react-scroll-to-top";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 // Components
 import NavBar from './components/NavBar';

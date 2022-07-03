@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
-
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 // import FormControlLabel from '@mui/material/FormControlLabel';
@@ -24,8 +24,10 @@ import userActions from '../redux/actions/userActions';
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
-export default function SignInSide() {
+export default function Login() {
+
     const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     // Login Form
     async function handleSubmit(event) {
@@ -38,10 +40,16 @@ export default function SignInSide() {
         }
 
         dispatch(userActions.login(userCredentials));
+
+        if (message !== '') {
+            navigate("/", { replace: true });
+        } else {
+            setOpen(true);
+        }
     };
 
     // Google Login
-    function handleCredentialResponse(response) {
+    async function handleCredentialResponse(response) {
 
         let responseData = jwt_decode(response.credential)
         const userData = {
@@ -50,8 +58,15 @@ export default function SignInSide() {
             method: 'google'
         };
 
-        dispatch(userActions.login(userData))
-        setOpen(true);
+        dispatch(userActions.login(userData));
+        
+
+        if (message !== '') {
+            navigate("/", { replace: true });
+        } else {
+            setOpen(true);
+        }
+
     }
 
     useEffect(() => {
@@ -68,9 +83,9 @@ export default function SignInSide() {
 
 
     let errors = useSelector(store => store.userReducer.errors);
+    let message = useSelector(store => store.userReducer.message);
 
     //SnackBar
-
     const [open, setOpen] = useState(false);
 
     const handleClick = () => {
@@ -204,6 +219,7 @@ export default function SignInSide() {
                     </Box>
                 </Box>
             </Box>
+
             {errors.length > 0 &&
                 <Snackbar
                     open={open}
@@ -212,10 +228,21 @@ export default function SignInSide() {
                     message="Error"
                     action={action}
                 >
-                    <Alert onClose={handleClose} variant="filled" severity="error">{errors.map((message, i) => (
-                        <p key={i}>{message}</p>
+                    <Alert onClose={handleClose} variant="filled" severity="error">{errors.map((error, i) => (
+                        <p key={i}>{error}</p>
                     )
                     )}</Alert>
+                </Snackbar>
+            }
+            {message &&
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message="Welcome"
+                    action={action}
+                >
+                    <Alert onClose={handleClose} severity="success">{message}</Alert>
                 </Snackbar>
             }
         </Box>
