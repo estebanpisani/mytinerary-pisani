@@ -29,67 +29,64 @@ export default function Login() {
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
+    // Show/Hide Password
+    const [values, setValues] = useState({
+        password: '',
+        showPassword: false,
+    });
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+    const handleClickShowPassword = () => {
+        setValues({
+            ...values,
+            showPassword: !values.showPassword,
+        });
+    };
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
     // Login Form
     async function handleSubmit(event) {
         event.preventDefault();
-
         const userCredentials = {
             email: event.target[0].value.trim(),
             password: event.target[2].value,
             method: 'register-form'
         }
-
         dispatch(userActions.login(userCredentials));
-
-        if (message !== '') {
-            navigate("/", { replace: true });
-        } else {
-            setOpen(true);
-        }
+        setOpen(true);
     };
 
     // Google Login
     async function handleCredentialResponse(response) {
-
         let responseData = jwt_decode(response.credential)
         const userData = {
             email: responseData.email,
             password: responseData.sub,
             method: 'google'
         };
-
         dispatch(userActions.login(userData));
-        
-
-        if (message !== '') {
-            navigate("/", { replace: true });
-        } else {
-            setOpen(true);
-        }
-
+        setOpen(true);
     }
 
     useEffect(() => {
         if (window.google) {
-        window.google.accounts.id.initialize({
-            client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-        });
-        window.google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "outline", size: "medium", locale: "en-IN" }
-        );
+            window.google.accounts.id.initialize({
+                client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            window.google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "medium", locale: "en-IN" }
+            );
         }
         // eslint-disable-next-line
     }, []);
 
-
-    let errors = useSelector(store => store.userReducer.errors);
-    let message = useSelector(store => store.userReducer.message);
-
     //SnackBar
     const [open, setOpen] = useState(false);
-
     const handleClick = () => {
         setOpen(true);
     };
@@ -99,7 +96,6 @@ export default function Login() {
         }
         setOpen(false);
     };
-
     const action = (
         <>
             <IconButton
@@ -113,26 +109,14 @@ export default function Login() {
         </>
     );
 
-    // Show/Hide Password
-    const [values, setValues] = useState({
-        password: '',
-        showPassword: false,
-    });
+    let errors = useSelector(store => store.userReducer.errors);
+    let message = useSelector(store => store.userReducer.message);
 
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
-    const handleClickShowPassword = () => {
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
-        });
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+    if (message !== '') {
+        setTimeout(function () {
+            navigate("/", { replace: true });
+        }, 2000);
+    }
 
     return (
         <Box container component="main" sx={{
