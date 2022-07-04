@@ -61,7 +61,9 @@ function App() {
         <Routes >
           <Route path='/' element={<Home className='main' />} />
           {!user && <Route path='/signup' element={<SignUp />} />}
-          {!user && <Route path='/login' element={<Login />} />}
+          {/* {!user && <Route path='/login' element={<Login />} />} */}
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/cities' element={<Cities />} />
           <Route path='/city/:id' element={<City />} />
           <Route path='/*' element={<Home className='main' />} />

@@ -31,17 +31,17 @@ export default function SignUp() {
     const dispatch = useDispatch();
 
     //    Country Select
+    let countries = useSelector(store => store.dataReducer.countries);
 
     useEffect(() => {
-        if(countries.length<1){
-        dispatch(dataActions.getCountries());
+        if (countries.length < 1) {
+            dispatch(dataActions.getCountries());
         }
         // eslint-disable-next-line
     }, []);
 
-    let countries = useSelector(store => store.dataReducer.countries);
-
     const [country, setCountry] = useState('');
+    const [form, setForm] = useState(false);
 
     const handleChange = (e) => {
         setCountry(e.target.value);
@@ -50,9 +50,6 @@ export default function SignUp() {
 
     //SnackBar
     const [alert, setAlert] = useState(false);
-    const handleClick = () => {
-        setAlert(true);
-    };
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -72,8 +69,6 @@ export default function SignUp() {
         </>
     );
 
-    const [form, setForm] = useState(false);
-
     // Sign Up Form
     async function handleSubmit(event) {
         event.preventDefault();
@@ -91,18 +86,13 @@ export default function SignUp() {
         };
 
         dispatch(userActions.signUp(userData));
-        if (message !== '') {
-            navigate("/", { replace: true });
-        } else {
-            setAlert(true);
-        }
+        setAlert(true);
     };
 
     // Google Sign Up
     async function handleCredentialResponse(response) {
 
         let responseData = jwt_decode(response.credential)
-
         const userData = {
             firstName: responseData.given_name,
             lastName: responseData.family_name,
@@ -114,15 +104,8 @@ export default function SignUp() {
             method: 'google',
             verified: responseData.email_verified
         };
-
         dispatch(userActions.signUp(userData))
-
-        if (message !== '') {
-            navigate("/", { replace: true });
-        } else {
-            setAlert(true);
-        }
-
+        setAlert(true);
     }
 
     useEffect(() => {
@@ -140,8 +123,14 @@ export default function SignUp() {
     let errors = useSelector(store => store.userReducer.errors);
     let message = useSelector(store => store.userReducer.message);
 
-    return (
+    if (message !== '') {
+        setTimeout(function () {
+            dispatch(userActions.logout());
+            navigate("/login", { replace: true });
+        }, 2000);
+    }
 
+    return (
         <Box container component="main" sx={{
             display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundImage: `url(${bgImg})`,
             backgroundRepeat: 'no-repeat',
@@ -174,7 +163,7 @@ export default function SignUp() {
                                 label="🌍 Country"
                                 onChange={handleChange}
                             >
-                                {countries.length>0 && countries.map((country, i) =>
+                                {countries.length > 0 && countries.map((country, i) =>
                                     <MenuItem value={country} key={i}>{country}</MenuItem>
                                 )}
                             </Select>
@@ -253,7 +242,6 @@ export default function SignUp() {
                                 sx={{ mt: 3, mb: 2 }}
                                 className='font-normal'
                                 onSubmit={handleSubmit}
-                                onClick={handleClick}
                             >
                                 Sign Up
                             </Button>
@@ -265,7 +253,7 @@ export default function SignUp() {
                         </>
                         )}
                     </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt:3 }} >
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 3 }} >
                         <Typography component="p" variant="subtitle2" >
                             Already registered?
                         </Typography>
@@ -286,7 +274,7 @@ export default function SignUp() {
                     message="Error"
                     action={action}
                 >
-                    <Alert onClose={handleClose} severity="error">{errors.map((message, i) => (
+                    <Alert onClose={handleClose} variant="filled" severity="error">{errors.map((message, i) => (
                         <p key={i}>{message}</p>
                     )
                     )}</Alert>

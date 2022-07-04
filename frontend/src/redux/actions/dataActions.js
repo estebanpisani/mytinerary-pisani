@@ -7,7 +7,6 @@ const dataActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.get(countriesAPI + '/all');
-                console.log('HOla')
                 dispatch({
                     type:'GET_COUNTRIES',
                     payload: res.data
