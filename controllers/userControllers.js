@@ -54,7 +54,7 @@ const userControllers = {
                     })
                 }
                 else {
-                    await mailSender(email, uniqueString);
+                    await mailSender(email, firstName, uniqueString);
 
                     res.json({
                         success: true,
@@ -163,7 +163,7 @@ const userControllers = {
     },
     verifyEmail: async (req, res) => {
         const { uniqueString } = req.params;
-        console.log('Email verificado')
+        console.log('Account Activated');
         const user = await User.findOne({
             uniqueString: uniqueString
         });
@@ -180,7 +180,6 @@ const userControllers = {
         }
     },
     verifyToken: async (req, res) => {
-        // console.log(req.user);
         if (req.user) {
             data = {
                 id: req.user._id,
@@ -203,6 +202,7 @@ const userControllers = {
                 })            
         }
     },
+    // Only for test
     getUsers: async (req, res) => {
         let users;
         let error = null;
