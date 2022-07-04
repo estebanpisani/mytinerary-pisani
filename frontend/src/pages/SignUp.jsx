@@ -20,6 +20,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
 
 import userActions from '../redux/actions/userActions';
+import dataActions from '../redux/actions/dataActions';
+
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
@@ -29,8 +31,17 @@ export default function SignUp() {
     const dispatch = useDispatch();
 
     //    Country Select
-    let countries = ["Argentina", "Colombia", "Chile", "Uruguay", "Australia", "Japan"]
-    const [country, setCountry] = useState('undefined');
+
+    useEffect(() => {
+        if(countries.length<1){
+        dispatch(dataActions.getCountries());
+        }
+        // eslint-disable-next-line
+    }, []);
+
+    let countries = useSelector(store => store.dataReducer.countries);
+
+    const [country, setCountry] = useState('');
 
     const handleChange = (e) => {
         setCountry(e.target.value);
@@ -123,6 +134,7 @@ export default function SignUp() {
             document.getElementById("buttonDiv"),
             { theme: "outline", size: "medium", text: 'signup_with', locale: "en-IN" }  // customization attributes
         );
+        // eslint-disable-next-line
     }, [form]);
 
     let errors = useSelector(store => store.userReducer.errors);
@@ -162,7 +174,7 @@ export default function SignUp() {
                                 label="🌍 Country"
                                 onChange={handleChange}
                             >
-                                {countries.map((country, i) =>
+                                {countries.length>0 && countries.map((country, i) =>
                                     <MenuItem value={country} key={i}>{country}</MenuItem>
                                 )}
                             </Select>
@@ -247,13 +259,13 @@ export default function SignUp() {
                             </Button>
 
                             <Typography > Or </Typography>
-                            <Box sx={{ margin: '1rem', display: 'flex', justifyContent: 'center' }}>
+                            <Box sx={{ mt: '1rem', display: 'flex', justifyContent: 'center' }}>
                                 <div id="buttonDiv"></div>
                             </Box>
                         </>
                         )}
                     </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt:3 }} >
                         <Typography component="p" variant="subtitle2" >
                             Already registered?
                         </Typography>

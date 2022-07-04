@@ -9,7 +9,7 @@ module.exports = passport.use(new Strategy(
         jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey: process.env.SECRET_KEY
     }, (payload, done) => {
-        console.log(payload);
+        // console.log(payload);
         User.findOne({ id: payload._id })
             .then(user => {
                 // console.log(user);

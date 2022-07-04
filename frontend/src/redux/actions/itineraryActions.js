@@ -3,7 +3,6 @@ import axios from "axios";
 let url = 'http://localhost:4000/api/';
 
 const itineraryActions = {
-
     getItineraries: () => {
         return async(dispatch, getState) => {
             try{
@@ -43,16 +42,6 @@ const itineraryActions = {
             }
         }
     }
-    // Si lo llegara a necesitar.
-    //, filterItineraries: (input) => {
-    //     return (dispatch, getState) => {
-    //         dispatch({
-    //             type:'FILTER_ITINERARIES',
-    //             payload: input
-    //         })
-    //     }
-    // }
-
 }
 
 export default itineraryActions;
