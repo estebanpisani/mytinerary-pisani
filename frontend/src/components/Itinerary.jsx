@@ -20,7 +20,7 @@ export default function Itinerary(props) {
     };
     let price = [];
     for (let i = 0; i < props.price; i++) {
-        price.push(<img src={dollarIcon} alt='price-value-unit' height='30px' width='30px' />);
+        price.push(<img src={dollarIcon} alt='price-value-unit' height='30px' width='30px' key={i} />);
     }
 
     return (
