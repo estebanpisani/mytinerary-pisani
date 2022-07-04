@@ -10,10 +10,10 @@ const itinerarySchema = new mongoose.Schema(
         description: {type:String, require:false},
         tags: {type:Array, require:false},
         likes: {type:Number, require:false},
+        comments: [{type:String, require:false}],
         city: {type: mongoose.Types.ObjectId, ref:'cities'}
     }
 )
-
 const Itinerary = mongoose.model('itineraries', itinerarySchema);
 
 module.exports = Itinerary;

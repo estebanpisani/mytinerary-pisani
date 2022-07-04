@@ -1,7 +1,7 @@
 const Itinerary = require('../models/itinerary');
 
 const itinerariesControllers = {
-    getItineraries: async (req,res) => {
+    getAllItineraries: async (req,res) => {
         let itineraries;
         let error = null;
         try {
@@ -82,7 +82,7 @@ const itinerariesControllers = {
             }
         )
     },
-    modifyItinerary: async (req,res) => {
+    updateItinerary: async (req,res) => {
         const id = req.params.id;
         console.log(id);
         let itineraryReq = req.body;
@@ -114,7 +114,6 @@ const itinerariesControllers = {
             error = err;
             console.log(error);
         }
-
         res.json(
             {
                 response: error ? 'Error removing itinerary' : itinerary,

@@ -2,11 +2,15 @@ const Router = require('express').Router();
 const validatorSignUp = require('../config/validatorSignUp');
 const validatorLogin = require('../config/validatorLogin');
 const passport = require('../config/passport');
+
 const citiesControllers = require('../controllers/citiesControllers');
-const {getCities, getCityById, addCity, modifyCity, removeCity} = citiesControllers;
 const itinerariesControllers = require('../controllers/itinerariesControllers');
-const {getItineraries, getItineraryById, getItinerariesByCity,addItinerary, modifyItinerary, removeItinerary} = itinerariesControllers;
 const userControllers = require('../controllers/userControllers');
+const activitiesControllers = require('../controllers/activitiesControllers');
+
+const {getCities, getCityById, addCity, modifyCity, removeCity} = citiesControllers;
+const {getAllActivities, getActivitiesByItinerary, addActivity, updateActivity, removeActivity} = activitiesControllers;
+const {getAllItineraries, getItineraryById, getItinerariesByCity,addItinerary, updateItinerary, removeItinerary} = itinerariesControllers;
 const { signUp, login, getUsers, deleteUser, verifyEmail, verifyToken } = userControllers;
 
 // Cities Routes
@@ -24,13 +28,25 @@ Router.route('/cities/:id/itineraries')
 
 //  Itineraries Routes
 Router.route('/itineraries')
-.get(getItineraries)
+.get(getAllItineraries)
 .post(addItinerary);
 
 Router.route('/itineraries/:id')
 .get(getItineraryById)
-.put(modifyItinerary)
+.put(updateItinerary)
 .delete(removeItinerary);
+
+Router.route('/itineraries/:id/activities')
+.get(getActivitiesByItinerary);
+
+//  Activities Routes
+Router.route('/activities')
+.get(getAllActivities)
+.post(addActivity);
+
+Router.route('/activities/:id')
+.put(updateActivity)
+.delete(removeActivity);
 
 // User Routes
 Router.route('/auth/signup')
