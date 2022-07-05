@@ -8,12 +8,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Avatar from '@mui/material/Avatar';
-// import Carousel from './Carousel';
+import Activities from './Activities';
 
 export default function Itinerary(props) {
 
     const dollarIcon = process.env.PUBLIC_URL + '/img/dollar.png';
     const [expand, setExpand] = useState(false);
+    let activities = []
 
     const handleExpand = () => {
         setExpand(!expand);
@@ -77,8 +78,8 @@ export default function Itinerary(props) {
                             }
                             <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', marginBottom: '1rem' }}>Activities</Typography>
                             {/* Carousel con actividades de cada itinerario */}
-                            <Box className='carrousel-container'>
-                                {/* <Carousel /> */}
+                            <Box sx={{my:'2rem', width:'95%'}}>
+                                <Activities activities={activities} />
                             </Box>
                             <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
                         </Box>
