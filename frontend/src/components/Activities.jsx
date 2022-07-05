@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 
@@ -25,18 +24,22 @@ export default function Activities({ activities }) {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
             >
-                <SwiperSlide>
-                    <Box sx={{ display: 'flex', width: '100%', height: '100%', padding: '1rem', flexDirection:{xs:'column', md:'row'}, justifyContent:{xs:'flex-start', md:'center'}, alignItems:{xs:'center', md:'flex-start'} }}>
-                        <Box sx={{ width: '60%', backgroundImage: 'url({})', display:'flex', flexDirection:'column', justifyContent:'flex-start' }}>
-                            <Typography variant='h3' className='font-slogan' sx={{ mb:'1rem' }}>Wynwood Walls</Typography>
+                { activities.map((activity, i) => 
+                    (<SwiperSlide>
+                        <Box sx={{ display: 'flex', width: '100%', height: '100%', padding: '1rem', flexDirection: { xs: 'column', lg: 'row' }, justifyContent: { xs: 'flex-start', md: 'center' }, alignItems: { xs: 'center', lg: 'flex-start' } }} >
+                            <Typography variant='h6' sx={{ display: { xs: 'block', md: 'none' }, mb: '1rem' }} className='font-slogan' >{activity.title}</Typography>
+                            <Box sx={{ width: { xs: '100%', lg: '70%' }, height: '100%', backgroundImage: `url(${activity.photo})`, display: { xs: 'flex' }, flexDirection: 'column', justifyContent: { xs: 'end', md: 'space-between' } }} className='activity-photo'>
+                                <Typography variant='h3' sx={{ backgroundColor: 'rgba(0,0,0,0.7)', py: 2, display: { xs: 'none', md: 'block' } }} className='font-slogan text-primary text-shadow-light' >{activity.title}</Typography>
+                                <Typography variant='p' className='font-normal text-shadow-primary scroll' sx={{ backgroundColor: 'rgba(0,0,0,0.6)', py: 2, px: 1, display: { xs: 'none', md: 'flex' }, height: '26%' }}  >{activity.description}</Typography>
+                            </Box>
+
+                            <Box sx={{ width: '50%', color: '#fff', display: { xs: 'none' }, alignItems: 'center', px: '2rem', py: '1.5rem', height: '100%', flexgrow: '2' }} className='activity-info scroll'  >
+                                <Typography variant='p' className='font-normal'  >{activity.description}</Typography>
+                            </Box>
+                            <Typography variant='subtitle1' sx={{ display: { xs: 'block', md: 'none' }, my: '1rem' }} className='font-normal scroll' >{activity.description}</Typography>
                         </Box>
-                        <Box sx={{ width: '50%', color:'#fff', display:'flex', alignItems:'center', height:'100%',padding:'2rem' }} className='activity-info' >
-                            <Typography variant='p' className='font-normal'>The Wynwood Walls, created by Tony Goldman in 2009, has brought the world’s greatest artists working in the graffiti and street art genre to Miami. With a diverse representation of both American and international artists that encompasses everything from the old school graffiti artists to the newest work being created around the world, The Wynwood Walls has become a must-see international destination. The Tony is the official hotel partner of The Wynwood Walls, so, as our guest, your admission is complimentary.</Typography>
-                        </Box>
-                    </Box>
-                </SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
+                    </SwiperSlide>)
+                )}
             </Swiper>
         </>
     );

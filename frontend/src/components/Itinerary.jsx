@@ -14,6 +14,7 @@ export default function Itinerary(props) {
 
     const dollarIcon = process.env.PUBLIC_URL + '/img/dollar.png';
     const [expand, setExpand] = useState(false);
+    
     let activities = []
 
     const handleExpand = () => {
@@ -26,7 +27,7 @@ export default function Itinerary(props) {
 
     return (
         <>
-            <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '1rem', width: { xs: '80%', md: '60%', lg: '70%', xl: '50%' }, padding: '1rem' }} className='itinerary-card-container'>
+            <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '1rem', width: { xs: '80%', md: '80%', lg: '80%', xl: '70%' }, padding: '1rem' }} className='itinerary-card-container'>
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center', width: '100%', padding: '1rem' }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
                         <Avatar variant='circular' alt={props.userName} sx={{ bgcolor: 'rgb(0, 105, 92)', width: { xs: '70px', sm: '120px', md: '200px' }, height: { xs: '70px', sm: '120px', md: '200px' } }} src={props.userPhoto}>
@@ -77,9 +78,13 @@ export default function Itinerary(props) {
                                 <Typography className='font-normal' sx={{ marginBottom: '1rem' }}>{props.description}</Typography>
                             }
                             <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', marginBottom: '1rem' }}>Activities</Typography>
-                            {/* Carousel con actividades de cada itinerario */}
+                            
                             <Box sx={{my:'2rem', width:'95%'}}>
+                                {activities.length>0 ?
                                 <Activities activities={activities} />
+                                :
+                                <Typography variant='subtitle1' className='font-normal text-light' sx={{backgroundColor:'rgba(0,0,0,0.3)', p:1}}>No Available Activities For This Itinerary Yet</Typography>
+                                }
                             </Box>
                             <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
                         </Box>
