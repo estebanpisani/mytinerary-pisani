@@ -31,7 +31,7 @@ export default function Activities({ id }) {
         }
         // eslint-disable-next-line
     }, []);
-    activities && console.log(activities)
+
     return (
         <>
             {activities.length>0  ?

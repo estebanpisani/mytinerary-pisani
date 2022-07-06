@@ -10,7 +10,7 @@ const activitiesControllers = require('../controllers/activitiesControllers');
 
 const {getCities, getCityById, addCity, modifyCity, removeCity} = citiesControllers;
 const {getAllActivities, getActivitiesByItinerary, addActivity, updateActivity, removeActivity} = activitiesControllers;
-const {getAllItineraries, getItineraryById, getItinerariesByCity,addItinerary, updateItinerary, removeItinerary} = itinerariesControllers;
+const {getAllItineraries, getItineraryById, getItinerariesByCity,addItinerary, updateItinerary, removeItinerary, like} = itinerariesControllers;
 const { signUp, login, getUsers, deleteUser, verifyEmail, verifyToken } = userControllers;
 
 // Cities Routes
@@ -38,6 +38,9 @@ Router.route('/itineraries/:id')
 
 Router.route('/itineraries/:id/activities')
 .get(getActivitiesByItinerary);
+
+Router.route('/itineraries/:id/like')
+.put(like);
 
 //  Activities Routes
 Router.route('/activities')

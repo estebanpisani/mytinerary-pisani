@@ -1,49 +1,49 @@
 const Itinerary = require('../models/itinerary');
 
 const itinerariesControllers = {
-    getAllItineraries: async (req,res) => {
+    getAllItineraries: async (req, res) => {
         let itineraries;
         let error = null;
         try {
             itineraries = await Itinerary.find();
-        }catch (err){
+        } catch (err) {
             error = err;
         }
 
         res.json(
             {
-                response: error ? 'Error requesting itineraries data' : {itineraries},
+                response: error ? 'Error requesting itineraries data' : { itineraries },
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    getItineraryById: async (req,res) => {
+    getItineraryById: async (req, res) => {
         const id = req.params.id;
         let itinerary;
         let error = null;
         try {
-            itinerary = await Itinerary.findOne({_id:id});
-        }catch (err){
+            itinerary = await Itinerary.findOne({ _id: id });
+        } catch (err) {
             error = err;
             console.log(error);
         }
 
         res.json(
             {
-                response: error ? 'Error requesting itinerary data' : {itinerary},
+                response: error ? 'Error requesting itinerary data' : { itinerary },
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    getItinerariesByCity: async (req,res) => {
+    getItinerariesByCity: async (req, res) => {
         const id = req.params.id;
         let error = null;
         let itineraries = [];
-        try{
-            itineraries = await Itinerary.find({city:id})
-        } catch(err){
+        try {
+            itineraries = await Itinerary.find({ city: id })
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -53,8 +53,8 @@ const itinerariesControllers = {
             error: error
         })
     },
-    addItinerary: async (req,res) => {
-        const {title, userName, userPhoto, price, duration, tags, likes, activities, city}=req.body
+    addItinerary: async (req, res) => {
+        const { title, userName, userPhoto, price, duration, tags, likes, activities, city } = req.body
         let itinerary;
         let error = null;
         try {
@@ -69,7 +69,7 @@ const itinerariesControllers = {
                 activities: activities,
                 city: city
             }).save();
-        }catch (err){
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -82,7 +82,7 @@ const itinerariesControllers = {
             }
         )
     },
-    updateItinerary: async (req,res) => {
+    updateItinerary: async (req, res) => {
         const id = req.params.id;
         console.log(id);
         let itineraryReq = req.body;
@@ -90,8 +90,8 @@ const itinerariesControllers = {
         let itineraryDB;
         let error = null;
         try {
-            itineraryDB = await Itinerary.findOneAndUpdate({ _id:id }, itineraryReq, {new:true});
-        }catch (err){
+            itineraryDB = await Itinerary.findOneAndUpdate({ _id: id }, itineraryReq, { new: true });
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -104,13 +104,13 @@ const itinerariesControllers = {
             }
         )
     },
-    removeItinerary: async (req,res) => {
+    removeItinerary: async (req, res) => {
         const id = req.params.id;
         let itinerary;
         let error = null;
         try {
-            itinerary = await Itinerary.findOneAndDelete({_id:id});
-        }catch (err){
+            itinerary = await Itinerary.findOneAndDelete({ _id: id });
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -121,6 +121,41 @@ const itinerariesControllers = {
                 error: error
             }
         )
+    },
+    like: async (req, res) => {
+        const id = req.params.id;
+        const { userId } = req.body;
+
+        const itinerary = await Itinerary.findOne({
+            _id: id
+        });
+        if (itinerary) {
+            if (itinerary.likes.indexOf(userId)!== -1) {
+                itinerariesFiltered = itinerary.likes.filter(id => id !== userId);
+                itinerary.likes = itinerariesFiltered;
+                await itinerary.save();
+
+                res.json({
+                    success: true,
+                    response: itinerary
+                })
+            } else {
+                itinerary.likes.push(userId);
+                await itinerary.save();
+
+                res.json({
+                    success: true,
+                    response: itinerary
+                })
+            }
+        } else {
+            res.json({
+                success: false,
+                message: 'Wrong action. Itinerary doesn\'t exists'
+            })
+        }
+
+
     }
 }
 
