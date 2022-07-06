@@ -41,6 +41,22 @@ const itineraryActions = {
                 console.log(error);
             }
         }
+    },
+    logActivities: (id) =>{        
+        return async(dispatch, getState) => {
+            try{
+                const res = await axios.get(url+'/itineraries/'+id+'/activities');
+                console.log(res.data);
+                // console.log(getState);
+                dispatch({
+                    type:'GET_ACTIVITIES_BY_ITINERARY',
+                    payload: res.data.response
+                })
+            } catch(error){
+                console.log(error);
+            }
+        };
+        
     }
 }
 

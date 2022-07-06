@@ -14,9 +14,12 @@ const itinerarySchema = new mongoose.Schema(
             comment: { type: String },
             userId: { type: mongoose.Types.ObjectId, ref: 'users' }
             }],
-        city: { type: mongoose.Types.ObjectId, ref: 'cities' }
+        city: { type: mongoose.Types.ObjectId, ref: 'cities' },
+        
     }
 )
+// Otra manera de relacionar activities:
+// activities: [{type: mongoose.Types.ObjectId, ref: 'activities'}]
 const Itinerary = mongoose.model('itineraries', itinerarySchema);
 
 module.exports = Itinerary;

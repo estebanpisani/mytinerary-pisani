@@ -20,7 +20,7 @@ const activitiesControllers = {
     getActivitiesByItinerary: async (req,res) => {
         const id = req.params.id;
         let error = null;
-        let activities = [];
+        let activities;
         try{
             activities = await Activity.find({itinerary:id})
         } catch(err){
@@ -44,6 +44,8 @@ const activitiesControllers = {
                 description: description,
                 itinerary: itinerary
             }).save();
+
+            
         }catch (err){
             error = err;
             console.log(error);

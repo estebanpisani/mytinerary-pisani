@@ -22,12 +22,14 @@ const City = () => {
     useEffect(() => {
         dispatch(cityActions.getCityById(id));
         dispatch(itineraryActions.getItinerariesByCity(id));
+        // dispatch(itineraryActions.logActivities(id));
         // eslint-disable-next-line
     }, []);
 
     let city = useSelector(store => store.cityReducer.city);
+    // console.log(city)
     let itineraries = useSelector(store => store.itineraryReducer.itineraries);
-
+// console.log(itineraries)
     return (
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <Box className='city-container' sx={{ backgroundImage: `url(${city?.image})`, minHeight: '25rem' }} >
@@ -59,9 +61,8 @@ const City = () => {
             {/* Itineraries section */}
             <Box className='itineraries-section' sx={{ flexGrow: '1', backgroundImage: `url(${bgImg})`, minHeight: '60vh', padding: '1rem' }} >
                 <Box className='itineraries-container' sx={{ maxHeight: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
-
                     {itineraries.length > 0 ? itineraries.map((itinerary, i) =>
-                        <Itinerary key={i} title={itinerary.title} userName={itinerary.userName} userPhoto={itinerary.userPhoto && itinerary.userPhoto} price={itinerary.price} duration={itinerary.duration} likes={itinerary.likes && itinerary.likes} description={itinerary.description && itinerary.description} tags={itinerary.tags && itinerary.tags} ></Itinerary>
+                        <Itinerary key={i} id={itinerary._id} title={itinerary.title} userName={itinerary.userName} userPhoto={itinerary.userPhoto && itinerary.userPhoto} price={itinerary.price} duration={itinerary.duration} likes={itinerary.likes && itinerary.likes} description={itinerary.description && itinerary.description} tags={itinerary.tags && itinerary.tags} />
                     ) : (
                         <Box sx={{ backgroundColor: `rgba(0, 0, 0, 0.7)`, height: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding: '1rem' }} >
                             <Typography variant='h3' className='font-slogan text-light text-shadow-blur-primary' sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '3rem' } }}>No Available Itineraries yet</Typography>

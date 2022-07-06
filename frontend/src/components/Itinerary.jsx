@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,14 +9,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Avatar from '@mui/material/Avatar';
+
 import Activities from './Activities';
 
 export default function Itinerary(props) {
-
+    // console.log(props)
     const dollarIcon = process.env.PUBLIC_URL + '/img/dollar.png';
     const [expand, setExpand] = useState(false);
-    
-    let activities = []
 
     const handleExpand = () => {
         setExpand(!expand);
@@ -55,10 +55,10 @@ export default function Itinerary(props) {
                                 <Typography variant="body1" className='font-normal'>Duration: {props.duration}hs</Typography>
                             </Box>
                             <Box>
-                            {props.tags && props.tags.map((tag, i) => (
-                                <span className='itinerary-hashtag' key={i}>{tag} </span>
-                            ))
-                            }
+                                {props.tags && props.tags.map((tag, i) => (
+                                    <span className='itinerary-hashtag' key={i}>{tag} </span>
+                                ))
+                                }
                             </Box>
 
                         </CardContent>
@@ -67,29 +67,26 @@ export default function Itinerary(props) {
                 </Box>
 
                 {expand === false && (
-                    <Box sx={{display:'flex', justifyContent:'center'}}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View More <ExpandMoreIcon /> </button>
                     </Box>)
                 }
-                {expand && (
-                    <Box className='activities-container' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', width: '100%', padding: '1rem', border: '1px solid #fff' }} >
-                        <Box sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                            {props.description &&
-                                <Typography className='font-normal' sx={{ marginBottom: '1rem' }}>{props.description}</Typography>
-                            }
-                            <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', marginBottom: '1rem' }}>Activities</Typography>
-                            
-                            <Box sx={{my:'2rem', width:'95%'}}>
-                                {activities.length>0 ?
-                                <Activities activities={activities} />
-                                :
-                                <Typography variant='subtitle1' className='font-normal text-light' sx={{backgroundColor:'rgba(0,0,0,0.3)', p:1}}>No Available Activities For This Itinerary Yet</Typography>
+                {expand &&
+                    (
+                        <Box className='activities-container' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', width: '100%', padding: '1rem', border: '1px solid #fff' }} >
+                            <Box sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                                {props.description &&
+                                    <Typography className='font-normal' sx={{ marginBottom: '1rem' }}>{props.description}</Typography>
                                 }
+                                <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', marginBottom: '1rem' }}>Activities</Typography>
+
+                                <Box sx={{ my: '2rem', width: '95%' }}>
+                                    <Activities id={props.id} />
+                                </Box>
+                                <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
                             </Box>
-                            <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
                         </Box>
-                    </Box>
-                )
+                    )
                 }
             </Card>
 
