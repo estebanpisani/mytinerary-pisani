@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import itineraryActions from '../redux/actions/itineraryActions';
 
 import Box from '@mui/material/Box';
@@ -12,20 +13,30 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Avatar from '@mui/material/Avatar';
+import TextField from '@mui/material/TextField';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+
 
 import Activities from './Activities';
-import Comments from './Comments';
+
+
+import '../styles/Comments.css'
 
 export default function Itinerary({ itineraryData, city }) {
     const dollarIcon = process.env.PUBLIC_URL + '/img/dollar.png';
     const dispatch = useDispatch();
-    const user = useSelector(store => store.userReducer.userData)
-
+    const user = useSelector(store => store.userReducer.userData);
+    
     const [expand, setExpand] = useState(false);
     const [change, setChange] = useState(false);
+    const [commentValue, setCommentValue] = useState('');
 
     useEffect(() => {
         dispatch(itineraryActions.getItinerariesByCity(city));
+        // eslint-disable-next-line
     }, [change]);
 
     const handleExpand = () => {
@@ -40,6 +51,28 @@ export default function Itinerary({ itineraryData, city }) {
         await dispatch(itineraryActions.like(itineraryData._id))
         setChange(!change);
     }
+
+    const handleChange = (e) => {
+        setCommentValue(e.target.form[0].value)
+    }
+
+    async function handleUpdate(e) {
+
+        console.log(e.target.id);
+    }
+
+    async function handleDelete(e) {
+        console.log(e.target);
+        await dispatch(itineraryActions.deleteComment(e.target.id))
+        setChange(!change);
+    }
+
+    async function handleCommentSubmit(event) {
+        event.preventDefault();
+        setCommentValue('')
+        await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
+        setChange(!change);
+    };
 
     return (
         <>
@@ -62,7 +95,7 @@ export default function Itinerary({ itineraryData, city }) {
                             }
                             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, justifyContent: 'space-evenly', alignItems: 'center', width: '100%', flexWrap: 'wrap', marginBottom: '1rem' }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                                    {itineraryData.likes.includes(user.id) ?
+                                    {itineraryData?.likes.includes(user?.id) ?
 
                                         <FavoriteIcon className='like-btn' fontSize='medium' onClick={handleLike} /> :
                                         <FavoriteBorderIcon className='like-btn' fontSize='medium' onClick={handleLike} />
@@ -103,22 +136,84 @@ export default function Itinerary({ itineraryData, city }) {
                                     <Activities id={itineraryData._id} />
                                 </Box>
 
-                                <Box className='comments-container' sx={{ my: '0.5rem', width: '95%' }}>
-                                    <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', marginBottom: '1rem' }}>Leave us a comment!</Typography>
+                                <Box className='comments-section' sx={{ my: '0.5rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
+                                    <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', mb: 2 }}>Leave us a comment!</Typography>
                                     {itineraryData.comments.length > 0 ?
-                                        <Comments comments={itineraryData.comments} />
-                                    :
-                                        <Typography className='font-normal' sx={{ my: '1rem' }}>Be the first one on comment!</Typography>
+                                        <div id='comments-container' className="comments-container">
+                                            <ul id="comments-list" className="comments-list">
+                                                {itineraryData.comments.map((comment, i) => (
+                                                    <li key={i}>
+                                                        <div className="comment-main-level">
+                                                            <div className="comment-avatar">
+                                                                {comment.user.userPhoto &&
+                                                                    <img src={comment.user.userPhoto} alt="" />
+                                                                }
+                                                            </div>
+                                                            <div className="comment-box">
+                                                                <div className="comment-head">
+                                                                    <h6 className="comment-name">{comment.user.firstName} {comment.user.lastName}</h6>
+                                                                    {user.id === comment.user._id &&
+                                                                        <div >
+                                                                            <Button className="comment-opt" onClick={handleUpdate} id={comment._id} disableTouchRipple>
+                                                                                <EditIcon className='text-primary' fontSize="small" />
+                                                                            </Button>
+
+                                                                            <Button onClick={handleDelete} id={comment._id} disableTouchRipple>
+                                                                                <DeleteIcon className='text-primary' fontSize="small" />
+                                                                            </Button>
+                                                                        </div>
+                                                                    }
+                                                            </div>
+
+                                                            <div className="comment-content">
+                                                                {comment.comment}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </li>)
+                                                )}
+                                        </ul>
+                        </div>
+                                :
+                                <Typography className='font-normal' >Be the first one on comment!</Typography>
                                     }
+
+
+                                <Box className='text-primary font-normal' sx={{ width: '80%', mt: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+                                    <Box component="form" noValidate onSubmit={handleCommentSubmit} sx={{ width: '70%' }}>
+                                        <FormControl fullWidth required sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                            <TextField
+                                                id="outlined-textarea"
+                                                rows={2}
+                                                placeholder="Leave a comment here..."
+                                                value={commentValue}
+                                                onChange={handleChange}
+                                                multiline
+                                                sx={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', borderRadius: '5px', width: '100%' }}
+                                            />
+                                        </FormControl>
+
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            color='primary'
+                                            sx={{ my: 1 }}
+                                            className='font-normal'
+                                        >
+                                            Comment
+                                        </Button>
+                                    </Box>
                                 </Box>
-
-
-                                <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
                             </Box>
+
+
+                            <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
                         </Box>
-                    )
-                }
-            </Card>
+                        </Box >
+            )
+}
+        </Card >
 
         </>
     )

@@ -48,7 +48,7 @@ Router.route('/itineraries/:id/comment')
 // .get(getComments)
 .post(passport.authenticate('jwt', { session: false }), addComment)
 .put(passport.authenticate('jwt', { session: false }), updateComment)
-.delete(passport.authenticate('jwt', { session: false }), deleteComment);
+.delete(deleteComment);
 //  Activities Routes
 Router.route('/activities')
 .get(getAllActivities)

@@ -114,7 +114,11 @@
 }
 
 
-
+.comments-section{
+    background-color: rgb(26, 25, 25);
+    border-radius: 5px;
+    padding-bottom: 1rem;
+}
 
 /* Card Loader */
 .card {

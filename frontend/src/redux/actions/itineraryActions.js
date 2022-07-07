@@ -57,14 +57,31 @@ const itineraryActions = {
             }
         }
     },
-    comment: (id, comment) => {
+    addComment: (id, comment) => {
         const token = localStorage.getItem('Token');
         return async (dispatch, getState) => {
             try {
-                const res = await axios.put(url + '/itineraries/' + id + '/comment', {comment}, {
+                const res = await axios.post(url + '/itineraries/' + id + '/comment', { comment }, {
                     headers: { 'Authorization': 'Bearer ' + token }
                 });
                 return res.data.response
+            } catch (error) {
+                if (error.response.status === 401) {
+                    console.log(error.response.data)
+                }
+            }
+        }
+    },
+    deleteComment: (id) => {
+        const token = localStorage.getItem('Token');
+        // console.log(id)
+        return async (dispatch, getState) => {
+            try {
+                const res = await axios.delete(url + 'itineraries/' + id + '/comment', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                    });
+                return res.data.response
+                console.log(res.data);
             } catch (error) {
                 if (error.response.status === 401) {
                     console.log(error.response.data)
