@@ -16,6 +16,7 @@ import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 
@@ -29,10 +30,12 @@ export default function Itinerary({ itineraryData, city }) {
     const dollarIcon = process.env.PUBLIC_URL + '/img/dollar.png';
     const dispatch = useDispatch();
     const user = useSelector(store => store.userReducer.userData);
-    
+
     const [expand, setExpand] = useState(false);
     const [change, setChange] = useState(false);
     const [commentValue, setCommentValue] = useState('');
+    const [editID, setEditID] = useState('');
+    const [edit, setEdit] = useState(false);
 
     useEffect(() => {
         dispatch(itineraryActions.getItinerariesByCity(city));
@@ -57,8 +60,13 @@ export default function Itinerary({ itineraryData, city }) {
     }
 
     async function handleUpdate(e) {
+        setEdit(true)
+        setEditID(e.target.id);
+        // console.log(e.target.id);
+    }
 
-        console.log(e.target.id);
+    const closeEdit = () => {
+        setEdit(false);
     }
 
     async function handleDelete(e) {
@@ -66,7 +74,14 @@ export default function Itinerary({ itineraryData, city }) {
         await dispatch(itineraryActions.deleteComment(e.target.id))
         setChange(!change);
     }
-
+    async function handleEditSubmit(event) {
+        event.preventDefault();
+        setEdit(false)
+        setEditID('');
+        // console.log(event.target[0].id)
+        await dispatch(itineraryActions.updateComment(event.target[0].id, event.target[0].value))
+        setChange(!change);
+    };
     async function handleCommentSubmit(event) {
         event.preventDefault();
         setCommentValue('')
@@ -154,66 +169,95 @@ export default function Itinerary({ itineraryData, city }) {
                                                                     <h6 className="comment-name">{comment.user.firstName} {comment.user.lastName}</h6>
                                                                     {user.id === comment.user._id &&
                                                                         <div >
-                                                                            <Button className="comment-opt" onClick={handleUpdate} id={comment._id} disableTouchRipple>
-                                                                                <EditIcon className='text-primary' fontSize="small" />
-                                                                            </Button>
-
+                                                                            {edit && editID === comment._id ?
+                                                                                <Button className="comment-opt" onClick={closeEdit} id={comment._id} disableTouchRipple>
+                                                                                    <CloseIcon className='text-primary' fontSize="small" />
+                                                                                </Button>
+                                                                                :
+                                                                                <Button className="comment-opt" onClick={handleUpdate} id={comment._id} disableTouchRipple>
+                                                                                    <EditIcon className='text-primary' fontSize="small" />
+                                                                                </Button>
+                                                                            }
                                                                             <Button onClick={handleDelete} id={comment._id} disableTouchRipple>
                                                                                 <DeleteIcon className='text-primary' fontSize="small" />
                                                                             </Button>
                                                                         </div>
                                                                     }
-                                                            </div>
+                                                                </div>
 
-                                                            <div className="comment-content">
-                                                                {comment.comment}
+                                                                <div className="comment-content">
+                                                                    {edit && editID === comment._id ?
+                                                                        <Box component="form" noValidate onSubmit={handleEditSubmit} sx={{ width: '100%' }}>
+                                                                            <TextField
+                                                                                id={comment._id}
+                                                                                rows={2}
+                                                                                defaultValue={comment.comment}
+                                                                                multiline
+                                                                                sx={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', borderRadius: '5px', width: '100%' }}
+                                                                            />
+                                                                            <Button
+                                                                                type="submit"
+                                                                                fullWidth
+                                                                                variant="contained"
+                                                                                color='primary'
+                                                                                sx={{ my: 1 }}
+                                                                                className='font-normal'
+                                                                            >
+                                                                                Edit
+                                                                            </Button>
+                                                                        </Box>
+                                                                        :
+                                                                        <>
+                                                                            {comment.comment}
+                                                                        </>
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     </li>)
                                                 )}
-                                        </ul>
-                        </div>
-                                :
-                                <Typography className='font-normal' >Be the first one on comment!</Typography>
+                                            </ul>
+                                        </div>
+                                        :
+                                        <Typography className='font-normal' >Be the first one on comment!</Typography>
                                     }
 
 
-                                <Box className='text-primary font-normal' sx={{ width: '80%', mt: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
-                                    <Box component="form" noValidate onSubmit={handleCommentSubmit} sx={{ width: '70%' }}>
-                                        <FormControl fullWidth required sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                            <TextField
-                                                id="outlined-textarea"
-                                                rows={2}
-                                                placeholder="Leave a comment here..."
-                                                value={commentValue}
-                                                onChange={handleChange}
-                                                multiline
-                                                sx={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', borderRadius: '5px', width: '100%' }}
-                                            />
-                                        </FormControl>
+                                    <Box className='text-primary font-normal' sx={{ width: '80%', mt: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+                                        <Box component="form" noValidate onSubmit={handleCommentSubmit} sx={{ width: '70%' }}>
+                                            <FormControl fullWidth required sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                <TextField
+                                                    id="outlined-textarea"
+                                                    rows={2}
+                                                    placeholder="Leave a comment here..."
+                                                    value={commentValue}
+                                                    onChange={handleChange}
+                                                    multiline
+                                                    sx={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', borderRadius: '5px', width: '100%' }}
+                                                />
+                                            </FormControl>
 
-                                        <Button
-                                            type="submit"
-                                            fullWidth
-                                            variant="contained"
-                                            color='primary'
-                                            sx={{ my: 1 }}
-                                            className='font-normal'
-                                        >
-                                            Comment
-                                        </Button>
+                                            <Button
+                                                type="submit"
+                                                fullWidth
+                                                variant="contained"
+                                                color='primary'
+                                                sx={{ my: 1 }}
+                                                className='font-normal'
+                                            >
+                                                Comment
+                                            </Button>
+                                        </Box>
                                     </Box>
                                 </Box>
+
+
+                                <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
                             </Box>
-
-
-                            <button className='cta-btn-3 font-normal' onClick={() => handleExpand()}>View less <ExpandLessIcon /></button>
-                        </Box>
                         </Box >
-            )
-}
-        </Card >
+                    )
+                }
+            </Card >
 
         </>
     )
