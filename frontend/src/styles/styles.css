@@ -319,6 +319,17 @@ main {
     width: 100%;
 }
 
+.cta-login{
+    
+    text-shadow: 1px 1px 1px #00695c; 
+}
+
+.cta-login:hover{
+    /* color: #00695c !important; */
+    text-shadow: 2px 2px 1px #00695c; 
+    
+}
+
 
 /* Scroll Down Button */
 

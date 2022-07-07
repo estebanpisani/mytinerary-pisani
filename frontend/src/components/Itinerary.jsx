@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as LinkRouter } from "react-router-dom";
 
 import itineraryActions from '../redux/actions/itineraryActions';
 
@@ -70,7 +71,7 @@ export default function Itinerary({ itineraryData, city }) {
     }
 
     async function handleDelete(e) {
-        console.log(e.target);
+        // console.log(e.target);
         await dispatch(itineraryActions.deleteComment(e.target.id))
         setChange(!change);
     }
@@ -167,7 +168,7 @@ export default function Itinerary({ itineraryData, city }) {
                                                             <div className="comment-box">
                                                                 <div className="comment-head">
                                                                     <h6 className="comment-name">{comment.user.firstName} {comment.user.lastName}</h6>
-                                                                    {user.id === comment.user._id &&
+                                                                    {user?.id === comment.user._id &&
                                                                         <div >
                                                                             {edit && editID === comment._id ?
                                                                                 <Button className="comment-opt" onClick={closeEdit} id={comment._id} disableTouchRipple>
@@ -222,33 +223,45 @@ export default function Itinerary({ itineraryData, city }) {
                                         <Typography className='font-normal' >Be the first one on comment!</Typography>
                                     }
 
+                                    {user ?
+                                        <Box className='text-primary font-normal' sx={{ width: '80%', mt: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+                                            <Box component="form" noValidate onSubmit={handleCommentSubmit} sx={{ width: '70%' }}>
+                                                <FormControl fullWidth required sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                    <TextField
+                                                        id="outlined-textarea"
+                                                        rows={2}
+                                                        placeholder="Leave a comment here..."
+                                                        value={commentValue}
+                                                        onChange={handleChange}
+                                                        multiline
+                                                        sx={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', borderRadius: '5px', width: '100%' }}
+                                                    />
+                                                </FormControl>
 
-                                    <Box className='text-primary font-normal' sx={{ width: '80%', mt: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
-                                        <Box component="form" noValidate onSubmit={handleCommentSubmit} sx={{ width: '70%' }}>
-                                            <FormControl fullWidth required sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                                <TextField
-                                                    id="outlined-textarea"
-                                                    rows={2}
-                                                    placeholder="Leave a comment here..."
-                                                    value={commentValue}
-                                                    onChange={handleChange}
-                                                    multiline
-                                                    sx={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', borderRadius: '5px', width: '100%' }}
-                                                />
-                                            </FormControl>
+                                                <Button
+                                                    type="submit"
+                                                    fullWidth
+                                                    variant="contained"
+                                                    color='primary'
+                                                    sx={{ my: 1 }}
+                                                    className='font-normal'
+                                                >
+                                                    Comment
+                                                </Button>
+                                            </Box>
 
-                                            <Button
-                                                type="submit"
-                                                fullWidth
-                                                variant="contained"
-                                                color='primary'
-                                                sx={{ my: 1 }}
-                                                className='font-normal'
-                                            >
-                                                Comment
-                                            </Button>
                                         </Box>
-                                    </Box>
+                                        :
+                                        <Box className='text-primary font-normal' sx={{ width: '100%', mt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                            <LinkRouter to="/login"  >
+                                                <Typography variant="h3" className='font-title text-light cta-btn-5 cta-login'>Sign In!</Typography>
+                                            </LinkRouter>
+                                            <Typography component="p" variant="h5" sx={{mt:2}} className='font-title text-light' >
+                                            and tell us what you think of this itinerary!                                             
+                                            </Typography>
+                                        </Box>
+
+                                    }
                                 </Box>
 
 
