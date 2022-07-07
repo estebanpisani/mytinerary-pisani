@@ -1,4 +1,5 @@
 const Itinerary = require('../models/itinerary');
+const User = require('../models/user');
 
 const itinerariesControllers = {
     getAllItineraries: async (req, res) => {
@@ -43,6 +44,7 @@ const itinerariesControllers = {
         let itineraries = [];
         try {
             itineraries = await Itinerary.find({ city: id })
+                .populate('comments.user', { userPhoto: 1, firstName: 1, lastName: 1 });
         } catch (err) {
             error = err;
             console.log(error);
@@ -104,7 +106,7 @@ const itinerariesControllers = {
             }
         )
     },
-    removeItinerary: async (req, res) => {
+    deleteItinerary: async (req, res) => {
         const id = req.params.id;
         let itinerary;
         let error = null;
@@ -129,7 +131,7 @@ const itinerariesControllers = {
             _id: id
         });
         if (itinerary) {
-            if (itinerary.likes.indexOf(user.id)!== -1) {
+            if (itinerary.likes.indexOf(user.id) !== -1) {
                 likesFiltered = itinerary.likes.filter(id => id !== user.id);
                 itinerary.likes = likesFiltered;
                 await itinerary.save();
@@ -155,6 +157,63 @@ const itinerariesControllers = {
         }
 
 
+    },
+    addComment: async (req, res) => {
+        const id = req.params.id;
+        const { user } = req;
+        const { comment } = req.body
+        const itinerary = await Itinerary.findOne({
+            _id: id
+        });
+        if (itinerary) {
+            itinerary.comments.push(
+                {
+                    comment: comment,
+                    user: user.id
+                }
+            );
+            await itinerary.save();
+
+            res.json({
+                success: true,
+                response: itinerary
+            })
+        } else {
+            res.json({
+                success: false,
+                message: 'Wrong action. Itinerary doesn\'t exists'
+            })
+        }
+    },
+    deleteComment: async (req, res) => {
+        const id = req.params.id;
+        const { user } = req;
+        const commentID = req.body._id;
+        let error = null;
+        const itineraryDB = await Itinerary.findOne({ 'comments._id': commentID });
+        console.log(itineraryDB)
+        
+        // if (itinerary) {
+        //     if (itinerary.comments.indexOf(comment => comment._id===_id) !== -1) {
+        //         console.log('Lo encontró!');
+        //         res.json({
+        //             message:'Aca taa'
+        //             }
+        //         )
+        //         // itinerary.comments.pull(
+        //         //     { _id: _id, user: user.id }
+        //         // );
+        //         // await itinerary.save();
+        //     }
+
+        // }
+        res.json(
+            {
+                // response: error ? 'Error removing comment' : itinerary,
+                success: error ? false : true,
+                error: error
+            }
+        )
     }
 }
 

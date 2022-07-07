@@ -8,9 +8,10 @@ const itinerariesControllers = require('../controllers/itinerariesControllers');
 const userControllers = require('../controllers/userControllers');
 const activitiesControllers = require('../controllers/activitiesControllers');
 
-const {getCities, getCityById, addCity, modifyCity, removeCity} = citiesControllers;
+const {getCities, getCityById, addCity, modifyCity, deleteCity} = citiesControllers;
 const {getAllActivities, getActivitiesByItinerary, addActivity, updateActivity, removeActivity} = activitiesControllers;
-const {getAllItineraries, getItineraryById, getItinerariesByCity,addItinerary, updateItinerary, removeItinerary, like} = itinerariesControllers;
+const {getAllItineraries, getItineraryById, getItinerariesByCity,addItinerary, updateItinerary, deleteItinerary} = itinerariesControllers;
+const {like, addComment, deleteComment } = itinerariesControllers;
 const { signUp, login, getUsers, deleteUser, verifyEmail, verifyToken } = userControllers;
 
 // Cities Routes
@@ -21,7 +22,7 @@ Router.route('/cities')
 Router.route('/cities/:id')
 .get(getCityById)
 .put(modifyCity)
-.delete(removeCity);
+.delete(deleteCity);
 
 Router.route('/cities/:id/itineraries')
 .get(getItinerariesByCity);
@@ -34,14 +35,20 @@ Router.route('/itineraries')
 Router.route('/itineraries/:id')
 .get(getItineraryById)
 .put(updateItinerary)
-.delete(removeItinerary);
+.delete(deleteItinerary);
 
 Router.route('/itineraries/:id/activities')
 .get(getActivitiesByItinerary);
 
+// Likes & Comments
 Router.route('/itineraries/:id/like')
 .put(passport.authenticate('jwt', { session: false }), like);
 
+Router.route('/itineraries/:id/comment')
+// .get(getComments)
+.post(passport.authenticate('jwt', { session: false }), addComment)
+// .put(passport.authenticate('jwt', { session: false }), updateComment)
+.delete(passport.authenticate('jwt', { session: false }), deleteComment);
 //  Activities Routes
 Router.route('/activities')
 .get(getAllActivities)
