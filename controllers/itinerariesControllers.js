@@ -185,35 +185,37 @@ const itinerariesControllers = {
             })
         }
     },
-    deleteComment: async (req, res) => {
-        const id = req.params.id;
-        const { user } = req;
-        const commentID = req.body._id;
-        let error = null;
-        const itineraryDB = await Itinerary.findOne({ 'comments._id': commentID });
-        console.log(itineraryDB)
-        
-        // if (itinerary) {
-        //     if (itinerary.comments.indexOf(comment => comment._id===_id) !== -1) {
-        //         console.log('Lo encontró!');
-        //         res.json({
-        //             message:'Aca taa'
-        //             }
-        //         )
-        //         // itinerary.comments.pull(
-        //         //     { _id: _id, user: user.id }
-        //         // );
-        //         // await itinerary.save();
-        //     }
+    updateComment: async (req, res) => {
+        const commentID = req.params.id;
+        const commentBody = req.body.comment
+        try {
+            const newItinerary= await Itinerary.findOneAndUpdate({ "comments._id": commentID }, { $set: { "comments.$.comment": commentBody }}, { new: true })
 
-        // }
-        res.json(
-            {
-                // response: error ? 'Error removing comment' : itinerary,
-                success: error ? false : true,
-                error: error
-            }
-        )
+            res.json({ success: true, response: { newItinerary }, message: "Commentary updated" })
+        }
+        catch (error) {
+            console.log(error)
+            res.json({ success: false, message: "Error updating commentary" })
+        }
+
+    },
+    deleteComment: async (req, res) => {
+        const commentID = req.params.id;
+        try {
+            const newItinerary = await Itinerary.findOneAndUpdate({ "comments._id": commentID }, { $pull: { comments: { _id: commentID } } }, { new: true })
+            res.json(
+                {
+                    success: true,
+                    response: { newItinerary },
+                    message: "Commentary removed"
+                }
+            )
+
+        }
+        catch (error) {
+            console.log(error)
+            res.json({ success: false, message: "Error removing commentary" })
+        }
     }
 }
 

@@ -11,7 +11,7 @@ const activitiesControllers = require('../controllers/activitiesControllers');
 const {getCities, getCityById, addCity, modifyCity, deleteCity} = citiesControllers;
 const {getAllActivities, getActivitiesByItinerary, addActivity, updateActivity, removeActivity} = activitiesControllers;
 const {getAllItineraries, getItineraryById, getItinerariesByCity,addItinerary, updateItinerary, deleteItinerary} = itinerariesControllers;
-const {like, addComment, deleteComment } = itinerariesControllers;
+const {like, addComment, deleteComment, updateComment } = itinerariesControllers;
 const { signUp, login, getUsers, deleteUser, verifyEmail, verifyToken } = userControllers;
 
 // Cities Routes
@@ -47,7 +47,7 @@ Router.route('/itineraries/:id/like')
 Router.route('/itineraries/:id/comment')
 // .get(getComments)
 .post(passport.authenticate('jwt', { session: false }), addComment)
-// .put(passport.authenticate('jwt', { session: false }), updateComment)
+.put(passport.authenticate('jwt', { session: false }), updateComment)
 .delete(passport.authenticate('jwt', { session: false }), deleteComment);
 //  Activities Routes
 Router.route('/activities')
