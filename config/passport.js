@@ -10,7 +10,7 @@ module.exports = passport.use(new Strategy(
         secretOrKey: process.env.SECRET_KEY
     }, (payload, done) => {
         // console.log(payload);
-        User.findOne({ id: payload._id })
+        User.findOne({ _id: payload.id })
             .then(user => {
                 // console.log(user);
                 if (user) {

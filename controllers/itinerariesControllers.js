@@ -124,15 +124,14 @@ const itinerariesControllers = {
     },
     like: async (req, res) => {
         const id = req.params.id;
-        const { userId } = req.body;
-
+        const { user } = req;
         const itinerary = await Itinerary.findOne({
             _id: id
         });
         if (itinerary) {
-            if (itinerary.likes.indexOf(userId)!== -1) {
-                itinerariesFiltered = itinerary.likes.filter(id => id !== userId);
-                itinerary.likes = itinerariesFiltered;
+            if (itinerary.likes.indexOf(user.id)!== -1) {
+                likesFiltered = itinerary.likes.filter(id => id !== user.id);
+                itinerary.likes = likesFiltered;
                 await itinerary.save();
 
                 res.json({
@@ -140,7 +139,7 @@ const itinerariesControllers = {
                     response: itinerary
                 })
             } else {
-                itinerary.likes.push(userId);
+                itinerary.likes.push(user.id);
                 await itinerary.save();
 
                 res.json({

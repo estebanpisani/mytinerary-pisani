@@ -40,7 +40,7 @@ Router.route('/itineraries/:id/activities')
 .get(getActivitiesByItinerary);
 
 Router.route('/itineraries/:id/like')
-.put(like);
+.put(passport.authenticate('jwt', { session: false }), like);
 
 //  Activities Routes
 Router.route('/activities')

@@ -1,11 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import itineraryActions from '../redux/actions/itineraryActions';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Avatar from '@mui/material/Avatar';
@@ -13,9 +16,16 @@ import Avatar from '@mui/material/Avatar';
 import Activities from './Activities';
 
 export default function Itinerary(props) {
-    // console.log(props)
     const dollarIcon = process.env.PUBLIC_URL + '/img/dollar.png';
+    const dispatch = useDispatch();
+    const user = useSelector(store => store.userReducer.userData)
+
     const [expand, setExpand] = useState(false);
+    const [change, setChange] = useState(false);
+
+    useEffect(() => {
+        dispatch(itineraryActions.getItinerariesByCity(props.city));
+    }, [change]);
 
     const handleExpand = () => {
         setExpand(!expand);
@@ -23,6 +33,11 @@ export default function Itinerary(props) {
     let price = [];
     for (let i = 0; i < props.price; i++) {
         price.push(<img src={dollarIcon} alt='price-value-unit' height='30px' width='30px' key={i} />);
+    }
+
+    async function handleLike() {
+        await dispatch(itineraryActions.like(props.id))
+        setChange(!change);
     }
 
     return (
@@ -44,8 +59,12 @@ export default function Itinerary(props) {
 
                             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, justifyContent: 'space-evenly', alignItems: 'center', width: '100%', flexWrap: 'wrap', marginBottom: '1rem' }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                                    <FavoriteBorderIcon className='like-btn' fontSize='medium' />
-                                    <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', marginLeft: '0.5rem' }} className='font-normal'> {props.likes ? props.likes : 0}</Typography>
+                                    {props.likes.includes(user.id) ?
+
+                                        <FavoriteIcon className='like-btn' fontSize='medium' onClick={handleLike} /> :
+                                        <FavoriteBorderIcon className='like-btn' fontSize='medium' onClick={handleLike} />
+                                    }
+                                    <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', marginLeft: '0.5rem' }} className='font-normal'> {props.likes.length}</Typography>
                                 </Box>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                     <Typography variant="body1" className='font-normal' >Price:</Typography>
