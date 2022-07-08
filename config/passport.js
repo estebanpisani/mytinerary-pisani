@@ -9,10 +9,8 @@ module.exports = passport.use(new Strategy(
         jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey: process.env.SECRET_KEY
     }, (payload, done) => {
-        // console.log(payload);
         User.findOne({ _id: payload.id })
             .then(user => {
-                // console.log(user);
                 if (user) {
                     return done(null, user)
                 } else if (error) {
