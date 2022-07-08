@@ -45,7 +45,7 @@ function NavBar() {
 
     const handleLogOut = () => {
         dispatch(userActions.logout());
-        navigate("/", { replace: true });
+        // navigate("/", { replace: true });
     }
 
     const pages = [{ name: 'HOME', url: '/' }, { name: 'CITIES', url: '/cities' }];

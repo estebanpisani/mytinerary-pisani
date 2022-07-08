@@ -3,7 +3,7 @@ ul {
 }
 
 .comments-container {
-    font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+    font-family: 'Comfortaa', sans-serif !important;
     max-height: 250px !important;
     margin: 0 auto;
     width: 81%;
@@ -51,9 +51,6 @@ ul {
     -moz-border-radius: 50%;
     border-radius: 50%;
 } */
-.comment-opt{
-    z-index: 2;
-}
 
 .comments-list li {
     margin-bottom: 15px;
@@ -82,7 +79,7 @@ ul {
     position: relative;
     z-index: 99;
     /* float: left; */
-    border: 3px solid #FFF;
+    border: 3px solid rgb(0, 105, 92);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -129,7 +126,7 @@ ul {
     display: block;
     border-width: 10px 12px 10px 0;
     border-style: solid;
-    border-color: transparent #FCFCFC;
+    border-color: transparent rgb(0, 105, 92);
     top: 8px;
     left: -11px;
 }
@@ -147,6 +144,7 @@ ul {
 .comment-box .comment-head {
     display:flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     background: #FCFCFC;
     padding: 10px 12px;
@@ -175,10 +173,11 @@ ul {
 
 .comment-box .comment-name {
     color: #283035;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 700;
     float: left;
-    margin-right: 10px;
+    /* margin-right: 10px; */
+    text-align: center;
 }
 
 .comment-box .comment-name a {
@@ -201,6 +200,7 @@ ul {
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
+    overflow-wrap:break-word;
 }
 
 

@@ -23,7 +23,7 @@ import FormControl from '@mui/material/FormControl';
 // import Snackbar from '@mui/material/Snackbar';
 // import IconButton from '@mui/material/IconButton';
 // import Alert from '@mui/material/Alert';
-
+import MenuItem from '@mui/material/MenuItem';
 import Activities from './Activities';
 
 
@@ -85,20 +85,20 @@ export default function Itinerary({ itineraryData, city }) {
         setEdit(false)
         setEditID('');
         // console.log(event.target[0].id)
-        if(event.target[0].value!==''){
-        await dispatch(itineraryActions.updateComment(event.target[0].id, event.target[0].value))
-        setChange(!change);
+        if (event.target[0].value !== '') {
+            await dispatch(itineraryActions.updateComment(event.target[0].id, event.target[0].value))
+            setChange(!change);
         }
     };
     async function handleCommentSubmit(event) {
         event.preventDefault();
-        if(commentValue!==''){
-        await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
-        // let response = await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
-        setCommentValue('')
-        setChange(!change);
+        if (commentValue !== '') {
+            await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
+            // let response = await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
+            setCommentValue('')
+            setChange(!change);
         }
-        
+
         // if (response.success) {
         //     console.log(response.message)
         //     setMessage(response.message);
@@ -174,37 +174,39 @@ export default function Itinerary({ itineraryData, city }) {
                                 <Box className='comments-section' sx={{ my: '0.5rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
                                     <Typography className='font-normal' sx={{ width: '100%', backgroundColor: '#000', mb: 2 }}>Leave us a comment!</Typography>
                                     {itineraryData.comments.length > 0 ?
-                                        <div id='comments-container' className="comments-container">
+                                        <div id='comments-container' className="comments-container scrollbar">
                                             <ul id="comments-list" className="comments-list">
                                                 {itineraryData.comments.map((comment, i) => (
                                                     <li key={i}>
                                                         <div className="comment-main-level">
-                                                            <div className="comment-avatar">
-                                                                {comment.user?.userPhoto &&
+                                                            {comment.user?.userPhoto ?
+                                                                <div className="comment-avatar">
                                                                     <img src={comment.user.userPhoto} alt="" />
-                                                                }
-                                                            </div>
+                                                                </div>
+                                                                :
+                                                                <Avatar className="comment-avatar" src="/broken-image.jpg" />
+                                                            }
                                                             <div className="comment-box">
-                                                                <div className="comment-head">
-                                                                    <h6 className="comment-name">{comment.user?.firstName} {comment.user?.lastName}</h6>
+                                                                <div className="comment-head bg-primary">
+                                                                    <Typography variant='h6' className="comment-name font-slogan text-light">
+                                                                        {comment.user?.firstName} {comment.user?.lastName}</Typography>
                                                                     {user?.id === comment.user?._id &&
-                                                                        <div >
+                                                                        <Box sx={{ display: 'flex', justifyContent: 'space-around', width: '9rem', height: '1rem' }} >
                                                                             {edit && editID === comment._id ?
-                                                                                <Button className="comment-opt" onClick={closeEdit} id={comment._id} disableTouchRipple>
-                                                                                    <CloseIcon className='text-primary' fontSize="small" />
+                                                                                <Button className='bg-primary' sx={{ fontSize: '0.7rem', width: '3rem' }} onClick={closeEdit} id={comment._id} disableTouchRipple>
+                                                                                    <CloseIcon className='text-light' fontSize="small" />
                                                                                 </Button>
                                                                                 :
-                                                                                <Button className="comment-opt" onClick={handleUpdate} id={comment._id} disableTouchRipple>
-                                                                                    <EditIcon className='text-primary' fontSize="small"> </EditIcon>
+                                                                                <Button className='bg-primary text-light font-normal' sx={{ fontSize: '0.7rem', width: '1rem' }} onClick={handleUpdate} id={comment._id} disableTouchRipple>
+                                                                                    EDIT
                                                                                 </Button>
                                                                             }
-                                                                            <Button onClick={handleDelete} id={comment._id} disableTouchRipple>
-                                                                                <DeleteIcon className='text-primary' fontSize="small" />
+                                                                            <Button className='bg-primary text-light font-normal' sx={{ fontSize: '0.7rem' }} onClick={handleDelete} id={comment._id} disableTouchRipple>
+                                                                                DELETE
                                                                             </Button>
-                                                                        </div>
+                                                                        </Box>
                                                                     }
                                                                 </div>
-
                                                                 <div className="comment-content">
                                                                     {edit && editID === comment._id ?
                                                                         <Box component="form" noValidate onSubmit={handleEditSubmit} sx={{ width: '100%' }}>
