@@ -20,7 +20,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
-
+// import Snackbar from '@mui/material/Snackbar';
+// import IconButton from '@mui/material/IconButton';
+// import Alert from '@mui/material/Alert';
 
 import Activities from './Activities';
 
@@ -37,6 +39,9 @@ export default function Itinerary({ itineraryData, city }) {
     const [commentValue, setCommentValue] = useState('');
     const [editID, setEditID] = useState('');
     const [edit, setEdit] = useState(false);
+    // const [message, setMessage] = useState(null);
+    // const [error, setError] = useState(null);
+    // const [alert, setAlert] = useState(false);
 
     useEffect(() => {
         dispatch(itineraryActions.getItinerariesByCity(city));
@@ -80,15 +85,29 @@ export default function Itinerary({ itineraryData, city }) {
         setEdit(false)
         setEditID('');
         // console.log(event.target[0].id)
+        if(event.target[0].value!==''){
         await dispatch(itineraryActions.updateComment(event.target[0].id, event.target[0].value))
         setChange(!change);
+        }
     };
     async function handleCommentSubmit(event) {
         event.preventDefault();
-        setCommentValue('')
+        if(commentValue!==''){
         await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
+        // let response = await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
+        setCommentValue('')
         setChange(!change);
+        }
+        
+        // if (response.success) {
+        //     console.log(response.message)
+        //     setMessage(response.message);
+        // } else {
+        //     setError(response.message);
+        // }
+
     };
+
 
     return (
         <>
@@ -161,14 +180,14 @@ export default function Itinerary({ itineraryData, city }) {
                                                     <li key={i}>
                                                         <div className="comment-main-level">
                                                             <div className="comment-avatar">
-                                                                {comment.user.userPhoto &&
+                                                                {comment.user?.userPhoto &&
                                                                     <img src={comment.user.userPhoto} alt="" />
                                                                 }
                                                             </div>
                                                             <div className="comment-box">
                                                                 <div className="comment-head">
-                                                                    <h6 className="comment-name">{comment.user.firstName} {comment.user.lastName}</h6>
-                                                                    {user?.id === comment.user._id &&
+                                                                    <h6 className="comment-name">{comment.user?.firstName} {comment.user?.lastName}</h6>
+                                                                    {user?.id === comment.user?._id &&
                                                                         <div >
                                                                             {edit && editID === comment._id ?
                                                                                 <Button className="comment-opt" onClick={closeEdit} id={comment._id} disableTouchRipple>
@@ -176,7 +195,7 @@ export default function Itinerary({ itineraryData, city }) {
                                                                                 </Button>
                                                                                 :
                                                                                 <Button className="comment-opt" onClick={handleUpdate} id={comment._id} disableTouchRipple>
-                                                                                    <EditIcon className='text-primary' fontSize="small" />
+                                                                                    <EditIcon className='text-primary' fontSize="small"> </EditIcon>
                                                                                 </Button>
                                                                             }
                                                                             <Button onClick={handleDelete} id={comment._id} disableTouchRipple>
@@ -256,11 +275,10 @@ export default function Itinerary({ itineraryData, city }) {
                                             <LinkRouter to="/login"  >
                                                 <Typography variant="h3" className='font-title text-light cta-btn-5 cta-login'>Sign In!</Typography>
                                             </LinkRouter>
-                                            <Typography component="p" variant="h5" sx={{mt:2}} className='font-title text-light' >
-                                            and tell us what you think of this itinerary!                                             
+                                            <Typography component="p" variant="h5" sx={{ mt: 2 }} className='font-title text-light' >
+                                                and tell us what you think of this itinerary!
                                             </Typography>
                                         </Box>
-
                                     }
                                 </Box>
 

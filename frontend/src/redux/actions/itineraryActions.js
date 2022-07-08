@@ -64,7 +64,7 @@ const itineraryActions = {
                 const res = await axios.post(url + '/itineraries/' + id + '/comment', { comment }, {
                     headers: { 'Authorization': 'Bearer ' + token }
                 });
-                return res.data.response
+                return res.data
             } catch (error) {
                 if (error.response.status === 401) {
                     console.log(error.response.data)
@@ -96,7 +96,6 @@ const itineraryActions = {
                     headers: { 'Authorization': 'Bearer ' + token }
                     });
                 return res.data.response
-                console.log(res.data);
             } catch (error) {
                 if (error.response.status === 401) {
                     console.log(error.response.data)

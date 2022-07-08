@@ -176,7 +176,8 @@ const itinerariesControllers = {
 
             res.json({
                 success: true,
-                response: itinerary
+                response: itinerary,
+                message: "Thanks for comment!"
             })
         } else {
             res.json({
