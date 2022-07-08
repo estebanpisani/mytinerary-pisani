@@ -15,15 +15,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 // import Snackbar from '@mui/material/Snackbar';
 // import IconButton from '@mui/material/IconButton';
 // import Alert from '@mui/material/Alert';
-import MenuItem from '@mui/material/MenuItem';
 import Activities from './Activities';
 
 

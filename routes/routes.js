@@ -5,13 +5,14 @@ const passport = require('../config/passport');
 
 const citiesControllers = require('../controllers/citiesControllers');
 const itinerariesControllers = require('../controllers/itinerariesControllers');
+const commentsControllers = require('../controllers/commentsControllers');
 const userControllers = require('../controllers/userControllers');
 const activitiesControllers = require('../controllers/activitiesControllers');
 
 const {getCities, getCityById, addCity, modifyCity, deleteCity} = citiesControllers;
 const {getAllActivities, getActivitiesByItinerary, addActivity, updateActivity, removeActivity} = activitiesControllers;
 const {getAllItineraries, getItineraryById, getItinerariesByCity,addItinerary, updateItinerary, deleteItinerary} = itinerariesControllers;
-const {like, addComment, deleteComment, updateComment } = itinerariesControllers;
+const {like, addComment, deleteComment, updateComment } = commentsControllers;
 const { signUp, login, getUsers, deleteUser, verifyEmail, verifyToken } = userControllers;
 
 // Cities Routes
