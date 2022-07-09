@@ -1,6 +1,6 @@
 import axios from "axios";
+import url from '../../url'
 
-let url = 'http://localhost:4000/api/auth';
 
 const userActions = {
 

@@ -1,6 +1,5 @@
 import axios from "axios";
-
-let url = 'http://localhost:4000/api';
+import url from '../../url'
 
 const activityActions = {
 
