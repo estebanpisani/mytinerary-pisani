@@ -7,7 +7,7 @@ const userActions = {
     signUp: (userData) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.post(url + '/signup', userData);
+                const res = await axios.post(url + '/auth/signup', userData);
                 // console.log(res);
                 dispatch({
                     type: 'SIGN_UP',
@@ -21,7 +21,7 @@ const userActions = {
     login: (userCredentials) => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.post(url + '/login', userCredentials);
+                const res = await axios.post(url + '/auth/login', userCredentials);
                 // console.log(res)
                 if (res.data.success) {
                     localStorage.setItem('Token', res.data.response.token)
@@ -47,7 +47,7 @@ const userActions = {
     verifyToken: (token) => {
         return async (dispatch, getState) => {
             
-            await axios.get(url, {
+            await axios.get(url+'/auth', {
                 headers: { 'Authorization': 'Bearer ' + token }
             })
                 .then(res => {
@@ -69,13 +69,6 @@ const userActions = {
                         localStorage.removeItem('Token');
                     }
                 })
-
-
-
-
-
-
-
         }
 
     }

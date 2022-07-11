@@ -76,7 +76,7 @@ const Cities = () => {
                         className='grid-container'
                         container
                         spacing={{ xs: 2, md: 2, lg: 5 }}
-                        columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 8 }}
+                        columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl:5 }}
                         justifyContent="center"
                         alignItems='center'
                         sx={{ padding: '3rem', margin: '0' }}

@@ -218,3 +218,14 @@ ul {
         display: none;
     }
 }
+
+@media only screen and (max-width: 400px) {
+    .comments-container {
+        width: 80% !important;
+    }
+
+    .comment-box .comment-name {
+    font-size: 15px !important;
+}
+
+}

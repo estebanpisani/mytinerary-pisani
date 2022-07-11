@@ -52,3 +52,9 @@
     display: none;
 }
 }
+
+@media screen and (max-width: 400px) {
+.swiper {
+    height:15rem;
+}
+}

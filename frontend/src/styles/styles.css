@@ -408,9 +408,18 @@ main {
 
 }
 
-@media screen and (max-width: 300px) {
-    h4 {
+@media screen and (max-width: 600px) {
+        .font-normal {
+        font-family: 'Comfortaa', sans-serif !important;
+        font-weight: 500;
         font-size: 1rem !important;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    h4 {
+        font-size: 0.5rem !important;
     }
 
     .font-title {

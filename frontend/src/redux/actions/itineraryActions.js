@@ -91,7 +91,7 @@ const itineraryActions = {
         // console.log(id)
         return async (dispatch, getState) => {
             try {
-                const res = await axios.delete(url + 'itineraries/' + id + '/comment', {
+                const res = await axios.delete(url + '/itineraries/' + id + '/comment', {
                     headers: { 'Authorization': 'Bearer ' + token }
                     });
                 return res.data.response

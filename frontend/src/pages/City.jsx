@@ -57,8 +57,8 @@ const City = () => {
                 </Box>
             </Box>
             {/* Itineraries section */}
-            <Box className='itineraries-section' sx={{ flexGrow: '1', backgroundImage: `url(${bgImg})`, minHeight: '60vh', padding: '1rem' }} >
-                <Box className='itineraries-container' sx={{ maxHeight: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
+            <Box className='itineraries-section' sx={{ flexGrow: '1', backgroundImage: `url(${bgImg})`, minHeight: '60vh', py: '1rem', px:{xs:0, sm:'1rem'} }} >
+                <Box className='itineraries-container' sx={{ maxHeight: '100%', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: {xs:0, md:'1.5rem'} }}>
                     {itineraries.length > 0 ? itineraries.map((itinerary, i) =>
                         <Itinerary key={i} city={cityID} itineraryData={itinerary} />
                     ) : (
