@@ -1,5 +1,4 @@
 const Itinerary = require('../models/itinerary');
-const User = require('../models/user');
 
 const itinerariesControllers = {
     getAllItineraries: async (req, res) => {

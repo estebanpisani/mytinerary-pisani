@@ -67,7 +67,6 @@ const City = () => {
                         </Box>
                     )
                     }
-
                 </Box>
             </Box>
         </main>

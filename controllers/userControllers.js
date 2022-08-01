@@ -90,7 +90,7 @@ const userControllers = {
                                 userPhoto: user.userPhoto,
                                 country: user.country
                             }
-                            const token = jwt.sign({ ...data }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 24 * 7 })
+                            const token = jwt.sign({ ...data }, ck.SECRET_KEY, { expiresIn: 60 * 60 * 24 * 7 })
 
                             res.json({
                                 success: true,

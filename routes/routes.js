@@ -46,7 +46,6 @@ Router.route('/itineraries/:id/like')
 .put(passport.authenticate('jwt', { session: false }), like);
 
 Router.route('/itineraries/:id/comment')
-// .get(getComments)
 .post(passport.authenticate('jwt', { session: false }), addComment)
 .put(passport.authenticate('jwt', { session: false }), updateComment)
 .delete(passport.authenticate('jwt', { session: false }),deleteComment);

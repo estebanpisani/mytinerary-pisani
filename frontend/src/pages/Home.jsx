@@ -3,7 +3,6 @@ import React from 'react'
 import CarouselSection from '../components/CarouselSection';
 import Hero from './../components/Hero';
 
-
 const Home = () => {
 
     const heroBg = process.env.PUBLIC_URL + '/img/home-hero.jpg';

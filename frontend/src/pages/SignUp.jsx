@@ -22,6 +22,7 @@ import Alert from '@mui/material/Alert';
 import userActions from '../redux/actions/userActions';
 import dataActions from '../redux/actions/dataActions';
 
+import CLIENT_ID from '../google';
 
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
@@ -110,7 +111,7 @@ export default function SignUp() {
 
     useEffect(() => {
         window.google.accounts.id.initialize({
-            client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
+            client_id: CLIENT_ID,
             callback: handleCredentialResponse
         });
         window.google.accounts.id.renderButton(

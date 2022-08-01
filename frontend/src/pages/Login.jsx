@@ -22,6 +22,8 @@ import { Link as LinkRouter } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions';
 
+import CLIENT_ID from '../google';
+
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function Login() {
@@ -74,7 +76,7 @@ export default function Login() {
     useEffect(() => {
         if (window.google) {
             window.google.accounts.id.initialize({
-                client_id: "141406914670-3blfenl651dr6mbqqo0bknpfbu8vsm17.apps.googleusercontent.com",
+                client_id: CLIENT_ID,
                 callback: handleCredentialResponse
             });
             window.google.accounts.id.renderButton(
