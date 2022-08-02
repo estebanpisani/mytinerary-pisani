@@ -11,17 +11,17 @@ The app has its [mobile version](https://github.com/estebanpisani/myTinerary-Mob
 
 ## Features
 
-[x] JWT Authentication & Authorization
-[x] API Rest
-[x] CRUD with validations
-[x] State management
-[x] Mail sender
-[x] Likes & Comments
+- [x] JWT Authentication & Authorization
+- [x] API Rest
+- [x] CRUD with validations
+- [x] State management
+- [x] Mail sender
+- [x] Likes & Comments
   
 ## Future Features
 
-[ ] Admin role and functions
-[ ] Itinerary subscription
+- [ ] Admin role and functions
+- [ ] Itinerary subscription
 
 ## Getting Started
 You must include two `.env` files. One in the `server` directory with the following environmental variables:
