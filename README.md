@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# MyTinerary
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Travel app developed in order to put into practice the knowledge acquired about the **MERN** Stack (MongoDB, Express, React & Node).
 
-## Available Scripts
+This app is one of the individual projects for [MindHub](https://mindhubweb.com/)'s **MERN Fullstack
+& Mobile Apps**.
 
-In the project directory, you can run:
+Check the [live demo](https://mytinerary-pisani.herokuapp.com/)
 
-### `npm start`
+The app has its [mobile version](https://github.com/estebanpisani/myTinerary-Mobile) built with React Native
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[x] JWT Authentication & Authorization
+[x] API Rest
+[x] CRUD with validations
+[x] State management
+[x] Mail sender
+[x] Likes & Comments
+  
+## Future Features
 
-### `npm test`
+[ ] Admin role and functions
+[ ] Itinerary subscription
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
+You must include two `.env` files. One in the `server` directory with the following environmental variables:
+ `PORT, USER, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, SECRET_KEY, MONGO_URI` and another inside the `src` directory that only includes `CLIENT_ID`.
 
-### `npm run build`
+#### Install dependencies for server
+```
+npm install
+```
+#### Run the client & server with concurrently
+```
+npm run dev
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Frameworks and libraries
+### Front End
+- React
+- Redux (State management)
+- Material-UI
+- Swiper (Activities Carousel)
+- Slick-carousel (Home carousel)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Back End
+- Node.js
+- Express
+- MongoDB (Database)
+- Mongoose (Data model)
+- Bcrypt (password hashing)
+- JSON Web Token
+- Passport (Authentication)
+- JOI (Validations)
+- Nodemailer (Mail sender)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Credits
 
-### `npm run eject`
+### Author
+Esteban Pisani
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Supported by
+- [Adrián Deambroggi](https://github.com/DEAMBROGGI)
+- [Ignacio Borraz](https://github.com/ignacioborraz)
+- [Eric Rodriguez](https://github.com/ericfrodriguez)
+- [José Lopez Zaccaro](https://github.com/JoseZaccaro)
