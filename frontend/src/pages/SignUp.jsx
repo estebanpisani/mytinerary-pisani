@@ -198,7 +198,7 @@ export default function SignUp() {
                                 id="photoUrl"
                                 label="📷 Photo URL"
                                 name="photoUrl"
-                                autoComplete="name"
+                                autoComplete="url"
                                 color='primary'
                                 autoFocus
                             />

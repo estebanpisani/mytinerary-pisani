@@ -27,7 +27,7 @@ import CLIENT_ID from '../google';
 const bgImg = process.env.PUBLIC_URL + '/img/city-body.jpg'
 
 export default function Login() {
-
+    
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
@@ -147,6 +147,7 @@ export default function Login() {
                                 id="email"
                                 label="Email"
                                 type='email'
+                                autoComplete='email'
                                 required
                             />
                         </FormControl>
@@ -154,6 +155,7 @@ export default function Login() {
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
                                 required
+                                autoComplete='current-password'
                                 id="outlined-adornment-password"
                                 type={values.showPassword ? 'text' : 'password'}
                                 value={values.password}

@@ -65,7 +65,6 @@ export default function Itinerary({ itineraryData, city }) {
     async function handleUpdate(e) {
         setEdit(true)
         setEditID(e.target.id);
-        // console.log(e.target.id);
     }
 
     const closeEdit = () => {
@@ -73,7 +72,7 @@ export default function Itinerary({ itineraryData, city }) {
     }
 
     async function handleDelete(e) {
-        // console.log(e.target);
+        window.alert('Are you sure you want to delete your comment?');
         await dispatch(itineraryActions.deleteComment(e.target.id))
         setChange(!change);
     }
@@ -81,7 +80,6 @@ export default function Itinerary({ itineraryData, city }) {
         event.preventDefault();
         setEdit(false)
         setEditID('');
-        // console.log(event.target[0].id)
         if (event.target[0].value !== '') {
             await dispatch(itineraryActions.updateComment(event.target[0].id, event.target[0].value))
             setChange(!change);
@@ -91,7 +89,6 @@ export default function Itinerary({ itineraryData, city }) {
         event.preventDefault();
         if (commentValue !== '') {
             await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
-            // let response = await dispatch(itineraryActions.addComment(itineraryData._id, commentValue))
             setCommentValue('')
             setChange(!change);
         }
