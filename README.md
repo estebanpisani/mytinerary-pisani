@@ -1,5 +1,7 @@
 # MyTinerary
 
+![](https://i.imgur.com/g2DAcrM.jpg)
+
 Travel app developed in order to put into practice the knowledge acquired about the **MERN** Stack (MongoDB, Express, React & Node).
 
 This app is one of the individual projects for [MindHub](https://mindhubweb.com/)'s **MERN Fullstack
