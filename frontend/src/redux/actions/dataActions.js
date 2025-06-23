@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let countriesAPI = 'https://restcountries.com/v3.1';
+let countriesAPI = process.env.COUNTRIES_API;
 
 const dataActions = {
     getCountries: () => {
