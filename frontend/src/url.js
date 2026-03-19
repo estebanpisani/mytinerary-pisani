@@ -1,3 +1,3 @@
-let url = 'https://mytineraryback-pisani.herokuapp.com/api';
+let url = process.env.SERVER_URL;
 
 export default url;
