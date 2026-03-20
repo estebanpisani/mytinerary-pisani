@@ -26,15 +26,25 @@ The app has its [mobile version](https://github.com/estebanpisani/myTinerary-Mob
 - [ ] Itinerary subscription
 
 ## Getting Started
-You must include two `.env` files. One in the `server` directory with the following environmental variables:
- `PORT, USER, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, SECRET_KEY, MONGO_URI` and another inside the `src` directory that only includes `CLIENT_ID`.
+You must include two `.env` files:
+- `backend/.env` with: `PORT, USER, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, SECRET_KEY, MONGO_URI`
+- `frontend/.env` with: `SERVER_URL` (the backend API URL)
 
-#### Install dependencies for server
+#### Install dependencies
+```bash
+# Backend
+cd backend && npm install
+
+# Frontend
+cd frontend && npm install
 ```
-npm install
-```
-#### Run the client & server with concurrently
-```
+
+#### Run the application
+```bash
+# Backend (from backend/)
+npm run dev
+
+# Frontend (from frontend/)
 npm run dev
 ```
 
